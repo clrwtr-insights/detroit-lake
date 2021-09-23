@@ -41,7 +41,7 @@
 <body>
   <main>
     <div class="loader"></div>
-    <div id="info" data-simplebar data-simplebar-auto-hide="true">
+    <div id="info" data-simplebar data-simplebar-auto-hide="true"  class="col-lg-3 mb-2">
       <!-- Header -->
       <div id="title" style="font-size:23px">
         <div id="deck-1" class="card-deck counts">
@@ -465,7 +465,7 @@
       center: [44.70580544041939, -122.24899460193791],
       zoomControl: false,
       zoom: 12,
-      maxZoom: 18,
+      maxZoom: 15,
       minZoom: 7,
     });
 
@@ -510,7 +510,7 @@
 
 
 
-    var chart, agechart;
+    var chart,sampleChart,weatherChart;
 
     var colors = chroma.scale('YlOrRd').mode('lch').colors(6);
     for (i = 0; i < 6; i++) {
@@ -518,47 +518,38 @@
       $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
     }
 
-
-    // var communities = new L.MarkerClusterGroup({
-    //   spiderfyOnMaxZoom: false,
-    //   singleMarkerMode: true,
-    //   // showCoverageOnHover: false,
-    //   // zoomToBoundsOnClick: false,
-    //   iconCreateFunction: function(cluster) {
-    //     return L.divIcon({
-    //       html: '<i class="fas fa-procedures community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
-    //     });
-    //   }
-    //
-    // });
-    //
-    //
-    // var cases = new L.MarkerClusterGroup({
-    //   spiderfyOnMaxZoom: true,
-    //   singleMarkerMode: true,
-    //   // showCoverageOnHover: false,
-    //   // zoomToBoundsOnClick: false,
-    //   iconCreateFunction: function(cluster) {
-    //     return L.divIcon({
-    //       html: '<i class="fas fa-users community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
-    //     });
-    //   }
-    //
-    // }).addTo(mymap);
+    // hexbin options
     var options = {
-    radius : 12,
-    opacity: 0.5,
-    duration: 500
-};
-    var hexLayer = L.hexbinLayer(options).addTo(mymap)
-    hexLayer.colorScale().range(['blue','green','yellow','orange', 'red']);
+      radius: 12,
+      opacity: 0.5,
+      duration: 500
+    };
 
+    // hexbin map layer
+    var hexLayer = L.hexbinLayer(options).addTo(mymap)
+    hexLayer.colorScale().range(['red',   'orange', 'green',
+                                 'blue'
+  ]);
+
+// hexlayer options
     hexLayer
       .radiusRange([6, 11])
-    	.lng(function(d) { return d[0]; })
-      .lat(function(d) { return d[1]; })
-      .colorValue(function(d) { return d.length; })
-      .radiusValue(function(d) { return d.length; });
+      .lng(function(d) {
+        return d[0];
+      })
+      .lat(function(d) {
+        return d[1];
+      })
+      .colorValue(function(d) {
+        var users_sum = d.reduce(function (acc, obj) {
+            return acc + parseInt(obj["o"][2]);
+          }, 0);
+				return users_sum
+      })
+      // .radiusValue(function(d) {
+      //   return d.length;
+      // })
+      ;
 
 
     Promise.all([
@@ -621,11 +612,11 @@
       }
 
       function siteCounts(i) {
-      tvar = 0;
+        tvar = 0;
         datasets[5].forEach(function(d) {
           var USTd = new Date(d["date"])
-  wt.push(USTd.setHours(USTd.getHours() + 8));
-      tvar = 0;
+          wt.push(USTd.setHours(USTd.getHours() + 8));
+          tvar = 0;
           current = d;
           delete current["date"];
           if (i["name"] != "14178000") {
