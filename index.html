@@ -1,0 +1,1403 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="authors" content="Benji Antolin">
+  <title>CLRWTR Insights</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="css/MarkerCluster.css">
+  <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="css/leaflet.zoomhome.css" />
+  <link href="css/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/simplebar.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <script src="js/d3.js"></script>
+  <script src="js/c3.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="js/chroma.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/simplebar.min.js"></script>
+  <script src="js/leaflet.markercluster.js"></script>
+  <script src="js/leaflet.zoomhome.min.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <script src="https://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+</head>
+
+<body>
+  <main>
+    <div class="loader"></div>
+    <div id="info" data-simplebar data-simplebar-auto-hide="true">
+      <!-- Header -->
+      <div id="title" style="font-size:23px">
+        <div id="deck-1" class="card-deck counts">
+          <div class="card col-sm-2">
+            <img src="img\clearLogo.png">
+          </div>
+          <div class="card col-sm-9">
+            <div>CLRWTR Insights<sup>tm</sup></div>
+            <div>Harmful Algal Blooms</div>
+          </div>
+
+          <span><a href="https://facebook.com/sharer.php?u=https://benjiantolin.github.io/virusOregon/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
+          <span><a href="https://github.com/benjiantolin/virusOregon" target="_blank"><i class="fab fa-github-square"></i></a></span>
+          <span><a data-toggle="modal" data-target="#resourcewindow"><i class="far fa-question-circle"></i></a></span>
+          <span><a data-toggle="modal" data-target="#infowindow"><i class="nav fas fa-info-circle"></i></a></span>
+        </div>
+
+      </div>
+
+
+      <!-- Location Title -->
+      <p><span id="placename">Detroit Lake, Oregon</span> </p>
+      <div> <span id="date"></span></div>
+      <!-- Tab Data Selection -->
+      <div id="deck-1" class="card-deck counts">
+
+        <div class="card">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="true">
+                Weather
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="stream-tab" data-bs-toggle="tab" href="#stream" data-bs-target="#stream" type="button" role="tab" aria-controls="stream" aria-selected="false">
+                Stream gage
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="sample-tab" data-bs-toggle="tab" href="#sample" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="false">
+                Water sample
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <div id="weather-chart"></div>
+                </div>
+              </div>
+              <!-- Location gages -->
+              <div id="deck-3" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label">Location: Choose on map</label>
+                    </div>
+                  </center>
+                </div>
+              </div>
+              <!-- Variable Selection -->
+              <div id="deck-4" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label">Variable: </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW1" value="optionW1" checked>
+                      <label class="form-check-label" for="inlineRadioW1">Ait temp.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW2" value="optionW2">
+                      <label class="form-check-label" for="inlineRadioW2">Precip.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW3" value="optionW3">
+                      <label class="form-check-label" for="inlineRadioW3">Wind speed</label>
+                    </div>
+                    <!-- <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV4" value="optionGV4">
+                      <label class="form-check-label" for="inlineRadioGV4">Tot. Nitrate</label>
+                    </div> -->
+                  </center>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <p></p>
+                  </center>
+                  <div id="gage-chart"></div>
+                </div>
+              </div>
+              <!-- Location gages -->
+              <div id="deck-3" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label">Location: </label>
+                    </div>
+                    <div class="form-check form-check-inline" id="14178000">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG1" value="optionG1" checked>
+                      <label class="form-check-label" for="inlineRadioG1">14178000</label>
+                    </div>
+                    <div class="form-check form-check-inline" id="14179000">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG2" value="optionG2">
+                      <label class="form-check-label" for="inlineRadioG2">14179000</label>
+                    </div>
+                    <br>
+                    <div class="form-check form-check-inline" id="14180300">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG3" value="optionG3">
+                      <label class="form-check-label" for="inlineRadioG3">14180300</label>
+                    </div>
+                    <div class="form-check form-check-inline" id="14181500">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG4" value="optionG4">
+                      <label class="form-check-label" for="inlineRadioG4">14181500</label>
+                    </div>
+                  </center>
+                </div>
+              </div>
+              <!-- Variable Selection -->
+              <div id="deck-4" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label">Variable: </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV1" value="optionGV1" checked>
+                      <label class="form-check-label" for="inlineRadioGV1">Water temp.</label>
+                    </div>
+                    <!-- <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV2" value="optionGV2">
+                      <label class="form-check-label" for="inlineRadioGV2">Toxins</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV3" value="optionGV3">
+                      <label class="form-check-label" for="inlineRadioGV3">Tot Phos.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV4" value="optionGV4">
+                      <label class="form-check-label" for="inlineRadioGV4">Tot. Nitrate</label>
+                    </div> -->
+                  </center>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <p></p>
+                  </center>
+                  <div id="sample-chart"></div>
+                </div>
+              </div>
+              <!-- Location Selection -->
+              <div id="deck-3" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label">Location: </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio12" value="option12" checked>
+                      <label class="form-check-label" for="inlineRadio12">Log Boom</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio22" value="option22">
+                      <label class="form-check-label" for="inlineRadio22">Heater</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio32" value="option32">
+                      <label class="form-check-label" for="inlineRadio32">Blowout</label>
+                    </div>
+                  </center>
+                </div>
+              </div>
+              <!-- Variable Selection -->
+              <div id="deck-4" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label" for="inlineRadio1">Variable: </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio1" value="option1" checked>
+                      <label class="form-check-label" for="inlineRadio1">Algae</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Toxins</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="option3">
+                      <label class="form-check-label" for="inlineRadio3">Tot Phos.</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio4" value="option4">
+                      <label class="form-check-label" for="inlineRadio3">Tot. Nitrate</label>
+                    </div>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Twitter Feed -->
+      <!-- <div id="deck-5" class="card-deck counts">
+        <div class="card">
+          <a class="twitter-timeline" href="https://twitter.com/OHAOregon?ref_src=twsrc%5Etfw">Tweets by OHAOregon</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div> -->
+    </div>
+    </div>
+    <!-- Map Element -->
+    <div id="map"></div>
+    <!-- Map Legend -->
+    <div id="legend-panel">
+
+      <div class="card-deck legend">
+
+        <div class="card">
+          <div class="card-body legend-color-1">
+            <h5 class="card-title" style="color:black">0</h5>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body  legend-color-2">
+            <h5 class="card-title" style="color:black">1-10</h5>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body  legend-color-3">
+            <h5 class="card-title" style="color:black">11-22</h5>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body  legend-color-4">
+            <h5 class="card-title" style="color:black">23-56</h5>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body legend-color-5">
+            <h5 class="card-title" style="color:black">57-151</h5>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body legend-color-6">
+            <h5 class="card-title" style="color:black">152+</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Time Panel -->
+    <div id="time-panel">
+      <div class="card-deck legend">
+        <div class="card">
+          <div class="slidecontainer">
+            <div class="datePickerTitle">Date picker</div>
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <p>Value: <span id="demo"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sat data Panel -->
+    <div id="sat-data-panel">
+      <div class="card-deck legend">
+        <div class="card">
+          <div>
+            <div class="datePickerTitle">Satellite data</div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio1">Satellite: </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio1" value="option1" checked>
+              <label class="form-check-label" for="inlineRadio1">Sentinel 2a</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio2" value="option2">
+              <label class="form-check-label" for="inlineRadio2">Landsat 8</label>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio1">Variable: </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions5" id="inlineRadio1" value="option1" checked>
+              <label class="form-check-label" for="inlineRadio1">Chlorophyl a</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modals -->
+  <div id="infowindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Data Source & Attributions</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>
+              This online interactive map enables users to track both Oregon State and
+              County trends of Novel Coronavirus infection since Feb 28th, 2020. The supporting
+              dataset is collected daily and then plotted onto this web application.
+            </p>
+            <h5>Data Sources</h5>
+            <p>
+              Since March 18th, 2020 the Oregon COVID-19 Data is collected from
+              <a href="https://govstatus.egov.com/OR-OHA-COVID-19" target="_blank">The Oregon Health Authority</a>(OHA)
+              and then is plotted onto this web application.
+            </p>
+            <p>Data previous to March 18th was collected from the UW HGIS Lab <a href="https://hgis.uw.edu/virus/" target="_blank">Global COVID 19 Map</a> which has been collecting county and state level data from OHA and news sources since Feb 28th,
+              2020.</p>
+            <p>You can view the data (in CSV format) at <a href="http://benjiantolin.github.io/virusOregon/assets/timeseries/virusOregon.csv" target="_blank">here</a>.</p>
+            <p>In the data table, each entry indicates Cases, Deaths, and Negative Test Results in the format of "#-#-#".</p>
+
+
+            <p>County Polygon Data: <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html" target="_blank">U.S. Census Bureau Tiger/Line Shapefiles</a>
+            </p>
+
+
+            <h5>Update Procedure</h5>
+            The Oregon state and county level COVID-19 data is currently being released daily from <a href="https://govstatus.egov.com/OR-OHA-COVID-19" target="_blank">OHA</a>. As data is released this application will continue to be updated.
+            <h5>Acknowledgment</h5>
+            <p>
+              <li>Insipired by: Bo Zhao and UW HGIS Lab <a href="https://hgis.uw.edu/virus/" target="_blank">Global COVID 19 Map</a></li>
+            </p>
+            <div>
+              * If you have any questions or concerns, please contact <a href="mailto:benjiantolin@gmail.com">Benji Antolin</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="resourcewindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Coronavirus information resources</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p><a href="https://govstatus.egov.com/OR-OHA-COVID-19" target="_blank">Oregon Health Authority</a></p>
+            <p><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Center for Disease Control and Prevention (CDC)</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="hospwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Hospitalizations</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>* Hospitalization (ever hospitalized) if available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(window).ready(function() {
+      $('.loader').fadeOut("slow");
+    });
+
+
+    $("#date").text("Last updated: 4/1/2020");
+
+
+    // bounds of lake
+    var lakeBounds = L.latLngBounds(
+      L.latLng(44.626292, -122.376566), //Southwest
+      L.latLng(44.789755, -122.025402), //Northeast
+    );
+
+    var mymap = L.map('map', {
+      center: [44.70580544041939, -122.24899460193791],
+      zoomControl: false,
+      zoom: 12,
+      maxZoom: 15,
+      minZoom: 7,
+    });
+
+    new L.Control.Zoom({
+      position: 'topright'
+    }).addTo(mymap);
+
+
+    var voyager =
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png');
+    var satellite =
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+    var natgeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+      maxZoom: 16
+    });
+    var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    });
+    var USGS_USImagery = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 20,
+      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+    }).addTo(mymap);
+
+    // mapbox_token = 'pk.eyJ1IjoiYmVuamlhbnRvbGluIiwiYSI6ImNqcm9uazFpczE1ajM0M3Buem83ZGpuY3oifQ.OpSUwJRtxBMPDFUUJnhLVg';
+    //       var gl = L.mapboxGL({
+    //           accessToken: mapbox_token,
+    //           style: 'mapbox://styles/benjiantolin/ck85fv6ct04i71iocpwjx45k8',
+    //           // attribution: 'Created By <a href="https://github.com/benjiantolin/">Benjamin Antolin</a> based on the <a href="Assets/license.txt">Mapbox basic style</a>'
+    //       }).addTo(map);
+
+
+    var baseLayers = {
+      'CartoDB Voyager': voyager,
+      'ESRI Satellite': satellite,
+      'ESRI National Geographic': natgeo,
+      'Dark Mode': CartoDB_DarkMatter,
+      'USGS_USImagery': USGS_USImagery,
+    }
+
+
+
+    var chart, agechart;
+
+    var colors = chroma.scale('YlOrRd').mode('lch').colors(6);
+    for (i = 0; i < 6; i++) {
+      $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+      $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+    }
+
+
+    // var communities = new L.MarkerClusterGroup({
+    //   spiderfyOnMaxZoom: false,
+    //   singleMarkerMode: true,
+    //   // showCoverageOnHover: false,
+    //   // zoomToBoundsOnClick: false,
+    //   iconCreateFunction: function(cluster) {
+    //     return L.divIcon({
+    //       html: '<i class="fas fa-procedures community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
+    //     });
+    //   }
+    //
+    // });
+    //
+    //
+    // var cases = new L.MarkerClusterGroup({
+    //   spiderfyOnMaxZoom: true,
+    //   singleMarkerMode: true,
+    //   // showCoverageOnHover: false,
+    //   // zoomToBoundsOnClick: false,
+    //   iconCreateFunction: function(cluster) {
+    //     return L.divIcon({
+    //       html: '<i class="fas fa-users community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
+    //     });
+    //   }
+    //
+    // }).addTo(mymap);
+    var chloro = new L.MarkerClusterGroup({
+      spiderfyOnMaxZoom: true,
+      singleMarkerMode: true,
+      maxClusterRadius: 50,
+      polygonOptions: {
+        fillColor: "orange",
+        color: 'orange',
+        weight: 0.5,
+        opacity: 0.6,
+        fillOpacity: 0.2
+      },
+      showCoverageOnHover: false,
+    }).addTo(mymap);
+
+
+    Promise.all([
+      d3.csv('assets/stream_gauge_tab/gage.csv'), //datasets[0]
+      d3.json("assets/stream_gauge_tab/usgs.geojson"), //datasets[1]
+      d3.csv('assets/water_sample_tab/algae.csv'), //datasets[2]
+      d3.json("assets/water_sample_tab/ws.geojson"), //datasets[3]
+      d3.csv('assets/satellite_map/detroit_lake_chlorophyll_2020_01_04.csv'), //datasets[4]
+      d3.csv('assets/weather_tab/detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
+    ]).then(function(datasets) {
+
+      var chloroLayer = datasets[4].forEach(function(d) {
+
+        L.marker([d.lon, d.lat], {}).bindPopup(
+          "<b>Chlorophyll: </b>" + d.Chlorophyll + "<br>"
+        ).addTo(chloro);
+      })
+
+
+      // Weather Data
+      var wt = ["Date"];
+      var precip = ["Precipitation"];
+      var airTemp = ["Air Temperature"];
+
+      var weatherVars = {
+        name: "Precip",
+        var: precip,
+      }
+
+      function varsCounts(i) {
+        tvar = 0;
+        datasets[5].forEach(function(d) {
+          var USTd = new Date(d["date"])
+          wt.push(USTd.setHours(USTd.getHours() + 8));
+          tvar = 0;
+          current = d;
+          delete current["date"];
+          if (i["name"] = "Precip") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tvar += +items[0];
+                break;
+            };
+
+          }
+          i["var"].push(tvar);
+        });
+
+      }
+
+      function siteCounts(i) {
+      tvar = 0;
+        datasets[5].forEach(function(d) {
+          var USTd = new Date(d["date"])
+  wt.push(USTd.setHours(USTd.getHours() + 8));
+      tvar = 0;
+          current = d;
+          delete current["date"];
+          if (i["name"] != "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tvar += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tvar += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["var"].push(tvar);
+        });
+      }
+
+
+      // Stream Gage Data
+      var t = ["Date"];
+      var water_temp = ["Water Temperature"];
+
+      var gage1 = {
+        name: "14178000",
+        wt: water_temp,
+      }
+
+      function gage1Counts(i) {
+        twt = 0;
+        datasets[0].forEach(function(d) {
+          var USTd = new Date(d["date"])
+          t.push(USTd.setHours(USTd.getHours() + 8));
+          twt = 0;
+          current = d;
+          delete current["date"];
+          if (i["name"] = "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                twt += +items[0];
+                break;
+            };
+
+          }
+          i["wt"].push(twt);
+        });
+
+      }
+
+      function siteCounts(i) {
+        twt = 0;
+        datasets[0].forEach(function(d) {
+          var USTd = new Date(d["Date"])
+          t.push(USTd.setHours(USTd.getHours() + 8));
+          twt = 0;
+          current = d;
+          delete current["Date"];
+          if (i["name"] != "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                twt += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  twt += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["wt"].push(twt);
+        });
+      }
+
+      // Water sample Data
+      var wst = ["Date"];
+      var algae = ["Algae"];
+
+      var sampleLoc1 = {
+        name: "Log_Boom",
+        a: algae,
+      }
+
+      function sample1Counts(i) {
+        ta = 0;
+        datasets[2].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst.push(USTd.setHours(USTd.getHours() + 8));
+          ta = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log_Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta += +items[0];
+                break;
+            };
+
+          }
+          i["a"].push(ta);
+        });
+
+      }
+
+      function sampleSiteCounts(i) {
+        ta = 0;
+        datasets[2].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst.push(USTd.setHours(USTd.getHours() + 8));
+          ta = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log_Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  ta += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["a"].push(ta);
+        });
+      }
+
+
+      function setColor(cases) {
+
+        if (cases >= 152) {
+          id = 5;
+        } else if (cases > 56 && cases <= 151) {
+          id = 4;
+        } else if (cases > 22 && cases <= 56) {
+          id = 3;
+        } else if (cases > 10 && cases <= 22) {
+          id = 2;
+        } else if (cases > 0 && cases <= 10) {
+          id = 1;
+        } else if (cases > 0 && cases <= 0) {
+          id = 0;
+        } else {
+          id = -1;
+          return "#00000000";
+        }
+
+        return colors[id];
+
+      }
+
+
+      function style(feature) {
+
+        return {
+          fillColor: setColor(feature.properties.Cases),
+          fillOpacity: 0.4,
+          weight: 1,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '3'
+        };
+
+      }
+
+      function sampleStyle(feature) {
+
+        return {
+          fillColor: setColor(feature.properties.Cases),
+          fillOpacity: 0.4,
+          weight: 1,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '3'
+        };
+
+      }
+
+
+      function highlightFeature(e) {
+        // e indicates the current event
+        var layer = e.target; //the target capture the object which the event associates with
+        layer.setStyle({
+          weight: 4,
+          opacity: 0.8,
+          color: '#e3e3e3',
+          fillColor: '#00ffd9',
+          fillOpacity: 0.1
+        });
+        // bring the layer to the front.
+        layer.bringToFront();
+      }
+
+      // 3.2.2 zoom to the highlighted feature when the mouse is clicking onto it.
+      // 3.2.2 zoom to the highlighted feature when the mouse is clicking onto it.
+      function zoomToFeature(e) {
+        // mymap.fitBounds(e.target.getBounds());
+        L.DomEvent.stopPropagation(e);
+        // $("#hint").text("Click here to for State trend.");
+
+
+        var t = ["Date"];
+        var water_temp = ["Water Temperature"];
+        // var negTests = ["Negative Tests"];
+        var siteSelect = {
+          name: e.target.feature.properties.usgs_site,
+          wt: water_temp,
+        }
+
+        siteCounts(siteSelect);
+
+
+        chart.load({
+          unload: true,
+          columns: [siteSelect.wt],
+        });
+
+        // $("#gageDropdown").text(e.target.feature.properties.site_name);
+      }
+
+
+      function sampleZoomToFeature(e) {
+        // mymap.fitBounds(e.target.getBounds());
+        L.DomEvent.stopPropagation(e);
+        // $("#hint").text("Click here to for State trend.");
+
+
+        // Water sample Data
+        var wst = ["Date"];
+        var algae = ["Algae"];
+
+        var sampleLoc = {
+          name: e.target.feature.properties.site,
+          a: algae,
+        }
+
+        sampleSiteCounts(sampleLoc);
+
+
+        sampleChart.load({
+          unload: true,
+          columns: [sampleLoc.a],
+        });
+
+        // $("#gageDropdown").text(e.target.feature.properties.site_name);
+      }
+
+      // 3.2.3 reset the hightlighted feature when the mouse is out of its region.
+      function resetHighlight(e) {
+        county.resetStyle(e.target);
+
+      }
+
+      // 3.3 add these event the layer obejct.
+      function onEachFeature(feature, layer) {
+        layer.on({
+            // mouseover: highlightFeature,
+            click: zoomToFeature,
+            // mouseout: resetHighlight
+          }),
+          layer.bindTooltip(feature.properties.site_name, {
+            className: 'feature-label',
+            permanent: false,
+            sticky: true,
+            direction: 'auto'
+          });
+      }
+
+      // 3.3 add these event the layer obejct.
+      function sampleOnEachFeature(feature, layer) {
+        layer.on({
+            // mouseover: highlightFeature,
+            click: sampleZoomToFeature,
+            // mouseout: resetHighlight
+          }),
+          layer.bindTooltip(feature.properties.site, {
+            className: 'feature-label',
+            permanent: false,
+            sticky: true,
+            direction: 'auto'
+          });
+      }
+
+      // var county = new L.GeoJSON(datasets[1], {
+      //   style: style,
+      //   onEachFeature: onEachFeature
+      // }).addTo(mymap);
+      // mymap.fitBounds(county.getBounds());
+
+      var sites = new L.GeoJSON(datasets[1], {
+        style: style,
+        onEachFeature: onEachFeature,
+        // onEachFeature: function(feature, layer) {
+        //   layer.bindPopup('<b>Site Name: </b>' + feature.properties.usgs_site)
+        // },
+        pointToLayer: function(feature, latlng) {
+          return L.marker(latlng, {
+            icon: L.divIcon({
+              className: 'fas fa-tachometer-alt blinking',
+            })
+          });
+        },
+      }).addTo(mymap);
+
+      var sampleSites = new L.GeoJSON(datasets[3], {
+        style: sampleStyle,
+        onEachFeature: sampleOnEachFeature,
+        // onEachFeature: function(feature, layer) {
+        //   layer.bindPopup('<b>Site Name: </b>' + feature.properties.usgs_site)
+        // },
+
+        pointToLayer: function(feature, latlng) {
+          return L.marker(latlng, {
+            icon: L.divIcon({
+              className: 'fas fa-vials blinking',
+            })
+          });
+        },
+      });
+
+      new L.control.layers(baseLayers, {
+        // "Infection Level": areas,
+        // "Infection Case(s) &nbsp;&nbsp; <i class='fas fa-users community'></i>": cases,
+        // "Infected Community &nbsp;&nbsp; <i class='fas fa-procedures community'></i>": communities
+      }, {
+        collapsed: false
+      }).addTo(mymap);
+
+
+
+      $("#hint").on("click", function() {
+        gage1Counts(gage1);
+        chart.load({
+          unload: true,
+          columns: [t, gage1.wt],
+        });
+
+        $("#hint").text("Click on map to review county trend.");
+
+      });
+
+
+      function onMapClick(e) {
+        $("#hint").click();
+      }
+
+      mymap.on('click', onMapClick);
+
+      gage1Counts(gage1);
+      sample1Counts(sampleLoc1);
+      varsCounts(weatherVars);
+      // gage chart
+      chart = c3.generate({
+        size: {
+          height: 280,
+          width: 440
+        },
+        data: {
+          x: "Date",
+          columns: [t, gage1.wt],
+          type: 'line',
+        },
+        subchart: {
+          show: true,
+          axis: {
+            x: {
+              show: false
+            }
+          },
+          size: {
+            height: 15
+          },
+        },
+        padding: {
+          // bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Water temp (deg C)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 0,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        zoom: {
+          // rescale: true,
+          enabled: true,
+          type: "scroll",
+        },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          enabled: false,
+        },
+        bindto: "#gage-chart"
+      });
+      // sample chart
+      sampleChart = c3.generate({
+        size: {
+          height: 280,
+          width: 440
+        },
+        data: {
+          x: "Date",
+          columns: [wst, sampleLoc1.a],
+          type: 'scatter',
+        },
+        subchart: {
+          show: true,
+          axis: {
+            x: {
+              show: false
+            }
+          },
+          size: {
+            height: 15
+          },
+        },
+        padding: {
+          // bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Biovolume (um3\mL)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 3,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        zoom: {
+          // rescale: true,+
+          enabled: true,
+          type: "scroll",
+        },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          enabled: false,
+        },
+        bindto: "#sample-chart"
+      });
+
+      // weather chart
+      weatherChart = c3.generate({
+        size: {
+          height: 280,
+          width: 440
+        },
+        data: {
+          x: "Date",
+          columns: [wt, weatherVars.var],
+          type: 'line',
+        },
+        subchart: {
+          show: true,
+          axis: {
+            x: {
+              show: false
+            }
+          },
+          size: {
+            height: 15
+          },
+        },
+        padding: {
+          // bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Air temp (deg C)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 0,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        zoom: {
+          // rescale: true,
+          enabled: true,
+          type: "scroll",
+        },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          enabled: false,
+        },
+        bindto: "#weather-chart"
+      });
+
+
+
+      $(document).ready(function() {
+        $('input[type=radio]').change(function() {
+          var t = ["Date"];
+          var water_temp = ["Water Temperature"];
+          if ($('#inlineRadioG2').is(':checked')) {
+            var siteSelect = {
+              name: "14179000",
+              wt: water_temp,
+            }
+          } else if ($('#inlineRadioG1').is(':checked')) {
+            var siteSelect = {
+              name: "14178000",
+              wt: water_temp,
+            }
+          } else if ($('#inlineRadioG3').is(':checked')) {
+            var siteSelect = {
+              name: "14180300",
+              wt: water_temp,
+            }
+          } else if ($('#inlineRadioG4').is(':checked')) {
+            var siteSelect = {
+              name: "14181500",
+              wt: water_temp,
+            }
+          }
+          siteCounts(siteSelect);
+          chart.load({
+            unload: true,
+            columns: [siteSelect.wt],
+          });
+        });
+      });
+
+      $(document).ready(function() {
+        $('input[type=radio]').change(function() {
+          var wst = ["Date"];
+          var algae = ["Algae"];
+          if ($('#inlineRadio12').is(':checked')) {
+            var sampleSiteSelect = {
+              name: "Log Boom",
+              a: algae,
+            }
+          } else if ($('#inlineRadio22').is(':checked')) {
+            var sampleSiteSelect = {
+              name: "Heater",
+              a: algae,
+            }
+          } else if ($('#inlineRadio32').is(':checked')) {
+            var sampleSiteSelect = {
+              name: "Blowout",
+              a: algae,
+            }
+          }
+          sampleSiteCounts(sampleSiteSelect);
+          sampleChart.load({
+            unload: true,
+            columns: [sampleSiteSelect.a],
+          });
+        });
+      });
+
+      $("#weather-tab").on("click", function() {
+        // Remove Map Layers
+        mymap.removeLayer(sites);
+        mymap.removeLayer(sampleSites);
+        // Add selected geo layer for selected year
+
+      });
+      $("#stream-tab").on("click", function() {
+        // Remove Map Layers
+        mymap.removeLayer(sites);
+        mymap.removeLayer(sampleSites);
+        // Add selected geo layer for selected year
+        mymap.addLayer(sites);
+      });
+      $("#sample-tab").on("click", function() {
+        // Remove Map Layers
+        mymap.removeLayer(sites);
+        mymap.removeLayer(sampleSites);
+        // Add selected geo layer for selected year
+        mymap.addLayer(sampleSites);
+      });
+
+    });
+
+
+    // Slider JS
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+
+    // Tab JS
+    var triggerTabList = [].slice.call(document.querySelectorAll('#weather-tab'))
+    triggerTabList.forEach(function(triggerEl) {
+      var tabTrigger = new bootstrap.Tab(triggerEl)
+      triggerEl.addEventListener('click', function(event) {
+        event.preventDefault()
+        tabTrigger.show()
+      })
+    })
+    var triggerTabList = [].slice.call(document.querySelectorAll('#stream-tab'))
+    triggerTabList.forEach(function(triggerEl) {
+      var tabTrigger = new bootstrap.Tab(triggerEl)
+      triggerEl.addEventListener('click', function(event) {
+        event.preventDefault()
+        tabTrigger.show()
+
+      })
+    })
+    var triggerTabList = [].slice.call(document.querySelectorAll('#sample-tab'))
+    triggerTabList.forEach(function(triggerEl) {
+      var tabTrigger = new bootstrap.Tab(triggerEl)
+      triggerEl.addEventListener('click', function(event) {
+        event.preventDefault()
+        tabTrigger.show()
+      })
+    })
+
+
+
+
+    /////////////////////////
+    $(".leaflet-control-attribution")
+      .css("background-color", "transparent")
+      .html("");
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140689399-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-140689399-6');
+  </script>
+
+
+</body>
+
+</html>
