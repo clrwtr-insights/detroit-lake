@@ -25,6 +25,7 @@
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <script src="js/chroma.min.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="js/simplebar.min.js"></script>
   <script src="js/leaflet.markercluster.js"></script>
@@ -41,7 +42,7 @@
 <body>
   <main>
     <div class="loader"></div>
-    <div id="info" data-simplebar data-simplebar-auto-hide="true"  class="col-lg-3 mb-2">
+    <div id="info" data-simplebar data-simplebar-auto-hide="true" class="col-lg-3 mb-2">
       <!-- Header -->
       <div id="title" style="font-size:23px">
         <div id="deck-1" class="card-deck counts">
@@ -133,6 +134,21 @@
 
             </div>
             <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
+              <!-- Stream gage location dropdown -->
+              <div class="dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                  <span id="gageDropdown" class="dropdownTitle">NORTH SANTIAM RIVER AT NIAGARA, OR</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                  <center>
+                    <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
+                    <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
+                    <a class="dropdown-item" id="14180300" value="3">BLOWOUT CREEK NEAR DETROIT, OR</a>
+                    <a class="dropdown-item" id="14181500" value="4">NORTH SANTIAM RIVER AT NIAGARA, OR</a>
+                  </center>
+                </div>
+              </div>
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
                 <div class="card">
@@ -143,7 +159,7 @@
                 </div>
               </div>
               <!-- Location gages -->
-              <div id="deck-3" class="card-deck counts">
+              <!-- <div id="deck-3" class="card-deck counts">
                 <div class="card">
                   <center>
                     <div class="form-check form-check-inline">
@@ -168,18 +184,18 @@
                     </div>
                   </center>
                 </div>
-              </div>
+              </div> -->
               <!-- Variable Selection -->
               <div id="deck-4" class="card-deck counts">
                 <div class="card">
                   <center>
-                    <div class="form-check form-check-inline">
+                    <!-- <div class="form-check form-check-inline">
                       <label class="form-check-label">Variable: </label>
                     </div>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV1" value="optionGV1" checked>
                       <label class="form-check-label" for="inlineRadioGV1">Water temp.</label>
-                    </div>
+                    </div> -->
                     <!-- <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV2" value="optionGV2">
                       <label class="form-check-label" for="inlineRadioGV2">Toxins</label>
@@ -197,6 +213,20 @@
               </div>
             </div>
             <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
+              <!-- Stream gage location dropdown -->
+              <div class="dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                  <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                  <center>
+                    <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
+                    <a class="dropdown-item" id="Heater" value="2">Heater</a>
+                    <a class="dropdown-item" id="Blowout" value="3">Blowout</a>
+                  </center>
+                </div>
+              </div>
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
                 <div class="card">
@@ -207,7 +237,7 @@
                 </div>
               </div>
               <!-- Location Selection -->
-              <div id="deck-3" class="card-deck counts">
+              <!-- <div id="deck-3" class="card-deck counts">
                 <div class="card">
                   <center>
                     <div class="form-check form-check-inline">
@@ -227,7 +257,7 @@
                     </div>
                   </center>
                 </div>
-              </div>
+              </div> -->
               <!-- Variable Selection -->
               <div id="deck-4" class="card-deck counts">
                 <div class="card">
@@ -510,9 +540,9 @@
 
 
 
-    var chart,sampleChart,weatherChart;
+    var chart, sampleChart, weatherChart;
 
-    var colors = chroma.scale('YlOrRd').mode('lch').colors(6);
+    var colors = chroma.scale(['red', 'orange', 'green', 'blue']).mode('lch').colors(6);
     for (i = 0; i < 6; i++) {
       $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
       $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
@@ -522,16 +552,14 @@
     var options = {
       radius: 12,
       opacity: 0.5,
-      duration: 500
+      duration: 500,
     };
 
     // hexbin map layer
     var hexLayer = L.hexbinLayer(options).addTo(mymap)
-    hexLayer.colorScale().range(['red',   'orange', 'green',
-                                 'blue'
-  ]);
+    hexLayer.colorScale().range(['red', 'orange', 'green', 'blue']);
 
-// hexlayer options
+    // hexlayer options
     hexLayer
       .radiusRange([6, 11])
       .lng(function(d) {
@@ -541,15 +569,21 @@
         return d[1];
       })
       .colorValue(function(d) {
-        var users_sum = d.reduce(function (acc, obj) {
-            return acc + parseInt(obj["o"][2]);
-          }, 0);
-				return users_sum
+        var users_sum = d.reduce(function(acc, obj) {
+          return acc + parseInt(obj["o"][2]);
+        }, 0);
+        return users_sum
       })
-      // .radiusValue(function(d) {
-      //   return d.length;
-      // })
-      ;
+      .hoverHandler(L.HexbinHoverHandler.compound({
+        handlers: [
+          L.HexbinHoverHandler.resizeFill(),
+          L.HexbinHoverHandler.tooltip()
+        ]
+      }))
+    // .radiusValue(function(d) {
+    //   return d.length;
+    // })
+    ;
 
 
     Promise.all([
@@ -1334,6 +1368,147 @@
         mymap.removeLayer(sampleSites);
         // Add selected geo layer for selected year
         mymap.addLayer(sampleSites);
+      });
+
+
+      $("#14179000").on("click", function() {
+        $("#gageDropdown").text("BREITENBUSH R ABV FRENCH CR NR DETROIT, OR");
+
+        var t = ["Date"];
+        var water_temp = ["Water Temperature"];
+        // var negTests = ["Negative Tests"];
+        var siteSelect = {
+          name: "14179000",
+          wt: water_temp,
+        }
+
+        siteCounts(siteSelect);
+
+
+        chart.load({
+          unload: true,
+          columns: [siteSelect.wt],
+        });
+      });
+
+      $("#14178000").on("click", function() {
+        $("#gageDropdown").text("NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR");
+
+        var t = ["Date"];
+        var water_temp = ["Water Temperature"];
+        // var negTests = ["Negative Tests"];
+        var siteSelect = {
+          name: "14178000",
+          wt: water_temp,
+        }
+
+        siteCounts(siteSelect);
+
+
+        chart.load({
+          unload: true,
+          columns: [siteSelect.wt],
+        });
+      });
+
+      $("#14180300").on("click", function() {
+        $("#gageDropdown").text("BLOWOUT CREEK NEAR DETROIT, OR");
+
+        var t = ["Date"];
+        var water_temp = ["Water Temperature"];
+        // var negTests = ["Negative Tests"];
+        var siteSelect = {
+          name: "14180300",
+          wt: water_temp,
+        }
+
+        siteCounts(siteSelect);
+
+
+        chart.load({
+          unload: true,
+          columns: [siteSelect.wt],
+        });
+      });
+
+      $("#14181500").on("click", function() {
+        $("#gageDropdown").text("NORTH SANTIAM RIVER AT NIAGARA, OR");
+
+        var t = ["Date"];
+        var water_temp = ["Water Temperature"];
+        // var negTests = ["Negative Tests"];
+        var siteSelect = {
+          name: "14181500",
+          wt: water_temp,
+        }
+
+        siteCounts(siteSelect);
+
+
+        chart.load({
+          unload: true,
+          columns: [siteSelect.wt],
+        });
+      });
+
+      $("#Log_Boom").on("click", function() {
+        $("#sampleDropdown").text("Log Boom");
+
+        var t = ["Date"];
+        var algae = ["Algae"];
+        // var negTests = ["Negative Tests"];
+        var sampleSiteSelect = {
+          name: "Log_Boom",
+          a: algae,
+        }
+
+        sampleSiteCounts(sampleSiteSelect);
+
+
+        sampleChart.load({
+          unload: true,
+          columns: [sampleSiteSelect.a],
+        });
+      });
+
+      $("#Heater").on("click", function() {
+        $("#sampleDropdown").text("Heater");
+
+        var t = ["Date"];
+        var algae = ["Algae"];
+        // var negTests = ["Negative Tests"];
+        var sampleSiteSelect = {
+          name: "Heater",
+          a: algae,
+        }
+
+        sampleSiteCounts(sampleSiteSelect);
+
+
+        sampleChart.load({
+          unload: true,
+          columns: [sampleSiteSelect.a],
+        });
+      });
+
+      $("#Blowout").on("click", function() {
+        $("#sampleDropdown").text("Blowout");
+
+        var t = ["Date"];
+        var algae = ["Algae"];
+        // var negTests = ["Negative Tests"];
+        var sampleSiteSelect = {
+          name: "Blowout",
+          a: algae,
+        }
+
+        sampleSiteCounts(sampleSiteSelect);
+
+
+        sampleChart.load({
+          unload: true,
+          columns: [sampleSiteSelect.a],
+        });
       });
 
     });

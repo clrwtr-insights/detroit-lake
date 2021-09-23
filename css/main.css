@@ -90,13 +90,17 @@ div#footer>div {
   stroke: transparent;
 }
 
+.c3-line {
+    stroke-width: 1px;
+}
+
 /* Responsive css */
 #info {
   position: absolute;
   width: 480px;
-  top: 1%;
+  /* top: 1%;
   bottom: 1%;
-  left: .5%;
+  left: .5%; */
   z-index: 1000;
   background: #343a40;
   color: white;
@@ -461,4 +465,31 @@ text {
 
 .tabIcon {
   color: #343a40;
+}
+
+.hexbin-hexagon {
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.hexbin-container:hover .hexbin-hexagon {
+  transition: 200ms;
+  stroke: orange;
+  stroke-width: 1px;
+  stroke-opacity: 1;
+}
+
+.hexbin-tooltip {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.dropdown-menu {
+  background-color: grey;
+}
+
+.nav-link {
+  background-color: grey;
 }
