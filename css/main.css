@@ -385,7 +385,7 @@ text {
   width: 100%;
   height: 15px;
   border-radius: 25px;
-  background: white;
+  background: grey;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -402,15 +402,15 @@ text {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: mediumslateblue;
+  background: white;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  background: mediumslateblue;
+  border-radius: grey;
+  background: white;
   cursor: pointer;
 }
 
@@ -428,24 +428,21 @@ text {
   opacity: 0.3;
 }
 
-.fa-tachometer-alt {
+
+
+.map{
   color: orange;
-  font-size: 3rem;
-  position: absolute;
-  border: 5px;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  opacity: 0.8;
-  text-shadow: 1px 1px 1px black;
+text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  font-size: 1.5rem;
 }
+
+
 
 .fa-vials:hover {
   opacity: 0.3;
 }
 
-.fa-vials {
+/* .map .fa-vials {
   color: orange;
   font-size: 2rem;
   position: absolute;
@@ -456,7 +453,7 @@ text {
   -ms-transform: translate(-50%, -50%);
   opacity: 0.8;
   text-shadow: 1px 1px 1px black;
-}
+} */
 
 
 .blinking {
@@ -474,7 +471,7 @@ text {
 
 .hexbin-container:hover .hexbin-hexagon {
   transition: 200ms;
-  stroke: orange;
+  stroke: white;
   stroke-width: 1px;
   stroke-opacity: 1;
 }
@@ -486,10 +483,22 @@ text {
   background-color: white;
 }
 
-.dropdown-menu {
+.dropdown {
+  /* float: right; */
   background-color: grey;
 }
 
+.dropdown-menu {
+  background-color: grey;
+
+}
+
+
 .nav-link {
+  /* background-color: white; */
+}
+
+.nav-tabs .nav-link.active{
+  color: white;
   background-color: grey;
 }

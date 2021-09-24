@@ -25,7 +25,7 @@
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
   <script src="js/chroma.min.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="js/simplebar.min.js"></script>
   <script src="js/leaflet.markercluster.js"></script>
@@ -70,43 +70,48 @@
       <div id="deck-1" class="card-deck counts">
 
         <div class="card">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <!-- tab list -->
+          <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="true">
-                Weather
+                Weather <i class="fas fa-cloud-sun-rain"></i>
               </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="stream-tab" data-bs-toggle="tab" href="#stream" data-bs-target="#stream" type="button" role="tab" aria-controls="stream" aria-selected="false">
-                Stream gage
+                Stream gage <i class="fas fa-tachometer-alt"></i>
               </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="sample-tab" data-bs-toggle="tab" href="#sample" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="false">
-                Water sample
+                Water sample <i class="fas fa-vials"></i>
               </button>
             </li>
           </ul>
+          <!-- tab content -->
           <div class="tab-content" id="myTabContent">
+            <!-- weather tab -->
             <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
+              <div class="dropdown no-arrow">
+                <div class="nav-link">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                  <span class="dropdownTitle">Click on map feature <i class="fas fa-map-marked-alt"></i></span>
+                </div>
+              </div>
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
                 <div class="card">
-                  <div id="weather-chart"></div>
+                  <div id="precip-chart"></div>
                 </div>
               </div>
-              <!-- Location gages -->
-              <div id="deck-3" class="card-deck counts">
+              <div id="deck-2" class="card-deck counts">
                 <div class="card">
-                  <center>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">Location: Choose on map</label>
-                    </div>
-                  </center>
+                  <div id="airTemp-chart"></div>
                 </div>
               </div>
+
               <!-- Variable Selection -->
-              <div id="deck-4" class="card-deck counts">
+              <!-- <div id="deck-4" class="card-deck counts">
                 <div class="card">
                   <center>
                     <div class="form-check form-check-inline">
@@ -124,15 +129,12 @@
                       <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW3" value="optionW3">
                       <label class="form-check-label" for="inlineRadioW3">Wind speed</label>
                     </div>
-                    <!-- <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV4" value="optionGV4">
-                      <label class="form-check-label" for="inlineRadioGV4">Tot. Nitrate</label>
-                    </div> -->
                   </center>
                 </div>
-              </div>
+              </div> -->
 
             </div>
+            <!-- Stream tab -->
             <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
               <!-- Stream gage location dropdown -->
               <div class="dropdown no-arrow">
@@ -212,8 +214,9 @@
                 </div>
               </div>
             </div>
+            <!-- Sample tab -->
             <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
-              <!-- Stream gage location dropdown -->
+              <!-- Sample location dropdown -->
               <div class="dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
@@ -540,18 +543,18 @@
 
 
 
-    var chart, sampleChart, weatherChart;
+    var chart, sampleChart, precipChart, airTempChart;
 
     var colors = chroma.scale(['red', 'orange', 'green', 'blue']).mode('lch').colors(6);
     for (i = 0; i < 6; i++) {
-      $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
-      $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+      $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
+      $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
     }
 
     // hexbin options
     var options = {
       radius: 12,
-      opacity: 0.5,
+      opacity: 0.6,
       duration: 500,
     };
 
@@ -616,15 +619,16 @@
 
       var weatherVars = {
         name: "Precip",
-        var: precip,
+        p: precip,
+        a: airTemp,
       }
 
       function varsCounts(i) {
-        tvar = 0;
+        tp = 0, ta = 0;
         datasets[5].forEach(function(d) {
           var USTd = new Date(d["date"])
           wt.push(USTd.setHours(USTd.getHours() + 8));
-          tvar = 0;
+          tp = 0, ta = 0;
           current = d;
           delete current["date"];
           if (i["name"] = "Precip") {
@@ -635,12 +639,27 @@
             items = d.split("-");
             switch (items.length) {
               case 1:
-                tvar += +items[0];
+                tp += +items[0];
                 break;
             };
 
           }
-          i["var"].push(tvar);
+
+          if (i["name"] = "Air_Temp") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta += +items[0];
+                break;
+            };
+
+          }
+          i["p"].push(tp);
+          i["a"].push(ta);
         });
 
       }
@@ -924,7 +943,7 @@
           columns: [siteSelect.wt],
         });
 
-        // $("#gageDropdown").text(e.target.feature.properties.site_name);
+        $("#gageDropdown").text(e.target.feature.properties.usgs_site);
       }
 
 
@@ -951,7 +970,7 @@
           columns: [sampleLoc.a],
         });
 
-        // $("#gageDropdown").text(e.target.feature.properties.site_name);
+        $("#sampleDropdown").text(e.target.feature.properties.site);
       }
 
       // 3.2.3 reset the hightlighted feature when the mouse is out of its region.
@@ -1005,7 +1024,7 @@
         pointToLayer: function(feature, latlng) {
           return L.marker(latlng, {
             icon: L.divIcon({
-              className: 'fas fa-tachometer-alt blinking',
+              className: 'map fas fa-tachometer-alt blinking',
             })
           });
         },
@@ -1021,7 +1040,7 @@
         pointToLayer: function(feature, latlng) {
           return L.marker(latlng, {
             icon: L.divIcon({
-              className: 'fas fa-vials blinking',
+              className: 'map fas fa-vials blinking',
             })
           });
         },
@@ -1058,6 +1077,7 @@
       gage1Counts(gage1);
       sample1Counts(sampleLoc1);
       varsCounts(weatherVars);
+      chartColor = 'white'
       // gage chart
       chart = c3.generate({
         size: {
@@ -1068,6 +1088,9 @@
           x: "Date",
           columns: [t, gage1.wt],
           type: 'line',
+        },
+        color: {
+          pattern: [chartColor]
         },
         subchart: {
           show: true,
@@ -1144,6 +1167,9 @@
           columns: [wst, sampleLoc1.a],
           type: 'scatter',
         },
+        color: {
+          pattern: [chartColor]
+        },
         subchart: {
           show: true,
           axis: {
@@ -1210,15 +1236,18 @@
       });
 
       // weather chart
-      weatherChart = c3.generate({
+      precipChart = c3.generate({
         size: {
           height: 280,
           width: 440
         },
         data: {
           x: "Date",
-          columns: [wt, weatherVars.var],
+          columns: [wt, weatherVars.p],
           type: 'line',
+        },
+        color: {
+          pattern: [chartColor]
         },
         subchart: {
           show: true,
@@ -1230,7 +1259,11 @@
           size: {
             height: 15
           },
+          onbrush: function(d) {
+            aitTempChart.zoom(precipChart.zoom());
+          }
         },
+
         padding: {
           // bottom: 10,
           top: 10
@@ -1247,7 +1280,79 @@
           },
           y: {
             label: {
-              text: 'Air temp (deg C)',
+              text: 'Avg. precipitation (mL)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 0,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        zoom: {
+          // rescale: true,+
+          enabled: true,
+          type: "scroll",
+          onzoom: function(d) {
+            aitTempChart.zoom(precipChart.zoom());
+            // step();
+          }
+        },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          enabled: false,
+        },
+        bindto: "#precip-chart"
+      });
+
+      // Air Temp Chart
+      aitTempChart = c3.generate({
+        size: {
+          height: 220,
+          width: 440
+        },
+        data: {
+          x: "Date",
+          columns: [wt, weatherVars.a],
+          type: 'line',
+        },
+        color: {
+          pattern: [chartColor]
+        },
+        padding: {
+          // bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d ",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Avg. air temp (deg C)',
               position: 'outer-middle'
             },
             min: 0,
@@ -1282,7 +1387,7 @@
         legend: {
           enabled: false,
         },
-        bindto: "#weather-chart"
+        bindto: "#airTemp-chart"
       });
 
 
