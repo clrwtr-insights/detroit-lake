@@ -42,11 +42,11 @@
 <body>
   <main>
     <div class="loader"></div>
-    <div id="info" data-simplebar data-simplebar-auto-hide="true">
+    <div id="info" data-simplebar data-simplebar-auto-hide="false">
       <!-- Header -->
       <div id="title" style="font-size:23px">
         <div id="deck-1" class="card-deck counts">
-          <div class="card col-sm-2">
+          <div class="card col-sm-2 ml-3 mr-1">
             <img src="img\clearLogo.png">
           </div>
           <div class="card col-sm-9">
@@ -54,8 +54,8 @@
             <div>Harmful Algal Blooms</div>
           </div>
 
-          <span><a href="https://facebook.com/sharer.php?u=https://clrwtr-insights.github.io/detroit-lake/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
-          <span><a href="https://github.com/clrwtr-insights/detroit-lake" target="_blank"><i class="fab fa-github-square"></i></a></span>
+          <!-- <span><a href="https://facebook.com/sharer.php?u=https://clrwtr-insights.github.io/detroit-lake/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
+          <span><a href="https://github.com/clrwtr-insights/detroit-lake" target="_blank"><i class="fab fa-github-square"></i></a></span> -->
           <span><a data-toggle="modal" data-target="#resourcewindow"><i class="far fa-question-circle"></i></a></span>
           <span><a data-toggle="modal" data-target="#infowindow"><i class="nav fas fa-info-circle"></i></a></span>
         </div>
@@ -71,7 +71,7 @@
 
         <div class="card">
           <!-- tab list -->
-          <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="true">
                 Weather <i class="fas fa-cloud-sun-rain"></i>
@@ -92,12 +92,25 @@
           <div class="tab-content" id="myTabContent">
             <!-- weather tab -->
             <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
-              <div class="dropdown no-arrow">
-                <div class="nav-link">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
-                  <span class="dropdownTitle">Click on map feature <i class="fas fa-map-marked-alt"></i></span>
+              <div id="deck-2" class="card-deck counts">
+                <div class="card col-lg-11">
+                  <div class="dropdown no-arrow">
+                    <div class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card col-lg-1 tabInfo mr-2">
+                  <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                 </div>
               </div>
+
+              <!-- <div class="dropdown no-arrow">
+                <div class="nav-link">
+                  <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
+                  <span><a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a></span>
+                </div>
+              </div> -->
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
                 <div class="card">
@@ -137,20 +150,29 @@
             <!-- Stream tab -->
             <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
               <!-- Stream gage location dropdown -->
-              <div class="dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
-                  <span id="gageDropdown" class="dropdownTitle">NORTH SANTIAM RIVER AT NIAGARA, OR</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                  <center>
-                    <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
-                    <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
-                    <a class="dropdown-item" id="14180300" value="3">BLOWOUT CREEK NEAR DETROIT, OR</a>
-                    <a class="dropdown-item" id="14181500" value="4">NORTH SANTIAM RIVER AT NIAGARA, OR</a>
-                  </center>
+              <div id="deck-2" class="card-deck counts">
+                <div class="card col-lg-11">
+                  <div class="dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                      <span id="gageDropdown" class="dropdownTitle">NORTH SANTIAM RIVER AT NIAGARA, OR</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <center>
+                        <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
+                        <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
+                        <a class="dropdown-item" id="14180300" value="3">BLOWOUT CREEK NEAR DETROIT, OR</a>
+                        <a class="dropdown-item" id="14181500" value="4">NORTH SANTIAM RIVER AT NIAGARA, OR</a>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+                <div class="card col-lg-1 tabInfo mr-2">
+                  <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                 </div>
               </div>
+
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
                 <div class="card">
@@ -160,131 +182,55 @@
                   <div id="gage-chart"></div>
                 </div>
               </div>
-              <!-- Location gages -->
-              <!-- <div id="deck-3" class="card-deck counts">
-                <div class="card">
-                  <center>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">Location: </label>
-                    </div>
-                    <div class="form-check form-check-inline" id="14178000">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG1" value="optionG1" checked>
-                      <label class="form-check-label" for="inlineRadioG1">14178000</label>
-                    </div>
-                    <div class="form-check form-check-inline" id="14179000">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG2" value="optionG2">
-                      <label class="form-check-label" for="inlineRadioG2">14179000</label>
-                    </div>
-                    <br>
-                    <div class="form-check form-check-inline" id="14180300">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG3" value="optionG3">
-                      <label class="form-check-label" for="inlineRadioG3">14180300</label>
-                    </div>
-                    <div class="form-check form-check-inline" id="14181500">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsG" id="inlineRadioG4" value="optionG4">
-                      <label class="form-check-label" for="inlineRadioG4">14181500</label>
-                    </div>
-                  </center>
-                </div>
-              </div> -->
-              <!-- Variable Selection -->
-              <div id="deck-4" class="card-deck counts">
-                <div class="card">
-                  <center>
-                    <!-- <div class="form-check form-check-inline">
-                      <label class="form-check-label">Variable: </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV1" value="optionGV1" checked>
-                      <label class="form-check-label" for="inlineRadioGV1">Water temp.</label>
-                    </div> -->
-                    <!-- <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV2" value="optionGV2">
-                      <label class="form-check-label" for="inlineRadioGV2">Toxins</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV3" value="optionGV3">
-                      <label class="form-check-label" for="inlineRadioGV3">Tot Phos.</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptionsGV3" id="inlineRadioGV4" value="optionGV4">
-                      <label class="form-check-label" for="inlineRadioGV4">Tot. Nitrate</label>
-                    </div> -->
-                  </center>
-                </div>
-              </div>
             </div>
             <!-- Sample tab -->
             <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
               <!-- Sample location dropdown -->
-              <div class="dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
-                  <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                  <center>
-                    <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
-                    <a class="dropdown-item" id="Heater" value="2">Heater</a>
-                    <a class="dropdown-item" id="Blowout" value="3">Blowout</a>
-                  </center>
+              <div id="deck-2" class="card-deck counts">
+                <div class="card col-lg-11">
+                  <div class="dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                      <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <center>
+                        <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
+                        <a class="dropdown-item" id="Heater" value="2">Heater</a>
+                        <a class="dropdown-item" id="Blowout" value="3">Blowout</a>
+                      </center>
+                    </div>
+                  </div>
+                </div>
+                <div class="card col-lg-1 tabInfo mr-2">
+                  <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                 </div>
               </div>
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
                 <div class="card">
+                  <div id="sub-chart"></div>
                   <center>
                     <p></p>
                   </center>
                   <div id="sample-chart"></div>
                 </div>
               </div>
-              <!-- Location Selection -->
-              <!-- <div id="deck-3" class="card-deck counts">
+              <div id="deck-2" class="card-deck counts">
                 <div class="card">
                   <center>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">Location: </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio12" value="option12" checked>
-                      <label class="form-check-label" for="inlineRadio12">Log Boom</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio22" value="option22">
-                      <label class="form-check-label" for="inlineRadio22">Heater</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio32" value="option32">
-                      <label class="form-check-label" for="inlineRadio32">Blowout</label>
-                    </div>
+                    <p></p>
                   </center>
+                  <div id="toxin-chart"></div>
                 </div>
-              </div> -->
-              <!-- Variable Selection -->
-              <div id="deck-4" class="card-deck counts">
+              </div>
+              <div id="deck-2" class="card-deck counts">
                 <div class="card">
                   <center>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label" for="inlineRadio1">Variable: </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio1" value="option1" checked>
-                      <label class="form-check-label" for="inlineRadio1">Algae</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">Toxins</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3" value="option3">
-                      <label class="form-check-label" for="inlineRadio3">Tot Phos.</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio4" value="option4">
-                      <label class="form-check-label" for="inlineRadio3">Tot. Nitrate</label>
-                    </div>
+                    <p></p>
                   </center>
+                  <div id="nitrate-chart"></div>
                 </div>
               </div>
             </div>
@@ -305,70 +251,16 @@
     <!-- Map Element -->
     <div id="map"></div>
     <!-- Map Legend -->
-    <div id="legend-panel">
 
-      <div class="card-deck legend">
-
-        <div class="card">
-          <div class="card-body legend-color-1">
-            <h5 class="card-title" style="color:black">0</h5>
-
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body  legend-color-2">
-            <h5 class="card-title" style="color:black">1-10</h5>
-
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body  legend-color-3">
-            <h5 class="card-title" style="color:black">11-22</h5>
-
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body  legend-color-4">
-            <h5 class="card-title" style="color:black">23-56</h5>
-
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body legend-color-5">
-            <h5 class="card-title" style="color:black">57-151</h5>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body legend-color-6">
-            <h5 class="card-title" style="color:black">152+</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Time Panel -->
-    <div id="time-panel">
-      <div class="card-deck legend">
-        <div class="card">
-          <div class="slidecontainer">
-            <div class="datePickerTitle">Date picker</div>
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <p>Value: <span id="demo"></span></p>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Sat data Panel -->
     <div id="sat-data-panel">
-      <div class="card-deck legend">
+
+
+      <div class="card-deck legend m">
         <div class="card">
           <div>
-            <div class="datePickerTitle">Satellite data</div>
+            <div class="datePickerTitle">Satellite data <a data-toggle="modal" data-target="#satInfoWindow"><i class="nav fas fa-info-circle"></i></a></div>
             <div class="form-check form-check-inline">
               <label class="form-check-label" for="inlineRadio1">Satellite: </label>
             </div>
@@ -390,6 +282,64 @@
               <input class="form-check-input" type="radio" name="inlineRadioOptions5" id="inlineRadio1" value="option1" checked>
               <label class="form-check-label" for="inlineRadio1">Chlorophyl a</label>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck legend">
+
+        <div class="card">
+          <div class="card-body legend-color-6">
+            <h5 class="card-title" style="color:black">0</h5>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body  legend-color-5">
+            <h5 class="card-title" style="color:black">1-10</h5>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body  legend-color-4">
+            <h5 class="card-title" style="color:black">11-22</h5>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body  legend-color-3">
+            <h5 class="card-title" style="color:black">23-56</h5>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body legend-color-2">
+            <h5 class="card-title" style="color:black">57-151</h5>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body legend-color-1">
+            <h5 class="card-title" style="color:black">152+</h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck legend">
+        <div class="card">
+          <div class="slidecontainer">
+            <!-- <div id="hovered">
+              <label>Hovered: </label>
+              <span class="count"></span>
+            </div>
+            <div id="clicked">
+              <label>Last Clicked: </label>
+              <span class="count"></span>
+            </div> -->
+            <div class="timeTitle mb-1 mt-1">Date Picker</div>
+            <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
+            <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
           </div>
         </div>
       </div>
@@ -447,37 +397,88 @@
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
         <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">Coronavirus information resources</strong>
+          <strong class="modal-title" id="exampleModalLongTitle">About Information</strong>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p><a href="https://govstatus.egov.com/OR-OHA-COVID-19" target="_blank">Oregon Health Authority</a></p>
-            <p><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Center for Disease Control and Prevention (CDC)</a></p>
+            <p>About Information</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div id="hospwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div id="prismInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
         <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">Hospitalizations</strong>
+          <strong class="modal-title" id="exampleModalLongTitle">PRISM Data Info</strong>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p>* Hospitalization (ever hospitalized) if available.</p>
+            <p>PRISM Data Info.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div id="streamInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Stream gage data info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>Stream gage data info</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="sampleInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Water sample data info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>Water sample data info</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="satInfoWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Satellite data info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>Satellite data info</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script>
     $(window).ready(function() {
@@ -490,7 +491,7 @@
 
     // bounds of lake
     var lakeBounds = L.latLngBounds(
-      L.latLng(44.626292, -122.376566), //Southwest
+      L.latLng(44.61925641086582, -122.52700081495195), //Southwest
       L.latLng(44.789755, -122.025402), //Northeast
     );
 
@@ -500,93 +501,232 @@
       zoom: 12,
       maxZoom: 15,
       minZoom: 7,
+      maxBounds: lakeBounds,
+      maxBoundsViscosity: 1,
     });
-
-    new L.Control.Zoom({
-      position: 'topright'
-    }).addTo(mymap);
-
 
     var voyager =
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png');
     var satellite =
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-    var natgeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
-      maxZoom: 16
-    });
-    var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19
-    });
     var USGS_USImagery = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 20,
       attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
     }).addTo(mymap);
 
-    // mapbox_token = 'pk.eyJ1IjoiYmVuamlhbnRvbGluIiwiYSI6ImNqcm9uazFpczE1ajM0M3Buem83ZGpuY3oifQ.OpSUwJRtxBMPDFUUJnhLVg';
-    //       var gl = L.mapboxGL({
-    //           accessToken: mapbox_token,
-    //           style: 'mapbox://styles/benjiantolin/ck85fv6ct04i71iocpwjx45k8',
-    //           // attribution: 'Created By <a href="https://github.com/benjiantolin/">Benjamin Antolin</a> based on the <a href="Assets/license.txt">Mapbox basic style</a>'
-    //       }).addTo(map);
 
 
     var baseLayers = {
       'CartoDB Voyager': voyager,
       'ESRI Satellite': satellite,
-      'ESRI National Geographic': natgeo,
-      'Dark Mode': CartoDB_DarkMatter,
       'USGS_USImagery': USGS_USImagery,
     }
 
+    new L.control.layers(baseLayers, {
+      // "Infection Level": areas,
+      // "Infection Case(s) &nbsp;&nbsp; <i class='fas fa-users community'></i>": cases,
+      // "Infected Community &nbsp;&nbsp; <i class='fas fa-procedures community'></i>": communities
+    }, {
+      collapsed: true
+    }).addTo(mymap);
 
+    new L.Control.zoomHome({
+      position: 'topright'
+    }).addTo(mymap);
 
-    var chart, sampleChart, precipChart, airTempChart;
+    var chart, sampleChart, precipChart, airTempChart, toxinChart, nitrateChart;
 
-    var colors = chroma.scale(['red', 'orange', 'green', 'blue']).mode('lch').colors(6);
+    var colors = chroma.scale('Spectral').domain([0, 1]).padding(0.15).mode('lch').colors(6);
+    var color = chroma.scale('Spectral').domain([0, 1]).padding(0.15).mode('lch').colors(6);
+
     for (i = 0; i < 6; i++) {
-      $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
-      $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
+      $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + color[i] + "; font-size: 15px; opacity: .6; text-shadow: 0 0 0px #ffffff;} </style>"));
     }
 
     // hexbin options
     var options = {
       radius: 12,
       opacity: 0.6,
+      colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
       duration: 500,
+      radiusRange: [6, 11],
     };
 
     // hexbin map layer
     var hexLayer = L.hexbinLayer(options).addTo(mymap)
-    hexLayer.colorScale().range(['red', 'orange', 'green', 'blue']);
 
     // hexlayer options
+    function tooltip_function(d) {
+
+      var users_sum = d.reduce(function(acc, obj) {
+        return (acc + parseFloat(obj["o"][2]));
+      }, 0);
+
+      avgChl = users_sum / d.length;
+      avgChl = d3.format(".4")(avgChl);
+      var tooltip_text = `Avg. Chlorophyll: ${String(avgChl)}`
+
+      return tooltip_text
+    }
+
     hexLayer
-      .radiusRange([6, 11])
       .lng(function(d) {
         return d[0];
       })
       .lat(function(d) {
         return d[1];
       })
-      .colorValue(function(d) {
-        var users_sum = d.reduce(function(acc, obj) {
-          return acc + parseInt(obj["o"][2]);
-        }, 0);
-        return users_sum
-      })
+      .colorValue(
+        function(d) {
+
+          var sum = d.reduce(function(acc, obj) {
+            return (acc + parseFloat(obj["o"][2]));
+          }, 0);
+          avgChl = sum / d.length;
+          return avgChl
+        }
+      )
       .hoverHandler(L.HexbinHoverHandler.compound({
         handlers: [
           L.HexbinHoverHandler.resizeFill(),
-          L.HexbinHoverHandler.tooltip()
+          L.HexbinHoverHandler.tooltip({
+            tooltipContent: tooltip_function
+          })
         ]
-      }))
-    // .radiusValue(function(d) {
-    //   return d.length;
-    // })
-    ;
+      }));
+
+    // Set up events
+    hexLayer.dispatch()
+      .on('mouseover', function(d, i) {
+        console.log({
+          type: 'mouseover',
+          event: d,
+          index: i,
+          context: this
+        });
+        setHovered(d);
+      })
+      .on('mouseout', function(d, i) {
+        console.log({
+          type: 'mouseout',
+          event: d,
+          index: i,
+          context: this
+        });
+        setHovered();
+      })
+      .on('click', function(d, i) {
+        console.log({
+          type: 'click',
+          event: d,
+          index: i,
+          context: this
+        });
+        setClicked(d);
+      });
+
+    function setHovered(d) {
+      d3.select('#hovered .count').text((null != d) ? d.length : '');
+    }
+
+    function setClicked(d) {
+      d3.select('#clicked .count').text((null != d) ? d.length : '');
+    }
+
+
+    dateSelect = $('#d0').val();
+    let [y, m, d] = dateSelect.split('-');
+    mapYear = y;
+    mapMonth = m;
+    mapDay = d;
+    mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
+    // Parse date in YYYY-MM-DD format as local date
+    function parseISOLocal(s) {
+      let [y, m, d] = s.split('-');
+      return new Date(y, m - 1, d);
+    }
+
+    // Format date as YYYY-MM-DD
+    function dateToISOLocal(date) {
+      let z = n => ('0' + n).slice(-2);
+      return date.getFullYear() + '-' + z(date.getMonth() + 1) + '-' + z(date.getDate());
+    }
+
+    // Convert range slider value to date string
+    function range2date(evt) {
+      let dateInput = document.querySelector('#d0');
+      let minDate = parseISOLocal(dateInput.defaultValue);
+      minDate.setDate(minDate.getDate() + Number(this.value));
+      dateInput.value = dateToISOLocal(minDate);
+      dateSelect = $('#d0').val();
+      let [y, m, d] = dateSelect.split('-');
+      mapYear = y;
+      mapMonth = m;
+      mapDay = d;
+      mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
+      Promise.all([
+        d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
+      ]).then(function(datasets) {
+        hexdata = [];
+        datasets[0].forEach(function(d) {
+          hexdata.push([
+            d.lon,
+            d.lat,
+            d.Chlorophyll,
+          ]);
+        })
+        hexLayer.data(hexdata);
+      });
+    }
+
+
+    // Convert entered date to range
+    function date2range(evt) {
+      let date = parseISOLocal(this.value);
+      let numDays = (date - new Date(this.min)) / 8.64e7;
+      document.querySelector('#myRange').value = numDays;
+      dateSelect = $('#d0').val();
+      let [y, m, d] = dateSelect.split('-');
+      mapYear = y;
+      mapMonth = m;
+      mapDay = d;
+      mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
+
+      Promise.all([
+        d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
+      ]).then(function(datasets) {
+        hexdata = [];
+        datasets[0].forEach(function(d) {
+          hexdata.push([
+            d.lon,
+            d.lat,
+            d.Chlorophyll,
+          ]);
+        })
+        hexLayer.data(hexdata);
+      });
+
+
+    }
+
+    window.onload = function() {
+      let rangeInput = document.querySelector('#myRange');
+      let dateInput = document.querySelector('#d0');
+      // Get the number of days from the date min and max
+      // Dates in YYYY-MM-DD format are treated as UTC
+      // so will be exact whole days
+
+      let rangeMax = (new Date(dateInput.max) - new Date(dateInput.min)) / 8.64e7;
+      // Set the range min and max values
+      rangeInput.min = 0;
+      rangeInput.max = rangeMax;
+      // Add listener to set the date input value based on the slider
+      rangeInput.addEventListener('input', range2date, false);
+      // Add listener to set the range input value based on the date
+      dateInput.addEventListener('change', date2range, false);
+
+    }
+
 
 
     Promise.all([
@@ -594,8 +734,27 @@
       d3.json("assets/stream_gauge_tab/usgs.geojson"), //datasets[1]
       d3.csv('assets/water_sample_tab/algae.csv'), //datasets[2]
       d3.json("assets/water_sample_tab/ws.geojson"), //datasets[3]
-      d3.csv('assets/satellite_map/detroit_lake_chlorophyll_2020_01_04.csv'), //datasets[4]
+      d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[4]
       d3.csv('assets/weather_tab/detroit_lake_prism_2020_01_01_2021_09_15.csv'), //datasets[5]
+      d3.csv('assets/water_sample_tab/toxin.csv'), //datasets[6]
+      d3.csv('assets/water_sample_tab/nitrate.csv'), //datasets[7]
+      d3.json("assets/weather_tab/weather.geojson"), //datasets[8]
+      d3.csv('assets/water_sample_tab/algae/algae2016.csv'), //datasets[9]
+      d3.csv('assets/water_sample_tab/algae/algae2017.csv'), //datasets[10]
+      d3.csv('assets/water_sample_tab/algae/algae2018.csv'), //datasets[11]
+      d3.csv('assets/water_sample_tab/algae/algae2019.csv'), //datasets[12]
+      d3.csv('assets/water_sample_tab/toxin/toxin2016.csv'), //datasets[13]
+      d3.csv('assets/water_sample_tab/toxin/toxin2017.csv'), //datasets[14]
+      d3.csv('assets/water_sample_tab/toxin/toxin2018.csv'), //datasets[15]
+      d3.csv('assets/water_sample_tab/toxin/toxin2019.csv'), //datasets[16]
+      d3.csv('assets/water_sample_tab/nitrate/nitrate2016.csv'), //datasets[17]
+      d3.csv('assets/water_sample_tab/nitrate/nitrate2017.csv'), //datasets[18]
+      d3.csv('assets/water_sample_tab/nitrate/nitrate2018.csv'), //datasets[19]
+      d3.csv('assets/water_sample_tab/nitrate/nitrate2019.csv'), //datasets[20]
+      d3.csv('assets/stream_gauge_tab/gage2020.csv'), //datasets[21]
+      d3.csv('assets/stream_gauge_tab/gage2021.csv'), //datasets[22]
+      d3.csv('assets/weather_tab/prism2020.csv'), //datasets[23]
+      d3.csv('assets/weather_tab/prism2021.csv'), //datasets[24]
     ]).then(function(datasets) {
 
       hexdata = [];
@@ -614,13 +773,23 @@
 
       // Weather Data
       var wt = ["Date"];
+      var wt2020 = ["Date"];
+      var wt2021 = ["Date"];
       var precip = ["Precipitation"];
+      var precip2020 = ["2020"];
+      var precip2021 = ["2021"];
       var airTemp = ["Air Temperature"];
+      var airTemp2020 = ["2020"];
+      var airTemp2021 = ["2021"];
 
       var weatherVars = {
         name: "Precip",
         p: precip,
+        p2020: precip2020,
+        p2021: precip2021,
         a: airTemp,
+        a2020: airTemp2020,
+        a2021: airTemp2021,
       }
 
       function varsCounts(i) {
@@ -661,18 +830,14 @@
           i["p"].push(tp);
           i["a"].push(ta);
         });
-
-      }
-
-      function siteCounts(i) {
-        tvar = 0;
-        datasets[5].forEach(function(d) {
+        tp2020 = 0, ta2020 = 0;
+        datasets[23].forEach(function(d) {
           var USTd = new Date(d["date"])
-          wt.push(USTd.setHours(USTd.getHours() + 8));
-          tvar = 0;
+          wt2020.push(USTd.setHours(USTd.getHours() + 8));
+          tp2020 = 0, ta2020 = 0;
           current = d;
           delete current["date"];
-          if (i["name"] != "14178000") {
+          if (i["name"] = "Precip") {
             d = current[i["name"]];
             if (d == undefined) {
               d = "0"
@@ -680,38 +845,79 @@
             items = d.split("-");
             switch (items.length) {
               case 1:
-                tvar += +items[0];
+                tp2020 += +items[0];
                 break;
             };
 
-          } else {
-
-            Object.values(current).forEach(function(d) {
-              if (d == undefined) {
-                d = "0"
-              };
-              items = d.split("-");
-              switch (items.length) {
-                case 1:
-                  tvar += +items[0];
-                  break;
-              };
-
-            });
-            //
           }
-          i["var"].push(tvar);
+
+          if (i["name"] = "Air_Temp") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2020 += +items[0];
+                break;
+            };
+
+          }
+          i["p2020"].push(tp2020);
+          i["a2020"].push(ta2020);
+        });
+        tp2021 = 0, ta2021 = 0;
+        datasets[24].forEach(function(d) {
+          var USTd = new Date(d["date"])
+          wt2021.push(USTd.setHours(USTd.getHours() + 8));
+          tp2021 = 0, ta2021 = 0;
+          current = d;
+          delete current["date"];
+          if (i["name"] = "Precip") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tp2021 += +items[0];
+                break;
+            };
+
+          }
+
+          if (i["name"] = "Air_Temp") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2021 += +items[0];
+                break;
+            };
+
+          }
+          i["p2021"].push(tp2021);
+          i["a2021"].push(ta2021);
         });
       }
 
-
       // Stream Gage Data
       var t = ["Date"];
+      var t2020 = ["Date"];
+      var t2021 = ["Date"];
       var water_temp = ["Water Temperature"];
-
+      var water_temp2020 = ["2020"];
+      var water_temp2021 = ["2021"];
       var gage1 = {
         name: "14178000",
         wt: water_temp,
+        wt2020: water_temp2020,
+        wt2021: water_temp2021,
       }
 
       function gage1Counts(i) {
@@ -730,6 +936,7 @@
             items = d.split("-");
             switch (items.length) {
               case 1:
+
                 twt += +items[0];
                 break;
             };
@@ -737,6 +944,53 @@
           }
           i["wt"].push(twt);
         });
+        twt2020 = 0;
+        datasets[21].forEach(function(d) {
+          var USTd = new Date(d["date"])
+          t2020.push(USTd.setHours(USTd.getHours() + 8));
+          twt2020 = 0;
+          current = d;
+          delete current["date"];
+          if (i["name"] = "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+
+                twt2020 += +items[0];
+                break;
+            };
+
+          }
+          i["wt2020"].push(twt2020);
+        });
+        twt2021 = 0;
+        datasets[22].forEach(function(d) {
+          var USTd = new Date(d["date"])
+          t2021.push(USTd.setHours(USTd.getHours() + 8));
+          twt2021 = 0;
+          current = d;
+          delete current["date"];
+          if (i["name"] = "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+
+                twt2021 += +items[0];
+                break;
+            };
+
+          }
+          i["wt2021"].push(twt2021);
+        });
+
 
       }
 
@@ -778,18 +1032,138 @@
           }
           i["wt"].push(twt);
         });
+        twt2020 = 0;
+        datasets[21].forEach(function(d) {
+          var USTd = new Date(d["Date"])
+          t2020.push(USTd.setHours(USTd.getHours() + 8));
+          twt2020 = 0;
+          current = d;
+          delete current["Date"];
+          if (i["name"] != "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                twt2020 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  twt2020 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["wt2020"].push(twt2020);
+        });
+        twt2021 = 0;
+        datasets[22].forEach(function(d) {
+          var USTd = new Date(d["Date"])
+          t2021.push(USTd.setHours(USTd.getHours() + 8));
+          twt2021 = 0;
+          current = d;
+          delete current["Date"];
+          if (i["name"] != "14178000") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                twt2021 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  twt2021 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["wt2021"].push(twt2021);
+        });
+
+
       }
 
       // Water sample Data
       var wst = ["Date"];
+      var wst2016 = ["Date"];
+      var wst2017 = ["Date"];
+      var wst2018 = ["Date"];
+      var wst2019 = ["Date"];
+      var wstt = ["Date"];
+      var wstt2016 = ["Date"];
+      var wstt2017 = ["Date"];
+      var wstt2018 = ["Date"];
+      var wstt2019 = ["Date"];
+      var wsnt = ["Date"];
+      var wsnt2016 = ["Date"];
+      var wsnt2017 = ["Date"];
+      var wsnt2018 = ["Date"];
+      var wsnt2019 = ["Date"];
       var algae = ["Algae"];
+      var algae2016 = ["2016"];
+      var algae2017 = ["2017"];
+      var algae2018 = ["2018"];
+      var algae2019 = ["2019"];
+      var toxin = ["Toxins"];
+      var toxin2016 = ["2016"];
+      var toxin2017 = ["2017"];
+      var toxin2018 = ["2018"];
+      var toxin2019 = ["2019"];
+      var nitrate = ["Total Nitrate"];
+      var nitrate2016 = ["2016"];
+      var nitrate2017 = ["2017"];
+      var nitrate2018 = ["2018"];
+      var nitrate2019 = ["2019"];
 
       var sampleLoc1 = {
-        name: "Log_Boom",
+        name: "Log Boom",
         a: algae,
+        a2016: algae2016,
+        a2017: algae2017,
+        a2018: algae2018,
+        a2019: algae2019,
+        t: toxin,
+        t2016: toxin2016,
+        t2017: toxin2017,
+        t2018: toxin2018,
+        t2019: toxin2019,
+        n: nitrate,
+        n2016: nitrate2016,
+        n2017: nitrate2017,
+        n2018: nitrate2018,
+        n2019: nitrate2019,
+
       }
 
       function sample1Counts(i) {
+        // algae data
         ta = 0;
         datasets[2].forEach(function(d) {
           var USTd = new Date(d["t"])
@@ -797,7 +1171,7 @@
           ta = 0;
           current = d;
           delete current["t"];
-          if (i["name"] = "Log_Boom") {
+          if (i["name"] = "Log Boom") {
             d = current[i["name"]];
             if (d == undefined) {
               d = "0"
@@ -812,10 +1186,320 @@
           }
           i["a"].push(ta);
         });
+        ta2016 = 0;
+        datasets[9].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2016.push(USTd.setHours(USTd.getHours() + 8));
+          ta2016 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2016 += +items[0];
+                break;
+            };
 
+          }
+          i["a2016"].push(ta2016);
+        });
+        ta2017 = 0;
+        datasets[10].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2017.push(USTd.setHours(USTd.getHours() + 8));
+          ta2017 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2017 += +items[0];
+                break;
+            };
+
+          }
+          i["a2017"].push(ta2017);
+        });
+        ta2018 = 0;
+        datasets[11].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2018.push(USTd.setHours(USTd.getHours() + 8));
+          ta2018 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2018 += +items[0];
+                break;
+            };
+
+          }
+          i["a2018"].push(ta2018);
+        });
+        ta2019 = 0;
+        datasets[12].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2019.push(USTd.setHours(USTd.getHours() + 8));
+          ta2019 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2019 += +items[0];
+                break;
+            };
+
+          }
+          i["a2019"].push(ta2019);
+        });
+        // toxin data
+        tt = 0;
+        datasets[6].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt.push(USTd.setHours(USTd.getHours() + 8));
+          tt = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt += +items[0];
+                break;
+            };
+
+          }
+          i["t"].push(tt);
+        });
+        tt2016 = 0;
+        datasets[13].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2016.push(USTd.setHours(USTd.getHours() + 8));
+          tt2016 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2016 += +items[0];
+                break;
+            };
+
+          }
+          i["t2016"].push(tt2016);
+        });
+        tt2017 = 0;
+        datasets[14].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2017.push(USTd.setHours(USTd.getHours() + 8));
+          tt2017 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2017 += +items[0];
+                break;
+            };
+
+          }
+          i["t2017"].push(tt2017);
+        });
+        tt2018 = 0;
+        datasets[15].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2018.push(USTd.setHours(USTd.getHours() + 8));
+          tt2018 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2018 += +items[0];
+                break;
+            };
+
+          }
+          i["t2018"].push(tt2018);
+        });
+        tt2019 = 0;
+        datasets[16].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2019.push(USTd.setHours(USTd.getHours() + 8));
+          tt2019 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2019 += +items[0];
+                break;
+            };
+
+          }
+          i["t2019"].push(tt2019);
+        });
+        // nitrate data
+        tn = 0;
+        datasets[7].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt.push(USTd.setHours(USTd.getHours() + 8));
+          tn = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn += +items[0];
+                break;
+            };
+
+          }
+          i["n"].push(tn);
+        });
+        tn2016 = 0;
+        datasets[17].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2016.push(USTd.setHours(USTd.getHours() + 8));
+          tn2016 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2016 += +items[0];
+                break;
+            };
+
+          }
+          i["n2016"].push(tn2016);
+        });
+        tn2017 = 0;
+        datasets[18].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2017.push(USTd.setHours(USTd.getHours() + 8));
+          tn2017 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2017 += +items[0];
+                break;
+            };
+
+          }
+          i["n2017"].push(tn2017);
+        });
+        tn2018 = 0;
+        datasets[19].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2018.push(USTd.setHours(USTd.getHours() + 8));
+          tn2018 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2018 += +items[0];
+                break;
+            };
+
+          }
+          i["n2018"].push(tn2018);
+        });
+        tn2019 = 0;
+        datasets[20].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2019.push(USTd.setHours(USTd.getHours() + 8));
+          tn2019 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2019 += +items[0];
+                break;
+            };
+
+          }
+          i["n2019"].push(tn2019);
+        });
       }
 
       function sampleSiteCounts(i) {
+        // algae data
         ta = 0;
         datasets[2].forEach(function(d) {
           var USTd = new Date(d["t"])
@@ -823,7 +1507,7 @@
           ta = 0;
           current = d;
           delete current["t"];
-          if (i["name"] = "Log_Boom") {
+          if (i["name"] = "Log Boom") {
             d = current[i["name"]];
             if (d == undefined) {
               d = "0"
@@ -852,6 +1536,526 @@
             //
           }
           i["a"].push(ta);
+        });
+        ta2016 = 0;
+        datasets[9].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2016.push(USTd.setHours(USTd.getHours() + 8));
+          ta2016 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2016 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  ta2016 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["a2016"].push(ta2016);
+        });
+        ta2017 = 0;
+        datasets[10].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2017.push(USTd.setHours(USTd.getHours() + 8));
+          ta2017 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2017 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  ta2017 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["a2017"].push(ta2017);
+        });
+        ta2018 = 0;
+        datasets[11].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2018.push(USTd.setHours(USTd.getHours() + 8));
+          ta2018 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2018 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  ta2018 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["a2018"].push(ta2018);
+        });
+        ta2019 = 0;
+        datasets[12].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wst2019.push(USTd.setHours(USTd.getHours() + 8));
+          ta2019 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                ta2019 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  ta2019 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["a2019"].push(ta2019);
+        });
+        // toxin data
+        tt = 0;
+        datasets[6].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt.push(USTd.setHours(USTd.getHours() + 8));
+          tt = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tt += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["t"].push(tt);
+        });
+        tt2016 = 0;
+        datasets[13].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2016.push(USTd.setHours(USTd.getHours() + 8));
+          tt2016 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2016 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tt2016 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["t2016"].push(tt2016);
+        });
+        tt2017 = 0;
+        datasets[14].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2017.push(USTd.setHours(USTd.getHours() + 8));
+          tt2017 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2017 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tt2017 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["t2017"].push(tt2017);
+        });
+        tt2018 = 0;
+        datasets[15].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2018.push(USTd.setHours(USTd.getHours() + 8));
+          tt2018 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2018 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tt2018 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["t2018"].push(tt2018);
+        });
+        tt2019 = 0;
+        datasets[16].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wstt2019.push(USTd.setHours(USTd.getHours() + 8));
+          tt2019 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tt2019 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tt2019 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["t2019"].push(tt2019);
+        });
+        // nitrate data
+        tn = 0;
+        datasets[7].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt.push(USTd.setHours(USTd.getHours() + 8));
+          tn = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tn += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["n"].push(tn);
+        });
+        tn2016 = 0;
+        datasets[17].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2016.push(USTd.setHours(USTd.getHours() + 8));
+          tn2016 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2016 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tn2016 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["n2016"].push(tn2016);
+        });
+        tn2017 = 0;
+        datasets[18].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2017.push(USTd.setHours(USTd.getHours() + 8));
+          tn2017 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2017 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tn2017 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["n2017"].push(tn2017);
+        });
+        tn2018 = 0;
+        datasets[19].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2018.push(USTd.setHours(USTd.getHours() + 8));
+          tn2018 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2018 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tn2018 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["n2018"].push(tn2018);
+        });
+        tn2019 = 0;
+        datasets[20].forEach(function(d) {
+          var USTd = new Date(d["t"])
+          wsnt2019.push(USTd.setHours(USTd.getHours() + 8));
+          tn2019 = 0;
+          current = d;
+          delete current["t"];
+          if (i["name"] = "Log Boom") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tn2019 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tn2019 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["n2019"].push(tn2019);
         });
       }
 
@@ -904,6 +2108,19 @@
 
       }
 
+      function weatherStyle(feature) {
+
+        return {
+          fillColor: setColor(feature.properties.Cases),
+          fillOpacity: 0.4,
+          weight: 1,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '3'
+        };
+
+      }
+
 
       function highlightFeature(e) {
         // e indicates the current event
@@ -928,11 +2145,17 @@
 
 
         var t = ["Date"];
+        var t2020 = ["Date"];
+        var t2021 = ["Date"];
         var water_temp = ["Water Temperature"];
+        var water_temp2020 = ["2020"];
+        var water_temp2021 = ["2021"];
         // var negTests = ["Negative Tests"];
         var siteSelect = {
           name: e.target.feature.properties.usgs_site,
           wt: water_temp,
+          wt2020: water_temp2020,
+          wt2021: water_temp2021,
         }
 
         siteCounts(siteSelect);
@@ -940,10 +2163,10 @@
 
         chart.load({
           unload: true,
-          columns: [siteSelect.wt],
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
 
-        $("#gageDropdown").text(e.target.feature.properties.usgs_site);
+        $("#gageDropdown").text(e.target.feature.properties.site_name);
       }
 
 
@@ -955,23 +2178,75 @@
 
         // Water sample Data
         var wst = ["Date"];
+        var wst2016 = ["Date"];
+        var wst2017 = ["Date"];
+        var wst2018 = ["Date"];
+        var wst2019 = ["Date"];
+        var wstt = ["Date"];
+        var wstt2016 = ["Date"];
+        var wstt2017 = ["Date"];
+        var wstt2018 = ["Date"];
+        var wstt2019 = ["Date"];
+        var wsnt = ["Date"];
+        var wsnt2016 = ["Date"];
+        var wsnt2017 = ["Date"];
+        var wsnt2018 = ["Date"];
+        var wsnt2019 = ["Date"];
         var algae = ["Algae"];
+        var algae2016 = ["2016"];
+        var algae2017 = ["2017"];
+        var algae2018 = ["2018"];
+        var algae2019 = ["2019"];
+        var toxin = ["Toxins"];
+        var toxin2016 = ["2016"];
+        var toxin2017 = ["2017"];
+        var toxin2018 = ["2018"];
+        var toxin2019 = ["2019"];
+        var nitrate = ["Total Nitrate"];
+        var nitrate2016 = ["2016"];
+        var nitrate2017 = ["2017"];
+        var nitrate2018 = ["2018"];
+        var nitrate2019 = ["2019"];
 
         var sampleLoc = {
           name: e.target.feature.properties.site,
           a: algae,
+          a2016: algae2016,
+          a2017: algae2017,
+          a2018: algae2018,
+          a2019: algae2019,
+          t: toxin,
+          t2016: toxin2016,
+          t2017: toxin2017,
+          t2018: toxin2018,
+          t2019: toxin2019,
+          n: nitrate,
+          n2016: nitrate2016,
+          n2017: nitrate2017,
+          n2018: nitrate2018,
+          n2019: nitrate2019,
         }
+
 
         sampleSiteCounts(sampleLoc);
 
 
         sampleChart.load({
           unload: true,
-          columns: [sampleLoc.a],
+          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+        });
+        toxinChart.load({
+          unload: true,
+          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+        });
+        nitrateChart.load({
+          unload: true,
+          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
         });
 
         $("#sampleDropdown").text(e.target.feature.properties.site);
       }
+
 
       // 3.2.3 reset the hightlighted feature when the mouse is out of its region.
       function resetHighlight(e) {
@@ -999,6 +2274,20 @@
         layer.on({
             // mouseover: highlightFeature,
             click: sampleZoomToFeature,
+            // mouseout: resetHighlight
+          }),
+          layer.bindTooltip(feature.properties.site, {
+            className: 'feature-label',
+            permanent: false,
+            sticky: true,
+            direction: 'auto'
+          });
+      }
+      // 3.3 add these event the layer obejct.
+      function weatherOnEachFeature(feature, layer) {
+        layer.on({
+            // mouseover: highlightFeature,
+            // click: sampleZoomToFeature,
             // mouseout: resetHighlight
           }),
           layer.bindTooltip(feature.properties.site, {
@@ -1046,13 +2335,22 @@
         },
       });
 
-      new L.control.layers(baseLayers, {
-        // "Infection Level": areas,
-        // "Infection Case(s) &nbsp;&nbsp; <i class='fas fa-users community'></i>": cases,
-        // "Infected Community &nbsp;&nbsp; <i class='fas fa-procedures community'></i>": communities
-      }, {
-        collapsed: false
-      }).addTo(mymap);
+      var weatherSites = new L.GeoJSON(datasets[8], {
+        style: weatherStyle,
+        onEachFeature: weatherOnEachFeature,
+        // onEachFeature: function(feature, layer) {
+        //   layer.bindPopup('<b>Site Name: </b>' + feature.properties.usgs_site)
+        // },
+
+        pointToLayer: function(feature, latlng) {
+          return L.marker(latlng, {
+            icon: L.divIcon({
+              className: 'map fas fa-cloud-sun-rain blinking',
+            })
+          });
+        },
+      });
+
 
 
 
@@ -1078,20 +2376,60 @@
       sample1Counts(sampleLoc1);
       varsCounts(weatherVars);
       chartColor = 'white'
+
+      function annualUpdate(d) {
+        var currentDate = new Date(d.x.toString());
+        var currentYear = 2020;
+        $("#year").text(d.x);
+
+        var start = currentYear.toString() + "-01-01";
+        var end = currentYear.toString() + "-12-31";
+
+
+
+
+
+        var ticks = [];
+        start = new Date(start.toString());
+        end = new Date(end.toString());
+
+        s = start.getTime();
+        e = end.getTime();
+        breaks = 5;
+        interval = Math.floor(e - s) / breaks
+        ticks = [];
+        for (var j = 0; j < breaks; j++) {
+          ticks.push(new Date(s + interval * j))
+        }
+        ticks.push(end);
+
+        chart.internal.config.axis_x_tick_values = ticks;
+        // chart.flush();
+
+
+
+
+        chart.zoom([new Date(start.toString()), new Date(end.toString())]);
+      }
+
+var padTop = 10;
+var padRight = 20;
+// var padSide = 30;
       // gage chart
       chart = c3.generate({
         size: {
           height: 280,
-          width: 440
+
         },
         data: {
           x: "Date",
-          columns: [t, gage1.wt],
+          columns: [t, gage1.wt2020, gage1.wt2021],
+          // onmouseover: annualUpdate,
           type: 'line',
         },
-        color: {
-          pattern: [chartColor]
-        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
         subchart: {
           show: true,
           axis: {
@@ -1105,7 +2443,9 @@
         },
         padding: {
           // bottom: 10,
-          top: 10
+          top: padTop,
+          right: padRight,
+          // left: padSide,
         },
         axis: {
           x: {
@@ -1156,19 +2496,21 @@
         },
         bindto: "#gage-chart"
       });
-      // sample chart
+
+
+      // sample algae chart
       sampleChart = c3.generate({
         size: {
           height: 280,
-          width: 440
+
         },
         data: {
           x: "Date",
-          columns: [wst, sampleLoc1.a],
+          columns: [wst2016, sampleLoc1.a2016, sampleLoc1.a2017, sampleLoc1.a2018, sampleLoc1.a2019],
           type: 'scatter',
         },
         color: {
-          pattern: [chartColor]
+          // pattern: [chartColor]
         },
         subchart: {
           show: true,
@@ -1180,10 +2522,16 @@
           size: {
             height: 15
           },
+          onbrush: function(d) {
+            toxinChart.zoom(sampleChart.zoom());
+            nitrateChart.zoom(sampleChart.zoom());
+          }
         },
         padding: {
           // bottom: 10,
-          top: 10
+          top: padTop,
+          right: padRight,
+          // left: padSide,
         },
         axis: {
           x: {
@@ -1207,10 +2555,78 @@
             type: 'linear',
             tick: {
               format: d3.format(".2s"),
-
               count: 5,
-              // values: [0,5000,10000,15000]
             }
+          }
+        },
+        point: {
+          r: 3,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        zoom: {
+          // rescale: true,+
+          enabled: true,
+          type: "scroll",
+          onzoom: function(d) {
+            toxinChart.zoom(sampleChart.zoom());
+            nitrateChart.zoom(sampleChart.zoom());
+          }
+        },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          enabled: false,
+        },
+        bindto: "#sample-chart"
+      });
+      // toxin chart
+      toxinChart = c3.generate({
+        size: {
+          height: 220,
+
+        },
+        data: {
+          x: "Date",
+          columns: [wst2016, sampleLoc1.t2016, sampleLoc1.t2017, sampleLoc1.t2018, sampleLoc1.t2019],
+          type: 'scatter',
+        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
+        padding: {
+          top: padTop,
+              right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Microcystin observed (ppb)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            // tick: {
+            //   format: d3.format(".2s"),
+            //   count: 5,
+            // }
           }
         },
         point: {
@@ -1232,23 +2648,87 @@
         legend: {
           enabled: false,
         },
-        bindto: "#sample-chart"
+        bindto: "#toxin-chart"
       });
-
+      // toxin chart
+      nitrateChart = c3.generate({
+        size: {
+          height: 220,
+        },
+        data: {
+          x: "Date",
+          columns: [wst2016, sampleLoc1.n2016, sampleLoc1.n2017, sampleLoc1.n2018, sampleLoc1.n2019],
+          type: 'scatter',
+        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
+        padding: {
+          top: padTop,
+              right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Total nitrates observed (mg/L)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            // tick: {
+            //   format: d3.format(".2s"),
+            //   count: 5,
+            // }
+          }
+        },
+        point: {
+          r: 3,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        zoom: {
+          // rescale: true,+
+          enabled: true,
+          type: "scroll",
+        },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          enabled: false,
+        },
+        bindto: "#nitrate-chart"
+      });
       // weather chart
       precipChart = c3.generate({
         size: {
           height: 280,
-          width: 440
+
         },
         data: {
           x: "Date",
-          columns: [wt, weatherVars.p],
+          columns: [wt2020, weatherVars.p2020, weatherVars.p2021],
           type: 'line',
         },
-        color: {
-          pattern: [chartColor]
-        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
         subchart: {
           show: true,
           axis: {
@@ -1265,8 +2745,9 @@
         },
 
         padding: {
-          // bottom: 10,
-          top: 10
+          top: padTop,
+          right: padRight,
+          // left: padSide,
         },
         axis: {
           x: {
@@ -1321,24 +2802,23 @@
         },
         bindto: "#precip-chart"
       });
-
       // Air Temp Chart
       aitTempChart = c3.generate({
         size: {
           height: 220,
-          width: 440
         },
         data: {
           x: "Date",
-          columns: [wt, weatherVars.a],
+          columns: [wt2020, weatherVars.a2020, weatherVars.a2021],
           type: 'line',
         },
-        color: {
-          pattern: [chartColor]
-        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
         padding: {
-          // bottom: 10,
-          top: 10
+          top: padTop,
+          right: padRight,
+          // left: padSide,
         },
         axis: {
           x: {
@@ -1377,9 +2857,9 @@
           }
         },
         zoom: {
-          // rescale: true,
-          enabled: true,
-          type: "scroll",
+          enabled: {
+            type: "drag"
+          },
         },
         tooltip: {
           linked: true,
@@ -1392,87 +2872,99 @@
 
 
 
-      $(document).ready(function() {
-        $('input[type=radio]').change(function() {
-          var t = ["Date"];
-          var water_temp = ["Water Temperature"];
-          if ($('#inlineRadioG2').is(':checked')) {
-            var siteSelect = {
-              name: "14179000",
-              wt: water_temp,
-            }
-          } else if ($('#inlineRadioG1').is(':checked')) {
-            var siteSelect = {
-              name: "14178000",
-              wt: water_temp,
-            }
-          } else if ($('#inlineRadioG3').is(':checked')) {
-            var siteSelect = {
-              name: "14180300",
-              wt: water_temp,
-            }
-          } else if ($('#inlineRadioG4').is(':checked')) {
-            var siteSelect = {
-              name: "14181500",
-              wt: water_temp,
-            }
-          }
-          siteCounts(siteSelect);
-          chart.load({
-            unload: true,
-            columns: [siteSelect.wt],
-          });
-        });
-      });
-
-      $(document).ready(function() {
-        $('input[type=radio]').change(function() {
-          var wst = ["Date"];
-          var algae = ["Algae"];
-          if ($('#inlineRadio12').is(':checked')) {
-            var sampleSiteSelect = {
-              name: "Log Boom",
-              a: algae,
-            }
-          } else if ($('#inlineRadio22').is(':checked')) {
-            var sampleSiteSelect = {
-              name: "Heater",
-              a: algae,
-            }
-          } else if ($('#inlineRadio32').is(':checked')) {
-            var sampleSiteSelect = {
-              name: "Blowout",
-              a: algae,
-            }
-          }
-          sampleSiteCounts(sampleSiteSelect);
-          sampleChart.load({
-            unload: true,
-            columns: [sampleSiteSelect.a],
-          });
-        });
-      });
+      // $(document).ready(function() {
+      //   $('input[type=radio]').change(function() {
+      //     var t = ["Date"];
+      //     var water_temp = ["Water Temperature"];
+      //     if ($('#inlineRadioG2').is(':checked')) {
+      //       var siteSelect = {
+      //         name: "14179000",
+      //         wt: water_temp,
+      //       }
+      //     } else if ($('#inlineRadioG1').is(':checked')) {
+      //       var siteSelect = {
+      //         name: "14178000",
+      //         wt: water_temp,
+      //       }
+      //     } else if ($('#inlineRadioG3').is(':checked')) {
+      //       var siteSelect = {
+      //         name: "14180300",
+      //         wt: water_temp,
+      //       }
+      //     } else if ($('#inlineRadioG4').is(':checked')) {
+      //       var siteSelect = {
+      //         name: "14181500",
+      //         wt: water_temp,
+      //       }
+      //     }
+      //     siteCounts(siteSelect);
+      //     chart.load({
+      //       unload: true,
+      //       columns: [siteSelect.wt],
+      //     });
+      //   });
+      // });
+      //
+      // $(document).ready(function() {
+      //   $('input[type=radio]').change(function() {
+      //     var wst = ["Date"];
+      //     var algae = ["Algae"];
+      //     if ($('#inlineRadio12').is(':checked')) {
+      //       var sampleSiteSelect = {
+      //         name: "Log Boom",
+      //         a: algae,
+      //       }
+      //     } else if ($('#inlineRadio22').is(':checked')) {
+      //       var sampleSiteSelect = {
+      //         name: "Heater",
+      //         a: algae,
+      //       }
+      //     } else if ($('#inlineRadio32').is(':checked')) {
+      //       var sampleSiteSelect = {
+      //         name: "Blowout",
+      //         a: algae,
+      //       }
+      //     }
+      //     sampleSiteCounts(sampleSiteSelect);
+      //     sampleChart.load({
+      //       unload: true,
+      //       columns: [sampleSiteSelect.a],
+      //     });
+      //   });
+      // });
 
       $("#weather-tab").on("click", function() {
         // Remove Map Layers
         mymap.removeLayer(sites);
         mymap.removeLayer(sampleSites);
+        mymap.removeLayer(weatherSites);
         // Add selected geo layer for selected year
+        mymap.addLayer(weatherSites);
+        mymap.fitBounds(lakeBounds);
+
+
+
 
       });
       $("#stream-tab").on("click", function() {
         // Remove Map Layers
         mymap.removeLayer(sites);
         mymap.removeLayer(sampleSites);
+        mymap.removeLayer(weatherSites);
         // Add selected geo layer for selected year
         mymap.addLayer(sites);
+        mymap.fitBounds(lakeBounds)
+
       });
       $("#sample-tab").on("click", function() {
         // Remove Map Layers
         mymap.removeLayer(sites);
         mymap.removeLayer(sampleSites);
+        mymap.removeLayer(weatherSites);
         // Add selected geo layer for selected year
         mymap.addLayer(sampleSites);
+        mymap.fitBounds(lakeBounds)
+
       });
 
 
@@ -1480,11 +2972,17 @@
         $("#gageDropdown").text("BREITENBUSH R ABV FRENCH CR NR DETROIT, OR");
 
         var t = ["Date"];
+        var t2020 = ["Date"];
+        var t2021 = ["Date"];
         var water_temp = ["Water Temperature"];
+        var water_temp2020 = ["2020"];
+        var water_temp2021 = ["2021"];
         // var negTests = ["Negative Tests"];
         var siteSelect = {
           name: "14179000",
           wt: water_temp,
+          wt2020: water_temp2020,
+          wt2021: water_temp2021,
         }
 
         siteCounts(siteSelect);
@@ -1492,7 +2990,7 @@
 
         chart.load({
           unload: true,
-          columns: [siteSelect.wt],
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
       });
 
@@ -1500,11 +2998,17 @@
         $("#gageDropdown").text("NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR");
 
         var t = ["Date"];
+        var t2020 = ["Date"];
+        var t2021 = ["Date"];
         var water_temp = ["Water Temperature"];
+        var water_temp2020 = ["2020"];
+        var water_temp2021 = ["2021"];
         // var negTests = ["Negative Tests"];
         var siteSelect = {
           name: "14178000",
           wt: water_temp,
+          wt2020: water_temp2020,
+          wt2021: water_temp2021,
         }
 
         siteCounts(siteSelect);
@@ -1512,7 +3016,7 @@
 
         chart.load({
           unload: true,
-          columns: [siteSelect.wt],
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
       });
 
@@ -1520,11 +3024,17 @@
         $("#gageDropdown").text("BLOWOUT CREEK NEAR DETROIT, OR");
 
         var t = ["Date"];
+        var t2020 = ["Date"];
+        var t2021 = ["Date"];
         var water_temp = ["Water Temperature"];
+        var water_temp2020 = ["2020"];
+        var water_temp2021 = ["2021"];
         // var negTests = ["Negative Tests"];
         var siteSelect = {
           name: "14180300",
           wt: water_temp,
+          wt2020: water_temp2020,
+          wt2021: water_temp2021,
         }
 
         siteCounts(siteSelect);
@@ -1532,7 +3042,7 @@
 
         chart.load({
           unload: true,
-          columns: [siteSelect.wt],
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
       });
 
@@ -1540,11 +3050,17 @@
         $("#gageDropdown").text("NORTH SANTIAM RIVER AT NIAGARA, OR");
 
         var t = ["Date"];
+        var t2020 = ["Date"];
+        var t2021 = ["Date"];
         var water_temp = ["Water Temperature"];
+        var water_temp2020 = ["2020"];
+        var water_temp2021 = ["2021"];
         // var negTests = ["Negative Tests"];
         var siteSelect = {
           name: "14181500",
           wt: water_temp,
+          wt2020: water_temp2020,
+          wt2021: water_temp2021,
         }
 
         siteCounts(siteSelect);
@@ -1552,19 +3068,61 @@
 
         chart.load({
           unload: true,
-          columns: [siteSelect.wt],
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
       });
 
       $("#Log_Boom").on("click", function() {
         $("#sampleDropdown").text("Log Boom");
 
-        var t = ["Date"];
+        var wst = ["Date"];
+        var wst2016 = ["Date"];
+        var wst2017 = ["Date"];
+        var wst2018 = ["Date"];
+        var wst2019 = ["Date"];
+        var wstt = ["Date"];
+        var wstt2016 = ["Date"];
+        var wstt2017 = ["Date"];
+        var wstt2018 = ["Date"];
+        var wstt2019 = ["Date"];
+        var wsnt = ["Date"];
+        var wsnt2016 = ["Date"];
+        var wsnt2017 = ["Date"];
+        var wsnt2018 = ["Date"];
+        var wsnt2019 = ["Date"];
         var algae = ["Algae"];
+        var algae2016 = ["2016"];
+        var algae2017 = ["2017"];
+        var algae2018 = ["2018"];
+        var algae2019 = ["2019"];
+        var toxin = ["Toxins"];
+        var toxin2016 = ["2016"];
+        var toxin2017 = ["2017"];
+        var toxin2018 = ["2018"];
+        var toxin2019 = ["2019"];
+        var nitrate = ["Total Nitrate"];
+        var nitrate2016 = ["2016"];
+        var nitrate2017 = ["2017"];
+        var nitrate2018 = ["2018"];
+        var nitrate2019 = ["2019"];
         // var negTests = ["Negative Tests"];
         var sampleSiteSelect = {
           name: "Log_Boom",
           a: algae,
+          a2016: algae2016,
+          a2017: algae2017,
+          a2018: algae2018,
+          a2019: algae2019,
+          t: toxin,
+          t2016: toxin2016,
+          t2017: toxin2017,
+          t2018: toxin2018,
+          t2019: toxin2019,
+          n: nitrate,
+          n2016: nitrate2016,
+          n2017: nitrate2017,
+          n2018: nitrate2018,
+          n2019: nitrate2019,
         }
 
         sampleSiteCounts(sampleSiteSelect);
@@ -1572,19 +3130,69 @@
 
         sampleChart.load({
           unload: true,
-          columns: [sampleSiteSelect.a],
+          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+        });
+        toxinChart.load({
+          unload: true,
+          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+        });
+        nitrateChart.load({
+          unload: true,
+          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
         });
       });
 
       $("#Heater").on("click", function() {
         $("#sampleDropdown").text("Heater");
 
-        var t = ["Date"];
+        var wst = ["Date"];
+        var wst2016 = ["Date"];
+        var wst2017 = ["Date"];
+        var wst2018 = ["Date"];
+        var wst2019 = ["Date"];
+        var wstt = ["Date"];
+        var wstt2016 = ["Date"];
+        var wstt2017 = ["Date"];
+        var wstt2018 = ["Date"];
+        var wstt2019 = ["Date"];
+        var wsnt = ["Date"];
+        var wsnt2016 = ["Date"];
+        var wsnt2017 = ["Date"];
+        var wsnt2018 = ["Date"];
+        var wsnt2019 = ["Date"];
         var algae = ["Algae"];
+        var algae2016 = ["2016"];
+        var algae2017 = ["2017"];
+        var algae2018 = ["2018"];
+        var algae2019 = ["2019"];
+        var toxin = ["Toxins"];
+        var toxin2016 = ["2016"];
+        var toxin2017 = ["2017"];
+        var toxin2018 = ["2018"];
+        var toxin2019 = ["2019"];
+        var nitrate = ["Total Nitrate"];
+        var nitrate2016 = ["2016"];
+        var nitrate2017 = ["2017"];
+        var nitrate2018 = ["2018"];
+        var nitrate2019 = ["2019"];
         // var negTests = ["Negative Tests"];
         var sampleSiteSelect = {
           name: "Heater",
           a: algae,
+          a2016: algae2016,
+          a2017: algae2017,
+          a2018: algae2018,
+          a2019: algae2019,
+          t: toxin,
+          t2016: toxin2016,
+          t2017: toxin2017,
+          t2018: toxin2018,
+          t2019: toxin2019,
+          n: nitrate,
+          n2016: nitrate2016,
+          n2017: nitrate2017,
+          n2018: nitrate2018,
+          n2019: nitrate2019,
         }
 
         sampleSiteCounts(sampleSiteSelect);
@@ -1592,19 +3200,69 @@
 
         sampleChart.load({
           unload: true,
-          columns: [sampleSiteSelect.a],
+          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+        });
+        toxinChart.load({
+          unload: true,
+          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+        });
+        nitrateChart.load({
+          unload: true,
+          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
         });
       });
 
       $("#Blowout").on("click", function() {
         $("#sampleDropdown").text("Blowout");
 
-        var t = ["Date"];
+        var wst = ["Date"];
+        var wst2016 = ["Date"];
+        var wst2017 = ["Date"];
+        var wst2018 = ["Date"];
+        var wst2019 = ["Date"];
+        var wstt = ["Date"];
+        var wstt2016 = ["Date"];
+        var wstt2017 = ["Date"];
+        var wstt2018 = ["Date"];
+        var wstt2019 = ["Date"];
+        var wsnt = ["Date"];
+        var wsnt2016 = ["Date"];
+        var wsnt2017 = ["Date"];
+        var wsnt2018 = ["Date"];
+        var wsnt2019 = ["Date"];
         var algae = ["Algae"];
+        var algae2016 = ["2016"];
+        var algae2017 = ["2017"];
+        var algae2018 = ["2018"];
+        var algae2019 = ["2019"];
+        var toxin = ["Toxins"];
+        var toxin2016 = ["2016"];
+        var toxin2017 = ["2017"];
+        var toxin2018 = ["2018"];
+        var toxin2019 = ["2019"];
+        var nitrate = ["Total Nitrate"];
+        var nitrate2016 = ["2016"];
+        var nitrate2017 = ["2017"];
+        var nitrate2018 = ["2018"];
+        var nitrate2019 = ["2019"];
         // var negTests = ["Negative Tests"];
         var sampleSiteSelect = {
           name: "Blowout",
           a: algae,
+          a2016: algae2016,
+          a2017: algae2017,
+          a2018: algae2018,
+          a2019: algae2019,
+          t: toxin,
+          t2016: toxin2016,
+          t2017: toxin2017,
+          t2018: toxin2018,
+          t2019: toxin2019,
+          n: nitrate,
+          n2016: nitrate2016,
+          n2017: nitrate2017,
+          n2018: nitrate2018,
+          n2019: nitrate2019,
         }
 
         sampleSiteCounts(sampleSiteSelect);
@@ -1612,21 +3270,22 @@
 
         sampleChart.load({
           unload: true,
-          columns: [sampleSiteSelect.a],
+          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+        });
+        toxinChart.load({
+          unload: true,
+          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+        });
+        nitrateChart.load({
+          unload: true,
+          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
         });
       });
 
     });
 
 
-    // Slider JS
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    output.innerHTML = slider.value;
 
-    slider.oninput = function() {
-      output.innerHTML = this.value;
-    }
 
     // Tab JS
     var triggerTabList = [].slice.call(document.querySelectorAll('#weather-tab'))
@@ -1635,6 +3294,7 @@
       triggerEl.addEventListener('click', function(event) {
         event.preventDefault()
         tabTrigger.show()
+
       })
     })
     var triggerTabList = [].slice.call(document.querySelectorAll('#stream-tab'))
@@ -1652,16 +3312,22 @@
       triggerEl.addEventListener('click', function(event) {
         event.preventDefault()
         tabTrigger.show()
+
       })
     })
 
 
+    var today = new Date();
 
+    var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
+
+    $("#date").text("Last update: " + date);
 
     /////////////////////////
     $(".leaflet-control-attribution")
       .css("background-color", "transparent")
-      .html("");
+      .css("color", "white")
+      .html("Supported by <a href='https://www.clrwater.io/' target='_blank' style='color:white;''> ClearWater Analytica </a>");
   </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140689399-6"></script>
