@@ -8,6 +8,13 @@
   <meta name="authors" content="Benji Antolin">
   <title>CLRWTR Insights</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -66,6 +73,9 @@
       <!-- Location Title -->
       <p><span id="placename">Detroit Lake, Oregon</span> </p>
       <div> <span id="date"></span></div>
+
+
+
       <!-- Tab Data Selection -->
       <div id="deck-1" class="card-deck counts">
 
@@ -73,7 +83,7 @@
           <!-- tab list -->
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="true">
+              <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="false">
                 Weather <i class="fas fa-cloud-sun-rain"></i>
               </button>
             </li>
@@ -83,7 +93,7 @@
               </button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="sample-tab" data-bs-toggle="tab" href="#sample" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="false">
+              <button class="nav-link" id="sample-tab" data-bs-toggle="tab" href="#sample" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="true">
                 Water sample <i class="fas fa-vials"></i>
               </button>
             </li>
@@ -93,14 +103,39 @@
             <!-- weather tab -->
             <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
               <div id="deck-2" class="card-deck counts">
-                <div class="card col-lg-11">
+                <div class="card col-lg-8">
                   <div class="dropdown no-arrow">
-                    <div class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-link ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
                     </div>
                   </div>
                 </div>
-                <div class="card col-lg-1 tabInfo mr-2">
+                <div class="card col-lg-3">
+                  <div class="dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+                      <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <center>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2019</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2018</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2017</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2016</label>
+                        </div>
+                        <center />
+                    </div>
+                  </div>
+                </div>
+                <div class="card col-lg-1 tabInfo">
                   <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                 </div>
               </div>
@@ -151,9 +186,9 @@
             <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
               <!-- Stream gage location dropdown -->
               <div id="deck-2" class="card-deck counts">
-                <div class="card col-lg-11">
+                <div class="card col-lg-8">
                   <div class="dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
                       <span id="gageDropdown" class="dropdownTitle">NORTH SANTIAM RIVER AT NIAGARA, OR</span>
                     </a>
@@ -168,10 +203,62 @@
                     </div>
                   </div>
                 </div>
-                <div class="card col-lg-1 tabInfo mr-2">
+                <div class="card col-lg-3">
+                  <div class="dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+                      <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
+                    </a>
+
+                    <div id="streamDateForm" class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <center>
+                        <div class="checkbox">
+                          <label><input id = "gage2021"  type="checkbox" name="gageYears" value="2021" checked>2021</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2020"  type="checkbox" name="gageYears" value="2020" checked>2020</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2019"  type="checkbox" name="gageYears" value="2019">2019</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2018"  type="checkbox" name="gageYears" value="2018">2018</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2017"  type="checkbox" name="gageYears" value="2017">2017</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2016"  type="checkbox" name="gageYears" value="2016">2016</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2015"  type="checkbox" name="gageYears" value="2015">2015</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2014"  type="checkbox" name="gageYears" value="2014">2014</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2013"  type="checkbox" name="gageYears" value="2013">2013</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2012"  type="checkbox" name="gageYears" value="2012">2012</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2011"  type="checkbox" name="gageYears" value="2011">2011</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = "gage2010"  type="checkbox" name="gageYears" value="2010">2010</label>
+                        </div>
+                        <center />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card col-lg-1 tabInfo">
                   <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                 </div>
               </div>
+
+
 
               <!-- Chart -->
               <div id="deck-2" class="card-deck counts">
@@ -182,14 +269,55 @@
                   <div id="gage-chart"></div>
                 </div>
               </div>
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <p></p>
+                  </center>
+                  <!-- <div id="gage-subChart"></div> -->
+                  <div id="gage-chart2"></div>
+                </div>
+              </div>
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <p></p>
+                  </center>
+                  <!-- <div id="gage-subChart"></div> -->
+                  <div id="dchMean-chart"></div>
+                </div>
+              </div>
+
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <p></p>
+                  </center>
+                  <!-- <div id="gage-subChart"></div> -->
+                  <div id="h20Sum-chart"></div>
+                </div>
+              </div>
+              <!-- Chart -->
+              <div id="deck-2" class="card-deck counts">
+                <div class="card">
+                  <center>
+                    <p></p>
+                  </center>
+                  <!-- <div id="gage-subChart"></div> -->
+                  <div id="dchSum-chart"></div>
+                </div>
+              </div>
             </div>
             <!-- Sample tab -->
             <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
               <!-- Sample location dropdown -->
-              <div id="deck-2" class="card-deck counts">
-                <div class="card col-lg-11">
+              <div id="deck-2" class="card-deck">
+                <div class="card col-lg-8">
                   <div class="dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
                       <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
                     </a>
@@ -203,7 +331,33 @@
                     </div>
                   </div>
                 </div>
-                <div class="card col-lg-1 tabInfo mr-2">
+                <div class="card col-lg-3">
+                  <div class="dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+                      <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <center>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2019</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2018</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2017</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input id = ""  type="checkbox" value="">2016</label>
+                        </div>
+                        <center />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card col-lg-1 tabInfo">
                   <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                 </div>
               </div>
@@ -247,7 +401,7 @@
         </div>
       </div> -->
     </div>
-    </div>
+
     <!-- Map Element -->
     <div id="map"></div>
     <!-- Map Legend -->
@@ -289,47 +443,43 @@
 
         <div class="card">
           <div class="card-body legend-color-6">
-            <h5 class="card-title" style="color:black">0</h5>
+            <h5 class="card-title" style="color:black">
+              <1</h5> </div> </div> <div class="card">
+                <div class="card-body  legend-color-5">
+                  <h5 class="card-title" style="color:black"></h5>
 
+                </div>
+          </div>
+          <div class="card">
+            <div class="card-body  legend-color-4">
+              <h5 class="card-title" style="color:black"></h5>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body  legend-color-3">
+              <h5 class="card-title" style="color:black"></h5>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body legend-color-2">
+              <h5 class="card-title" style="color:black"></h5>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body legend-color-1">
+              <h5 class="card-title" style="color:black">>1.2</h5>
+            </div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-body  legend-color-5">
-            <h5 class="card-title" style="color:black">1-10</h5>
-
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body  legend-color-4">
-            <h5 class="card-title" style="color:black">11-22</h5>
-
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body  legend-color-3">
-            <h5 class="card-title" style="color:black">23-56</h5>
-
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body legend-color-2">
-            <h5 class="card-title" style="color:black">57-151</h5>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body legend-color-1">
-            <h5 class="card-title" style="color:black">152+</h5>
-          </div>
-        </div>
-      </div>
-      <div class="card-deck legend">
-        <div class="card">
-          <div class="slidecontainer">
-            <!-- <div id="hovered">
+        <div class="card-deck legend">
+          <div class="card">
+            <div class="slidecontainer">
+              <!-- <div id="hovered">
               <label>Hovered: </label>
               <span class="count"></span>
             </div>
@@ -337,13 +487,14 @@
               <label>Last Clicked: </label>
               <span class="count"></span>
             </div> -->
-            <div class="timeTitle mb-1 mt-1">Date Picker</div>
-            <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
-            <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
+              <div class="timeTitle mb-1 mt-1">Date Picker</div>
+              <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
+              <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
   </main>
 
   <!-- Modals -->
@@ -483,7 +634,10 @@
   <script>
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
+
     });
+
+
 
 
     $("#date").text("Last updated: 4/1/2020");
@@ -500,11 +654,11 @@
       zoomControl: false,
       zoom: 12,
       maxZoom: 15,
-      minZoom: 7,
+      minZoom: 11,
       maxBounds: lakeBounds,
       maxBoundsViscosity: 1,
     });
-
+    mymap.fitBounds(lakeBounds);
     var voyager =
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png');
     var satellite =
@@ -548,8 +702,9 @@
       radius: 12,
       opacity: 0.6,
       colorRange: [colors[5], colors[4], colors[3], colors[2], colors[1], colors[0]],
+      colorScaleExtent: [1, 1.2],
       duration: 500,
-      radiusRange: [6, 11],
+      radiusRange: [11, 11],
     };
 
     // hexbin map layer
@@ -563,11 +718,13 @@
       }, 0);
 
       avgChl = users_sum / d.length;
-      avgChl = d3.format(".4")(avgChl);
+      avgChl = d3.format(".3")(avgChl);
       var tooltip_text = `Avg. Chlorophyll: ${String(avgChl)}`
 
       return tooltip_text
     }
+
+
 
     hexLayer
       .lng(function(d) {
@@ -578,7 +735,6 @@
       })
       .colorValue(
         function(d) {
-
           var sum = d.reduce(function(acc, obj) {
             return (acc + parseFloat(obj["o"][2]));
           }, 0);
@@ -755,6 +911,7 @@
       d3.csv('assets/stream_gauge_tab/gage2021.csv'), //datasets[22]
       d3.csv('assets/weather_tab/prism2020.csv'), //datasets[23]
       d3.csv('assets/weather_tab/prism2021.csv'), //datasets[24]
+      d3.csv('assets/stream_gauge_tab/detroit_lake_usgstreamgage_2012_01_01_2021_09_29.csv'), //datasets[25]
     ]).then(function(datasets) {
 
       hexdata = [];
@@ -767,9 +924,7 @@
       })
       hexLayer.data(hexdata);
 
-      // prismPoints = hexdata.map(function(p) {
-      //   return [p[0], p[1], p[2]];
-      // });
+
 
       // Weather Data
       var wt = ["Date"];
@@ -781,6 +936,8 @@
       var airTemp = ["Air Temperature"];
       var airTemp2020 = ["2020"];
       var airTemp2021 = ["2021"];
+
+
 
       var weatherVars = {
         name: "Precip",
@@ -906,6 +1063,32 @@
         });
       }
 
+
+      // const distinct = (value, index, self) => {
+      //   return self.indexOf(value) === index;
+      // }
+      //       var years = ["Years"];
+      //       datasets[25].forEach(function(d) {
+      //         var yearList = d["year"];
+      //         years.push(yearList);
+      //         var distinctYears = years.filter(distinct);
+      //         for (var i = 0; i < distinctYears.length; i++) {
+      //           distinctYears[i]
+      //         }
+      //       });
+
+
+      // streamData = [];
+
+      // streamGage1Data2021 = datasets[25].filter(function(d) {
+      //
+      //   return d.usgs_site = "14178000";
+      // })
+
+
+
+
+
       // Stream Gage Data
       var t = ["Date"];
       var t2020 = ["Date"];
@@ -913,14 +1096,205 @@
       var water_temp = ["Water Temperature"];
       var water_temp2020 = ["2020"];
       var water_temp2021 = ["2021"];
+      streamGage1Data2021 = [];
+      streamGage1Data2021wtMean = ["2021"];
+      streamGage1Data2021wtSum = ["2021"];
+      streamGage1Data2021dchMean = ["2021"];
+      streamGage1Data2021dchSum = ["2021"];
+      streamGage1Data2020 = [];
+      streamGage1Data2020wtMean = ["2020"];
+      streamGage1Data2020wtSum = ["2020"];
+      streamGage1Data2020dchMean = ["2020"];
+      streamGage1Data2020dchSum = ["2020"];
+      streamGage1Data2019 = [];
+      streamGage1Data2019wtMean = ["2019"];
+      streamGage1Data2019wtSum = ["2019"];
+      streamGage1Data2019dchMean = ["2019"];
+      streamGage1Data2019dchSum = ["2019"];
+      streamGage1Data2018 = [];
+      streamGage1Data2018wtMean = ["2018"];
+      streamGage1Data2018wtSum = ["2018"];
+      streamGage1Data2018dchMean = ["2018"];
+      streamGage1Data2018dchSum = ["2018"];
+      streamGage1Data2017 = [];
+      streamGage1Data2017wtMean = ["2017"];
+      streamGage1Data2017wtSum = ["2017"];
+      streamGage1Data2017dchMean = ["2017"];
+      streamGage1Data2017dchSum = ["2017"];
+      streamGage1Data2016 = [];
+      streamGage1Data2016wtMean = ["2016"];
+      streamGage1Data2016wtSum = ["2016"];
+      streamGage1Data2016dchMean = ["2016"];
+      streamGage1Data2016dchSum = ["2016"];
+      streamGage1Data2015 = [];
+      streamGage1Data2015wtMean = ["2015"];
+      streamGage1Data2015wtSum = ["2015"];
+      streamGage1Data2015dchMean = ["2015"];
+      streamGage1Data2015dchSum = ["2015"];
+      streamGage1Data2014 = [];
+      streamGage1Data2014wtMean = ["2014"];
+      streamGage1Data2014wtSum = ["2014"];
+      streamGage1Data2014dchMean = ["2014"];
+      streamGage1Data2014dchSum = ["2014"];
+      streamGage1Data2013 = [];
+      streamGage1Data2013wtMean = ["2013"];
+      streamGage1Data2013wtSum = ["2013"];
+      streamGage1Data2013dchMean = ["2013"];
+      streamGage1Data2013dchSum = ["2013"];
+      streamGage1Data2012 = [];
+      streamGage1Data2012wtMean = ["2012"];
+      streamGage1Data2012wtSum = ["2012"];
+      streamGage1Data2012dchMean = ["2012"];
+      streamGage1Data2012dchSum = ["2012"];
+      streamGage1Data2011 = [];
+      streamGage1Data2011wtMean = ["2011"];
+      streamGage1Data2011wtSum = ["2011"];
+      streamGage1Data2011dchMean = ["2011"];
+      streamGage1Data2011dchSum = ["2011"];
+      streamGage1Data2010 = [];
+      streamGage1Data2010wtMean = ["2010"];
+      streamGage1Data2010wtSum = ["2010"];
+      streamGage1Data2010dchMean = ["2010"];
+      streamGage1Data2010dchSum = ["2010"];
+
       var gage1 = {
         name: "14178000",
         wt: water_temp,
         wt2020: water_temp2020,
         wt2021: water_temp2021,
+        wtM2021: streamGage1Data2021wtMean,
+        wtS2021: streamGage1Data2021wtSum,
+        dchM2021: streamGage1Data2021dchMean,
+        dchS2021: streamGage1Data2021dchSum,
+        wtM2020: streamGage1Data2020wtMean,
+        wtS2020: streamGage1Data2020wtSum,
+        dchM2020: streamGage1Data2020dchMean,
+        dchS2020: streamGage1Data2020dchSum,
+        wtM2019: streamGage1Data2019wtMean,
+        wtS2019: streamGage1Data2019wtSum,
+        dchM2019: streamGage1Data2019dchMean,
+        dchS2019: streamGage1Data2019dchSum,
+        wtM2018: streamGage1Data2018wtMean,
+        wtS2018: streamGage1Data2018wtSum,
+        dchM2018: streamGage1Data2018dchMean,
+        dchS2018: streamGage1Data2018dchSum,
+        wtM2017: streamGage1Data2017wtMean,
+        wtS2017: streamGage1Data2017wtSum,
+        dchM2017: streamGage1Data2017dchMean,
+        dchS2017: streamGage1Data2017dchSum,
+        wtM2016: streamGage1Data2016wtMean,
+        wtS2016: streamGage1Data2016wtSum,
+        dchM2016: streamGage1Data2016dchMean,
+        dchS2016: streamGage1Data2016dchSum,
+        wtM2015: streamGage1Data2015wtMean,
+        wtS2015: streamGage1Data2015wtSum,
+        dchM2015: streamGage1Data2015dchMean,
+        dchS2015: streamGage1Data2015dchSum,
+        wtM2014: streamGage1Data2014wtMean,
+        wtS2014: streamGage1Data2014wtSum,
+        dchM2014: streamGage1Data2014dchMean,
+        dchS2014: streamGage1Data2014dchSum,
+        wtM2013: streamGage1Data2013wtMean,
+        wtS2013: streamGage1Data2013wtSum,
+        dchM2013: streamGage1Data2013dchMean,
+        dchS2013: streamGage1Data2013dchSum,
+        wtM2012: streamGage1Data2012wtMean,
+        wtS2012: streamGage1Data2012wtSum,
+        dchM2012: streamGage1Data2012dchMean,
+        dchS2012: streamGage1Data2012dchSum,
+        wtM2011: streamGage1Data2011wtMean,
+        wtS2011: streamGage1Data2011wtSum,
+        dchM2011: streamGage1Data2011dchMean,
+        dchS2011: streamGage1Data2011dchSum,
+        wtM2010: streamGage1Data2010wtMean,
+        wtS2010: streamGage1Data2010wtSum,
+        dchM2010: streamGage1Data2010dchMean,
+        dchS2010: streamGage1Data2010dchSum,
       }
 
       function gage1Counts(i) {
+        let streamGageData = datasets[25];
+        for (let i = 0; i < streamGageData.length; i++) {
+          if (streamGageData[i].usgs_site == "14178000") {
+            switch (streamGageData[i].year) {
+              case "2021":
+                streamGage1Data2021wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2021wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2021dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2021dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2020":
+                streamGage1Data2020wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2020wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2020dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2020dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2019":
+                streamGage1Data2019wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2019wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2019dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2019dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2018":
+                streamGage1Data2018wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2018wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2018dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2018dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2017":
+                streamGage1Data2017wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2017wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2017dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2017dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2016":
+                streamGage1Data2016wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2016wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2016dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2016dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2015":
+                streamGage1Data2015wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2015wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2015dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2015dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2014":
+                streamGage1Data2014wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2014wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2014dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2014dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2013":
+                streamGage1Data2013wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2013wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2013dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2013dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2012":
+                streamGage1Data2012wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2012wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2012dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2012dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2011":
+                streamGage1Data2011wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2011wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2011dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2011dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              case "2010":
+                streamGage1Data2010wtMean.push(streamGageData[i].Water_Temp_mean);
+                streamGage1Data2010wtSum.push(streamGageData[i].Water_Temp_cumsum);
+                streamGage1Data2010dchMean.push(streamGageData[i].Discharge_mean);
+                streamGage1Data2010dchSum.push(streamGageData[i].Discharge_cumsum);
+                break;
+              default:
+            }
+          }
+
+        }
+
         twt = 0;
         datasets[0].forEach(function(d) {
           var USTd = new Date(d["date"])
@@ -995,6 +1369,101 @@
       }
 
       function siteCounts(i) {
+        let streamGageData = datasets[25];
+
+        for (let t = 0; t < streamGageData.length; t++) {
+          if (streamGageData[t].usgs_site == i["name"]) {
+            switch (streamGageData[t].year) {
+              case "2021":
+                streamGage1Data2021.push(streamGageData[t]);
+                streamGage1Data2021wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2021wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2021dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2021dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2020":
+                streamGage1Data2020.push(streamGageData[t]);
+                streamGage1Data2020wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2020wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2020dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2020dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2019":
+                streamGage1Data2019.push(streamGageData[t]);
+                streamGage1Data2019wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2019wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2019dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2019dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2018":
+                streamGage1Data2018.push(streamGageData[t]);
+                streamGage1Data2018wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2018wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2018dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2018dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2017":
+                streamGage1Data2017.push(streamGageData[t]);
+                streamGage1Data2017wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2017wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2017dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2017dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2016":
+                streamGage1Data2016.push(streamGageData[t]);
+                streamGage1Data2016wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2016wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2016dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2016dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2015":
+                streamGage1Data2015.push(streamGageData[t]);
+                streamGage1Data2015wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2015wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2015dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2015dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2014":
+                streamGage1Data2014.push(streamGageData[t]);
+                streamGage1Data2014wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2014wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2014dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2014dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2013":
+                streamGage1Data2013.push(streamGageData[t]);
+                streamGage1Data2013wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2013wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2013dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2013dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2012":
+                streamGage1Data2012.push(streamGageData[t]);
+                streamGage1Data2012wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2012wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2012dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2012dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2011":
+                streamGage1Data2011.push(streamGageData[t]);
+                streamGage1Data2011wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2011wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2011dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2011dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              case "2010":
+                streamGage1Data2010.push(streamGageData[t]);
+                streamGage1Data2010wtMean.push(streamGageData[t].Water_Temp_mean);
+                streamGage1Data2010wtSum.push(streamGageData[t].Water_Temp_cumsum);
+                streamGage1Data2010dchMean.push(streamGageData[t].Discharge_mean);
+                streamGage1Data2010dchSum.push(streamGageData[t].Discharge_cumsum);
+                break;
+              default:
+            }
+          }
+        }
+
+
         twt = 0;
         datasets[0].forEach(function(d) {
           var USTd = new Date(d["Date"])
@@ -2059,6 +2528,8 @@
         });
       }
 
+      // checkbox js
+
 
       function setColor(cases) {
 
@@ -2150,12 +2621,121 @@
         var water_temp = ["Water Temperature"];
         var water_temp2020 = ["2020"];
         var water_temp2021 = ["2021"];
+        streamGage1Data2021 = [];
+        streamGage1Data2021wtMean = ["2021"];
+        streamGage1Data2021wtSum = ["2021"];
+        streamGage1Data2021dchMean = ["2021"];
+        streamGage1Data2021dchSum = ["2021"];
+        streamGage1Data2020 = [];
+        streamGage1Data2020wtMean = ["2020"];
+        streamGage1Data2020wtSum = ["2020"];
+        streamGage1Data2020dchMean = ["2020"];
+        streamGage1Data2020dchSum = ["2020"];
+        streamGage1Data2019 = [];
+        streamGage1Data2019wtMean = ["2019"];
+        streamGage1Data2019wtSum = ["2019"];
+        streamGage1Data2019dchMean = ["2019"];
+        streamGage1Data2019dchSum = ["2019"];
+        streamGage1Data2018 = [];
+        streamGage1Data2018wtMean = ["2018"];
+        streamGage1Data2018wtSum = ["2018"];
+        streamGage1Data2018dchMean = ["2018"];
+        streamGage1Data2018dchSum = ["2018"];
+        streamGage1Data2017 = [];
+        streamGage1Data2017wtMean = ["2017"];
+        streamGage1Data2017wtSum = ["2017"];
+        streamGage1Data2017dchMean = ["2017"];
+        streamGage1Data2017dchSum = ["2017"];
+        streamGage1Data2016 = [];
+        streamGage1Data2016wtMean = ["2016"];
+        streamGage1Data2016wtSum = ["2016"];
+        streamGage1Data2016dchMean = ["2016"];
+        streamGage1Data2016dchSum = ["2016"];
+        streamGage1Data2015 = [];
+        streamGage1Data2015wtMean = ["2015"];
+        streamGage1Data2015wtSum = ["2015"];
+        streamGage1Data2015dchMean = ["2015"];
+        streamGage1Data2015dchSum = ["2015"];
+        streamGage1Data2014 = [];
+        streamGage1Data2014wtMean = ["2014"];
+        streamGage1Data2014wtSum = ["2014"];
+        streamGage1Data2014dchMean = ["2014"];
+        streamGage1Data2014dchSum = ["2014"];
+        streamGage1Data2013 = [];
+        streamGage1Data2013wtMean = ["2013"];
+        streamGage1Data2013wtSum = ["2013"];
+        streamGage1Data2013dchMean = ["2013"];
+        streamGage1Data2013dchSum = ["2013"];
+        streamGage1Data2012 = [];
+        streamGage1Data2012wtMean = ["2012"];
+        streamGage1Data2012wtSum = ["2012"];
+        streamGage1Data2012dchMean = ["2012"];
+        streamGage1Data2012dchSum = ["2012"];
+        streamGage1Data2011 = [];
+        streamGage1Data2011wtMean = ["2011"];
+        streamGage1Data2011wtSum = ["2011"];
+        streamGage1Data2011dchMean = ["2011"];
+        streamGage1Data2011dchSum = ["2011"];
+        streamGage1Data2010 = [];
+        streamGage1Data2010wtMean = ["2010"];
+        streamGage1Data2010wtSum = ["2010"];
+        streamGage1Data2010dchMean = ["2010"];
+        streamGage1Data2010dchSum = ["2010"];
+
         // var negTests = ["Negative Tests"];
         var siteSelect = {
           name: e.target.feature.properties.usgs_site,
           wt: water_temp,
           wt2020: water_temp2020,
           wt2021: water_temp2021,
+          wtM2021: streamGage1Data2021wtMean,
+          wtS2021: streamGage1Data2021wtSum,
+          dchM2021: streamGage1Data2021dchMean,
+          dchS2021: streamGage1Data2021dchSum,
+          wtM2020: streamGage1Data2020wtMean,
+          wtS2020: streamGage1Data2020wtSum,
+          dchM2020: streamGage1Data2020dchMean,
+          dchS2020: streamGage1Data2020dchSum,
+          wtM2019: streamGage1Data2019wtMean,
+          wtS2019: streamGage1Data2019wtSum,
+          dchM2019: streamGage1Data2019dchMean,
+          dchS2019: streamGage1Data2019dchSum,
+          wtM2018: streamGage1Data2018wtMean,
+          wtS2018: streamGage1Data2018wtSum,
+          dchM2018: streamGage1Data2018dchMean,
+          dchS2018: streamGage1Data2018dchSum,
+          wtM2017: streamGage1Data2017wtMean,
+          wtS2017: streamGage1Data2017wtSum,
+          dchM2017: streamGage1Data2017dchMean,
+          dchS2017: streamGage1Data2017dchSum,
+          wtM2016: streamGage1Data2016wtMean,
+          wtS2016: streamGage1Data2016wtSum,
+          dchM2016: streamGage1Data2016dchMean,
+          dchS2016: streamGage1Data2016dchSum,
+          wtM2015: streamGage1Data2015wtMean,
+          wtS2015: streamGage1Data2015wtSum,
+          dchM2015: streamGage1Data2015dchMean,
+          dchS2015: streamGage1Data2015dchSum,
+          wtM2014: streamGage1Data2014wtMean,
+          wtS2014: streamGage1Data2014wtSum,
+          dchM2014: streamGage1Data2014dchMean,
+          dchS2014: streamGage1Data2014dchSum,
+          wtM2013: streamGage1Data2013wtMean,
+          wtS2013: streamGage1Data2013wtSum,
+          dchM2013: streamGage1Data2013dchMean,
+          dchS2013: streamGage1Data2013dchSum,
+          wtM2012: streamGage1Data2012wtMean,
+          wtS2012: streamGage1Data2012wtSum,
+          dchM2012: streamGage1Data2012dchMean,
+          dchS2012: streamGage1Data2012dchSum,
+          wtM2011: streamGage1Data2011wtMean,
+          wtS2011: streamGage1Data2011wtSum,
+          dchM2011: streamGage1Data2011dchMean,
+          dchS2011: streamGage1Data2011dchSum,
+          wtM2010: streamGage1Data2010wtMean,
+          wtS2010: streamGage1Data2010wtSum,
+          dchM2010: streamGage1Data2010dchMean,
+          dchS2010: streamGage1Data2010dchSum,
         }
 
         siteCounts(siteSelect);
@@ -2163,9 +2743,25 @@
 
         chart.load({
           unload: true,
-          columns: [siteSelect.wt2020, siteSelect.wt2021],
+          columns: [siteSelect.wtM2020, siteSelect.wtM2021],
         });
-
+        chart2.load({
+          unload: true,
+          columns: [siteSelect.wtM2020, siteSelect.wtM2021],
+        });
+        h20SumChart.load({
+          unload: true,
+          columns: [siteSelect.wtS2020, siteSelect.wtS2021],
+        });
+        dchMeanChart.load({
+          unload: true,
+          columns: [siteSelect.dchM2020, siteSelect.dchM2021],
+        });
+        dchSumChart.load({
+          unload: true,
+          columns: [siteSelect.dchS2020, siteSelect.dchS2021],
+        });
+        $("#gage-chart > svg > g:nth-child(2)").hide();
         $("#gageDropdown").text(e.target.feature.properties.site_name);
       }
 
@@ -2360,7 +2956,11 @@
           unload: true,
           columns: [t, gage1.wt],
         });
-
+        chart2.load({
+          unload: true,
+          columns: [t, gage1.wt],
+        });
+        $("#gage-chart > svg > g:nth-child(2)").hide();
         $("#hint").text("Click on map to review county trend.");
 
       });
@@ -2371,61 +2971,58 @@
       }
 
       mymap.on('click', onMapClick);
-
       gage1Counts(gage1);
+
       sample1Counts(sampleLoc1);
       varsCounts(weatherVars);
       chartColor = 'white'
 
-      function annualUpdate(d) {
-        var currentDate = new Date(d.x.toString());
-        var currentYear = 2020;
-        $("#year").text(d.x);
+      // function annualUpdate(d) {
+      //   var currentDate = new Date(d.x.toString());
+      //   var currentYear = 2020;
+      //   $("#year").text(d.x);
+      //
+      //   var start = currentYear.toString() + "-01-01";
+      //   var end = currentYear.toString() + "-12-31";
+      //
+      //   var ticks = [];
+      //   start = new Date(start.toString());
+      //   end = new Date(end.toString());
+      //
+      //   s = start.getTime();
+      //   e = end.getTime();
+      //   breaks = 5;
+      //   interval = Math.floor(e - s) / breaks
+      //   ticks = [];
+      //   for (var j = 0; j < breaks; j++) {
+      //     ticks.push(new Date(s + interval * j))
+      //   }
+      //   ticks.push(end);
+      //
+      //   chart.internal.config.axis_x_tick_values = ticks;
+      //   // chart.flush();
+      //
+      //
+      //   chart.zoom([new Date(start.toString()), new Date(end.toString())]);
+      // }
 
-        var start = currentYear.toString() + "-01-01";
-        var end = currentYear.toString() + "-12-31";
-
-
-
-
-
-        var ticks = [];
-        start = new Date(start.toString());
-        end = new Date(end.toString());
-
-        s = start.getTime();
-        e = end.getTime();
-        breaks = 5;
-        interval = Math.floor(e - s) / breaks
-        ticks = [];
-        for (var j = 0; j < breaks; j++) {
-          ticks.push(new Date(s + interval * j))
-        }
-        ticks.push(end);
-
-        chart.internal.config.axis_x_tick_values = ticks;
-        // chart.flush();
-
-
-
-
-        chart.zoom([new Date(start.toString()), new Date(end.toString())]);
-      }
-
-var padTop = 10;
-var padRight = 20;
-// var padSide = 30;
+      var padTop = 10;
+      var padRight = 50;
+      // var padSide = 30;
       // gage chart
+
+
+
       chart = c3.generate({
         size: {
-          height: 280,
+          height: 100,
 
         },
         data: {
           x: "Date",
-          columns: [t, gage1.wt2020, gage1.wt2021],
+          columns: [t, gage1.wtM2020, gage1.wtM2021],
           // onmouseover: annualUpdate,
-          type: 'line',
+          type: 'spline',
         },
         // color: {
         //   pattern: [chartColor]
@@ -2440,7 +3037,71 @@ var padRight = 20;
           size: {
             height: 15
           },
+          onbrush: function(d) {
+            chart2.zoom(chart.zoom());
+            h20SumChart.zoom(chart.zoom());
+            dchMeanChart.zoom(chart.zoom());
+            dchSumChart.zoom(chart.zoom());
+          },
         },
+        padding: {
+          // bottom: 10,
+          top: 0,
+          right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+        },
+        zoom: {
+          // rescale: true,+
+          enabled: true,
+          type: "scroll",
+          onzoom: function(d) {
+            chart2.zoom(chart.zoom());
+            h20SumChart.zoom(chart.zoom());
+            dchMeanChart.zoom(chart.zoom());
+            dchSumChart.zoom(chart.zoom());
+          }
+        },
+        legend: {
+          show: false
+        },
+        bindto: "#gage-chart"
+      });
+      $("#gage-chart > svg > g:nth-child(2)").hide();
+      chart2 = c3.generate({
+        size: {
+          height: 220,
+        },
+        data: {
+          x: "Date",
+          columns: [t, gage1.wtM2020, gage1.wtM2021],
+          // onmouseover: annualUpdate,
+          type: 'spline',
+        },
+        subchart: {
+          show: false,
+          axis: {
+            x: {
+              show: false
+            }
+          },
+          size: {
+            height: 15
+          },
+        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
         padding: {
           // bottom: 10,
           top: padTop,
@@ -2459,7 +3120,7 @@ var padRight = 20;
           },
           y: {
             label: {
-              text: 'Water temp (deg C)',
+              text: 'mean water temp (deg C)',
               position: 'outer-middle'
             },
             min: 0,
@@ -2484,18 +3145,219 @@ var padRight = 20;
           }
         },
         zoom: {
-          // rescale: true,
-          enabled: true,
-          type: "scroll",
+          // enabled: true,
+          // type: "scroll",
+          // onzoom: function(d) {
+          //   chart.zoom(chart2.zoom());
+          // }
         },
         tooltip: {
           linked: true,
         },
         legend: {
-          enabled: false,
+          show: false,
         },
-        bindto: "#gage-chart"
+        bindto: "#gage-chart2"
       });
+      var h20SumChart = c3.generate({
+        size: {
+          height: 220,
+        },
+        data: {
+          x: "Date",
+          columns: [t, gage1.wtS2020, gage1.wtS2021],
+          type: 'spline',
+        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
+        padding: {
+          top: padTop,
+          right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d ",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'cumulative sum water temp (deg C)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 0,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        // zoom: {
+        //   enabled: {
+        //     type: "drag"
+        //   },
+        // },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          show: false,
+        },
+        bindto: "#h20Sum-chart"
+      });
+      var dchMeanChart = c3.generate({
+        size: {
+          height: 220,
+        },
+        data: {
+          x: "Date",
+          columns: [t, gage1.dchM2020, gage1.dchM2021],
+          type: 'spline',
+        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
+        padding: {
+          top: padTop,
+          right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d ",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'mean water discharge (cu/sec)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 0,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        // zoom: {
+        //   enabled: {
+        //     type: "drag"
+        //   },
+        // },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          show: false,
+        },
+        bindto: "#dchMean-chart"
+      });
+      var dchSumChart = c3.generate({
+        size: {
+          height: 220,
+        },
+        data: {
+          x: "Date",
+          columns: [wt2020, gage1.dchS2020, gage1.dchS2021],
+          type: 'spline',
+        },
+        // color: {
+        //   pattern: [chartColor]
+        // },
+        padding: {
+          top: padTop,
+          right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d ",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'cumulative sum water discharge (cu/sec)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        point: {
+          r: 0,
+          focus: {
+            expand: {
+              r: 10
+            }
+          }
+        },
+        // zoom: {
+        //   enabled: {
+        //     type: "drag"
+        //   },
+        // },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          show: false,
+        },
+        bindto: "#dchSum-chart"
+      });
+
 
 
       // sample algae chart
@@ -2600,7 +3462,7 @@ var padRight = 20;
         // },
         padding: {
           top: padTop,
-              right: padRight,
+          right: padRight,
           // left: padSide,
         },
         axis: {
@@ -2665,7 +3527,7 @@ var padRight = 20;
         // },
         padding: {
           top: padTop,
-              right: padRight,
+          right: padRight,
           // left: padSide,
         },
         axis: {
@@ -2724,7 +3586,7 @@ var padRight = 20;
         data: {
           x: "Date",
           columns: [wt2020, weatherVars.p2020, weatherVars.p2021],
-          type: 'line',
+          type: 'spline',
         },
         // color: {
         //   pattern: [chartColor]
@@ -2810,7 +3672,7 @@ var padRight = 20;
         data: {
           x: "Date",
           columns: [wt2020, weatherVars.a2020, weatherVars.a2021],
-          type: 'line',
+          type: 'spline',
         },
         // color: {
         //   pattern: [chartColor]
@@ -2869,7 +3731,6 @@ var padRight = 20;
         },
         bindto: "#airTemp-chart"
       });
-
 
 
       // $(document).ready(function() {
@@ -2992,6 +3853,11 @@ var padRight = 20;
           unload: true,
           columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
+        chart2.load({
+          unload: true,
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
+        });
+        $("#gage-chart > svg > g:nth-child(2)").hide();
       });
 
       $("#14178000").on("click", function() {
@@ -3018,7 +3884,13 @@ var padRight = 20;
           unload: true,
           columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
+        chart2.load({
+          unload: true,
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
+        });
+        $("#gage-chart > svg > g:nth-child(2)").hide();
       });
+
 
       $("#14180300").on("click", function() {
         $("#gageDropdown").text("BLOWOUT CREEK NEAR DETROIT, OR");
@@ -3044,6 +3916,11 @@ var padRight = 20;
           unload: true,
           columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
+        chart2.load({
+          unload: true,
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
+        });
+        $("#gage-chart > svg > g:nth-child(2)").hide();
       });
 
       $("#14181500").on("click", function() {
@@ -3070,6 +3947,11 @@ var padRight = 20;
           unload: true,
           columns: [siteSelect.wt2020, siteSelect.wt2021],
         });
+        chart2.load({
+          unload: true,
+          columns: [siteSelect.wt2020, siteSelect.wt2021],
+        });
+        $("#gage-chart > svg > g:nth-child(2)").hide();
       });
 
       $("#Log_Boom").on("click", function() {
@@ -3282,7 +4164,12 @@ var padRight = 20;
         });
       });
 
+
+
+
     });
+
+
 
 
 
@@ -3316,12 +4203,26 @@ var padRight = 20;
       })
     })
 
+    testingText = 'hello!';
+
+    $('#streamDateForm :checkbox').change(function() {
+      // this will contain a reference to the checkbox
+      if (this.checked) {
+        // the checkbox is now checked
+        testingText = 'hi!';
+      } else {
+        // the checkbox is now no longer checked
+        testingText = 'goodbye!';
+      }
+    });
 
     var today = new Date();
 
     var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
 
     $("#date").text("Last update: " + date);
+
+
 
     /////////////////////////
     $(".leaflet-control-attribution")

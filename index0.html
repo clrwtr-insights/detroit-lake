@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+  <meta name="description" content="ODS Explorer: Webmap Dashboard">
+  <meta name="author" content="Benji Antolin">
+
+  <title>ODS Explorer</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/MarkerCluster.css">
+  <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+  <link href="css/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/leaflet.zoomhome.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="css/main0.css">
+
+
+  <script src="js/d3.js"></script>
+  <script src="js/c3.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="js/chroma.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <script src="https://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+  <script src="https://unpkg.com/rbush@2.0.1/rbush.min.js"></script>
+  <script src="https://unpkg.com/labelgun@6.0.0/lib/labelgun.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <script src="js/leaflet.markercluster.js"></script>
+  <script src="js/leaflet.zoomhome.min.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button> -->
+
+          <h1 id="odsTitle" class="h3 mb-0 text-gray-800">Outdoor School Explorer</h1>
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Export Data</a> -->
+
+          <!-- Topbar Search -->
+          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form> -->
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav">
+
+            <!-- Nav Item - Data Selection -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Topic:</span>
+                <span id="dataDropdown" class="dropdownTitle">Fiscals</span>
+              </a>
+              <!-- Dropdown - Data Selection -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <center>
+                  <a class="dropdown-item" id="Fiscals" value="1">Fiscals</a>
+                  <a class="dropdown-item disabled" id="Performance" value="2">Performance</a>
+                </center>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - Geography Selection -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Geography:</span>
+                <span id="geoDropdown" class="dropdownTitle">House Districts</span>
+              </a>
+              <!-- Dropdown - Geography Selection -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <center>
+                  <a class="dropdown-item" id="house" value="1">House Districts</a>
+                  <a class="dropdown-item" id="senate" value="2">Senate Districts</a>
+                </center>
+              </div>
+            </li>
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <!-- Nav Item - Year Selection -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span>
+                <span id="yearDropdown" class="dropdownTitle">2019-20</span>
+              </a>
+              <!-- Dropdown - Year Selection -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <center>
+                  <a class="dropdown-item" id="y201920" value="1">2019-20</a>
+                  <a class="dropdown-item" id="y201819" value="1">2018-19</a>
+                  <a class="dropdown-item" id="y201718" value="2">2017-18</a>
+                </center>
+              </div>
+            </li>
+
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <img src="img\OSU_Logo.png" height="50">
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+
+
+          <!-- Content Row -->
+
+          <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-5 mb-2">
+              <div class="card text-white shadow">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    <span id="placename">Oregon State</span> by-the-numbers
+                  </h6>
+                </div>
+
+
+                <!-- Color System -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card shadow">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                          Annual Count of Students Attending
+                          <a data-toggle="modal" data-target="#stuParModal">
+                            <i class="info fas fa-question-circle"></i>
+                          </a>
+                        </h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="chart-area">
+                          <div id="stuChart" class="chart-height yearColor"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card shadow">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                          Annual Dollars($) Awarded
+                          <a data-toggle="modal" data-target="#awardModal">
+                            <i class="info fas fa-question-circle"></i>
+                          </a>
+                        </h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="chart-area">
+                          <div id="awardChart" class="chart-height yearColor"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card shadow">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                          Program Length (Days, Nights)
+                          <a data-toggle="modal" data-target="#plModal">
+                            <i class="info fas fa-question-circle"></i>
+                          </a>
+                        </h6>
+                      </div>
+                      <div class="card-body">
+                        <div class="chart-area">
+                          <div id="chart" class="chart-height"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Content Column -->
+
+            <div class="col-lg-7 mb-2">
+              <div class="card text-white shadow">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Totals Since Start of Program</h6>
+                </div>
+
+                <!-- Map -->
+                <div class="card shadow">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"><i><span id="hint">Click on map to review district data</span></i>
+
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="map-area">
+                      <div id="map">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card text-white shadow">
+                  <div class="card-header py-3">
+                    <p class="m-0 font-weight-bold text-primary">*Why isn’t my school participating?</P>
+                      <p class="m-0 text-primary text-xs">
+                        All schools that qualify to receive Outdoor School funds are
+                        shown above (they have 5th or 6th grade students).  However,
+                        fewer schools participate in the Outdoor School funding program
+                        because the program funds each student only once. If your district
+                        chooses to apply for Outdoor School funding every year for 6th grade
+                        students, your district’s elementary schools would not participate;
+                        though your district is taking full advantage of available funding.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <!-- Content Row -->
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <!-- <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer> -->
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- NUMBER OF STUDENTS Modal-->
+  <div class="modal fade" id="stuParModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Number of Students Participating</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          The number of students
+          participating in outdoor school is count of the students
+          who participated in outdoor school (either at the time of
+          application (an estimate) or at the time of reporting
+          (the actual number who attended) in a given year or across
+          years in a given geography.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUMBER OF STUDENTS Modal-->
+  <div class="modal fade" id="schoolParModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Number of Schools Participating</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Because the number of schools changes every year, this figure is a
+          simple count of the number of schools who applied for and received
+          outdoor school funding in a given school year.
+          .
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- $ Awarded Modal-->
+  <div class="modal fade" id="awardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Dollars ($) Awarded</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This is the annual total or running total of dollars
+          awarded/reimbursed statewide or to qualifying agencies
+          (school districts, ESDs, and/or state-sponsored charters).
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SD participation Modal-->
+  <div class="modal fade" id="sDistrictModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Number of Districts (Participating)</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          At present, there are 197 school districts in the State of Oregon.
+          The Outdoor School program is permitted to fund school districts,
+          Education Service Districts (ESDs) (of which there are 19) and
+          state-sponsored charter schools (there are currently four).
+          While the total number of entities that could apply for outdoor
+          school funding is 220, we track only school districts
+          (even if an ESD applies for their funding) and state-sponsored
+          charter schools who apply for and receive funding from our program,
+          keeping our total number of potentially participating “districts”
+          at 201.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Funding per Student Modal-->
+  <div class="modal fade" id="fpsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Funding per Student</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Our unit of cost for outdoor school is “dollars per student”,
+          so when looking at an amount funded for outdoor school -
+          either an overall average, a threshold amount, or a per
+          specific program average - we express those amounts in dollars
+          per student as well.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Average Number of Days Modal-->
+  <div class="modal fade" id="avdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Average Number of Days</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          The average length of program is a calculation of the average
+          length (in days) of the outdoor school programs attended by
+          5th and/or 6th grade students in a given year (or across years).
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Number of Days Outside Modal-->
+  <div class="modal fade" id="dOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Number of Days Outside</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          The number of days outside is the number of students
+          who participated multiplied by the number of days
+          in the outdoor school program they attended. So, for
+          a school that attended a 3-day 2-night program with
+          25 students, that school generated 75 days outside
+          for their students.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Program Length (Days & Nights) Modal-->
+  <div class="modal fade" id="plModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Program Length (Days & Nights)</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Comparison of program lengths used - For data visualization purposes,
+          we track (count) the frequency of attendance for each of the most
+          typical outdoor school programs (such as 3-day 0-night, 3-day 2-night,
+          4-day 3-night, 5-day 4-night, etc.) in a given year.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Students Funded Modal-->
+  <div class="modal fade" id="tsfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Students Funded</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Each year we have an actual count of students funded from each
+          district's final report. This number is the statewide running
+          total of each year’s annual number of students (5th and 6th grade)
+          receiving Outdoor School program funding for their outdoor school
+          experience.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Amount Funded Modal-->
+  <div class="modal fade" id="tafModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Amount Funded</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This is the running total of the annual dollars reimbursed to districts,
+          ESDs, and state-sponsored charter schools for the actual costs of their
+          outdoor school experiences. Because of the pandemic, this amount includes
+          (will include) non-refundable deposits and other district incurred costs
+          for outdoor school programs and facilities that had to be cancelled because
+          of state mandated COVID-19 restrictions in 2019-2020 and 2020-2021.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+
+
+  <script>
+
+    var oregonBounds = L.latLngBounds(
+      L.latLng(42, -124.8), //Southwest
+      L.latLng(46.25, -116.18) //Northeast
+    );
+
+
+
+    var mymap = L.map('map', {
+      // center: [44.25, -119.5],
+      zoomControl: false,
+      // zoom: 7,
+      maxZoom: 15,
+      minZoom: 4,
+      maxBounds: oregonBounds,
+      maxBoundsViscosity: 1,
+    }).fitBounds(oregonBounds);
+
+    var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: true,
+        collapsed: false,
+        showUniqueResult: true,
+        placeholder: "Search a location...",
+        errorMessage: "Nothing was Found...",
+        position: 'topright'
+      })
+      .on('markgeocode', function(e) {
+        lat = e.geocode.center.lat;
+        lng = e.geocode.center.lng;
+        if (!marker) {
+          marker = L.marker([lat, lng]).addTo(mymap);
+        } else {
+          marker.setLatLng([lat, lng]);
+        }
+
+        $("#map").click(marker);
+      })
+      .addTo(mymap);
+
+
+    new L.Control.zoomHome({
+      position: 'topright'
+    }).addTo(mymap);
+
+
+    // 12. Add a scale bar
+    var voyager =
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png').addTo(mymap);
+    var satellite =
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+    var natgeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+      maxZoom: 16
+    });
+
+
+    var baseLayers = {
+      'CartoDB Voyager': voyager,
+      'ESRI Satellite': satellite,
+      'ESRI National Geographic': natgeo,
+    }
+
+
+    // Global Vars
+    var chart, marker;
+    var schoolYear = 3;
+    var geoLayer = 1;
+    // var perPar = 'style201819';
+    var daysAttended1718 = 0;
+    var daysAttended1819 = 0;
+    var daysAttended1920 = 0;
+    var totalStudents = 0;
+    var totalFunded = 0;
+    // 6. Set function for color ramp
+    var colors = chroma.scale(['#FDD26E', '#D73F09']).colors(4);
+    var color2 = chroma.scale(['#FFFFFF', '#D73F09']).mode('lch').colors(3);
+    for (i = 0; i < 3; i++) {
+      $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+      $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+    }
+
+    var legend = L.control({
+      position: 'bottomright'
+    });
+
+    // 10. Function that runs when legend is added to map
+    legend.onAdd = function() {
+
+      // Create Div Element and Populate it with HTML
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML += '<b class="">% of Students Participating<b><br>';
+      div.innerHTML += '<i class="choroLeg" style="background: ' + color2[2] + '; opacity: 0.5"></i><p>75-100%</p>';
+      div.innerHTML += '<i class="choroLeg" style="background: ' + color2[1] + '; opacity: 0.5"></i><p>50-74%</p>';
+      div.innerHTML += '<i class="choroLeg" style="background: ' + color2[0] + '; opacity: 0.5"></i><p> <50%</p>';
+      div.innerHTML += '<hr><b>Schools<b><br>';
+      div.innerHTML += '<i class="marker-cluster marker-cluster-small"></i><p> # of Schools</p>';
+      // Return the Legend div containing the HTML content
+      return div;
+    };
+    document.querySelector("#map > div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div.legend.leaflet-control > i.marker-cluster.marker-cluster-small")
+    // 11. Add a legend to map
+    legend.addTo(mymap);
+
+
+    // Create object that can add school icon to the map through leaflet
+    var schools1920 = new L.MarkerClusterGroup({
+      spiderfyOnMaxZoom: true,
+      singleMarkerMode: true,
+      maxClusterRadius: 50,
+      polygonOptions: {
+        fillColor: "orange",
+        color: 'orange',
+        weight: 0.5,
+        opacity: 0.6,
+        fillOpacity: 0.2
+      },
+      showCoverageOnHover: false,
+    }).addTo(mymap);
+
+    var schools1819 = new L.MarkerClusterGroup({
+      spiderfyOnMaxZoom: true,
+      singleMarkerMode: true,
+      maxClusterRadius: 50,
+      polygonOptions: {
+        fillColor: "orange",
+        color: 'orange',
+        weight: 0.5,
+        opacity: 0.6,
+        fillOpacity: 0.2
+      },
+      showCoverageOnHover: false,
+    });
+
+    var schools1718 = new L.MarkerClusterGroup({
+      spiderfyOnMaxZoom: true,
+      singleMarkerMode: true,
+      maxClusterRadius: 50,
+      polygonOptions: {
+        fillColor: "orange",
+        color: 'orange',
+        weight: 0.5,
+        opacity: 0.6,
+        fillOpacity: 0.2
+      },
+      showCoverageOnHover: false,
+    });
+
+
+
+    Promise.all([
+      d3.csv('assets/houseTimeseries.csv'), //datasets[0]
+      d3.json("assets/house1920append.geojson"), //datasets[1]
+      d3.csv('assets/houseProgLengthNew.csv'), //datasets[2]
+      d3.csv('assets/ODS_Explorer_20182019.csv'), //dataset [3]
+      d3.csv('assets/ODS_Explorer_20172018.csv'), //dataset [4]
+      d3.csv('assets/senateTimeseries.csv'), //datasets[5]
+      d3.json("assets/senateNewMin1920.geojson"), //datasets[6]
+      d3.csv('assets/senateProgramLength.csv'), //datasets[7]
+      d3.csv('assets/ODS_Explorer_20192020.csv'), //dataset [8]
+      d3.csv('assets/house1920_avgDaysUpdate.csv'), //dataset [9]
+    ]).then(function(datasets) {
+
+      $.fn.digits = function() {
+        return this.each(function() {
+          $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+        })
+      }
+      var schoolLayer201920 = datasets[8].forEach(function(d) {
+
+        parDummy = d.Participated;
+        parText = "null";
+
+        if (parDummy == 1) {
+          parText = "Yes"
+        } else if (parDummy == 2) {
+          parText = "Canceled"
+        } else {
+          parText = "No"
+        };
+
+        fifthDummy = d.No_5th_Grade;
+        fifthText = "null";
+
+        if (fifthDummy == "") {
+          fifthText = ""
+        } else {
+          fifthText = " students"
+        };
+
+        sixthDummy = d.No_6th_Grade;
+        sixthText = "null";
+
+        if (sixthDummy == "") {
+          sixthText = ""
+        } else {
+          sixthText = " students"
+        };
+
+        L.marker([d.Y, d.X], {}).bindPopup(
+          "<b>" + d.School_Nam + "</b> <p>" +
+          "<b>Participate in Outdoor School in 2019-20?: </b>" + parText + "<br>" +
+          "<b>Outdoor School Provider in 2019-20: </b>" + d.ODS_Provider + "<br>" +
+          "<b>Outdoor School Provider in 2019-20: </b>" + d.Location + "<br>" +
+          "<b>Number of 5th Graders attending ODS: </b>" + d.No_5th_Grade + fifthText + "<br>" +
+          "<b>Number of 6th Graders attending ODS: </b>" + d.No_6th_Grade + sixthText + "<br>" +
+          "<b>School District: </b>" + d.SD + "<br>" +
+          "<b>ESD: </b>" + d.ESD + "<br>" +
+          "<b>ODS Region: </b>" + d.ods_region + "<br>" +
+          "<b>ODS Contact: </b>" + "<a href=" + d.ods_contact + " target='_blank'>" + d.ods_coordinator + "</a>",
+        ).addTo(schools1920);
+
+        var stuPar = 0;
+        var numDays = 0;
+        stuPar = d.Number_Attending;
+        numDays = d.Days;
+        daysAttended1920 += (stuPar * numDays)
+      })
+
+      var schoolLayer201819 = datasets[3].forEach(function(d) {
+        parDummy = d.Participated;
+        parText = "null";
+
+        if (parDummy == 1) {
+          parText = "Yes"
+        } else {
+          parText = "No"
+        };
+        fifthDummy = d.No_5th_Grade;
+        fifthText = "null";
+
+        if (fifthDummy == "") {
+          fifthText = ""
+        } else {
+          fifthText = " students"
+        };
+
+        sixthDummy = d.No_6th_Grade;
+        sixthText = "null";
+
+        if (sixthDummy == "") {
+          sixthText = ""
+        } else {
+          sixthText = " students"
+        };
+
+        L.marker([d.Y, d.X], {}).bindPopup(
+          "<b>" + d.School_Nam + "</b> <p>" +
+          "<b>Participate in Outdoor School in 2019-20?: </b>" + parText + "<br>" +
+          "<b>Outdoor School Provider in 2019-20: </b>" + d.ODS_Provider + "<br>" +
+          "<b>Outdoor School Provider in 2019-20: </b>" + d.Location + "<br>" +
+          "<b>Number of 5th Graders attending ODS: </b>" + d.No_5th_Grade + fifthText + "<br>" +
+          "<b>Number of 6th Graders attending ODS: </b>" + d.No_6th_Grade + sixthText + "<br>" +
+          "<b>School District: </b>" + d.SD + "<br>" +
+          "<b>ESD: </b>" + d.ESD + "<br>" +
+          "<b>ODS Region: </b>" + d.ods_region + "<br>" +
+          "<b>ODS Contact: </b>" + "<a href=" + d.ods_contact + " target='_blank'>" + d.ods_coordinator + "</a>",
+        ).addTo(schools1819);
+        var stuPar = 0;
+        var numDays = 0;
+        stuPar = d.Number_Attending;
+        numDays = d.Days;
+        daysAttended1819 += (stuPar * numDays)
+      })
+
+
+      var schoolLayer201718 = datasets[4].forEach(function(d) {
+        parDummy = d.Participated;
+        parText = "null";
+        if (parDummy == 1) {
+          parText = "Yes"
+        } else {
+          parText = "No"
+        };
+
+        L.marker([d.Y, d.X], {}).bindPopup(
+          "<b>" + d.School_Nam + "</b> <p>" +
+          "<b>Participate in Outdoor School in 2017-18?: </b>" + parText + "<br>" +
+          "<b>Outdoor School Provider in 2017-18: </b>" + d.ODS_Provider + "<br>" +
+          "<b>School District: </b>" + d.SD + "<br>" +
+          "<b>ESD: </b>" + d.ESD + "<br>" +
+          "<b>ODS Region: </b>" + d.ods_region + "<br>" +
+          "<b>ODS Contact: </b>" + "<a href=" + d.ods_contact + " target='_blank'>" + d.ods_coordinator + "</a>"
+        ).addTo(schools1718);
+        var stuPar = 0;
+        var numDays = 0;
+        stuPar = d.Number_Attending;
+        numDays = d.Days;
+        daysAttended1718 += (stuPar * numDays)
+      })
+
+
+
+      var t = ["Year"]
+      var l = ["Program Length"]
+      var house = ["House District"];
+      var schoolsPar = ["Number of Schools"];
+      var stuPar = ["Number of Students Participating in ODS"]
+      var avgDays = ["Average Length of Program"]
+      var totReq = ["$ Awarded"]
+      var reqStu = ["$ Awarded per Student"]
+      var ods5th = ["Number of 5th Graders Participating"]
+      var ode5th = ["Number of 5th Graders During Fall Enrollment"]
+      var ods6th = ["Number of 6th Graders Participating"]
+      var ode6th = ["Number of 6th Graders During Fall Enrollment"]
+      var oneNil = ["1 Day 0 Nights"]
+      var oneOne = ["1 Day 1 Night"]
+      var twoNil = ["2 Days 0 Nights"]
+      var twoOne = ["2 Days 1 Night"]
+      var threeNil = ["3 Days 0 Nights"]
+      var threeOne = ["3 Days 1 Night"]
+      var threeTwo = ["3 Days 2 Nights"]
+      var threeThree = ["3 Days 3 Nights"]
+      var fourNil = ["4 Days 0 Nights"]
+      var fourTwo = ["4 Days 2 Nights"]
+      var fourThree = ["4 Days 3 Nights"]
+      var fourFive = ["4 Days 5 Nights"]
+      var fiveNil = ["5 Days 0 Nights"]
+      var fiveFour = ["5 Days 4 Nights"]
+      var sixNil = ["6 Days 0 Nights"]
+      var sixFive = ["6 Days 5 Nights"]
+      var pL2018 = ["2017-18"]
+      var pL2019 = ["2018-19"]
+      var pL2020 = ["2019-20"]
+      var avgDays1920 = ["Avg. Number of Days for 2019-20"]
+
+      var oregon = {
+        name: "Oregon",
+        s: schoolsPar,
+        stu: stuPar,
+        ad: avgDays,
+        treq: totReq,
+        reqs: reqStu,
+        ods5: ods5th,
+        ode5: ode5th,
+        ods6: ods6th,
+        ode6: ode6th,
+        one0: oneNil,
+        one1: oneOne,
+        two0: twoNil,
+        two1: twoOne,
+        three0: threeNil,
+        three1: threeOne,
+        three2: threeTwo,
+        three3: threeThree,
+        four0: fourNil,
+        four2: fourTwo,
+        four3: fourThree,
+        four5: fourFive,
+        five0: fiveNil,
+        five4: fiveFour,
+        six0: sixNil,
+        six5: sixFive,
+        pL18: pL2018,
+        pL19: pL2019,
+        pL20: pL2020,
+        ad20: avgDays1920,
+      }
+
+
+      function stateCounts(i) {
+        ts = 0, tstu = 0, tad = 0, ttreq = 0, treqs = 0,
+          tods5 = 0, tode5 = 0, tods6 = 0, tode6 = 0, tone0 = 0,
+          tone1 = 0, ttwo0 = 0, ttwo1 = 0, tthree0 = 0, tthree1 = 0,
+          tthree2 = 0, tthree3 = 0, tfour0 = 0, tfour2 = 0, tfour3 = 0,
+          tfour5 = 0, tfive0 = 0, tfive4 = 0, tsix0 = 0, tsix5 = 0,
+          tpl18 = 0, tpl19 = 0, tpl20 = 0, tad20 = 0;
+        datasets[0].forEach(function(d) {
+          t.push(d["Year"]);
+          ts = 0, tstu = 0, tad = 0, ttreq = 0, treqs = 0,
+            tods5 = 0, tode5 = 0, tods6 = 0, tode6 = 0, tone0 = 0,
+            tone1 = 0, ttwo0 = 0, ttwo1 = 0, tthree0 = 0, tthree1 = 0,
+            tthree2 = 0, tthree3 = 0, tfour0 = 0, tfour2 = 0, tfour3 = 0,
+            tfour5 = 0, tfive0 = 0, tfive4 = 0, tsix0 = 0, tsix5 = 0;
+          current = d;
+          delete current["Year"];
+          if (i["name"] = "Oregon") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 25:
+                tsix5 += +items[24];
+              case 24:
+                tsix0 += +items[23];
+              case 23:
+                tfive4 += +items[22];
+              case 22:
+                tfive0 += +items[21];
+              case 21:
+                tfour5 += +items[20];
+              case 20:
+                tfour3 += +items[19];
+              case 19:
+                tfour2 += +items[18];
+              case 18:
+                tfour0 += +items[17];
+              case 17:
+                tthree3 += +items[16];
+              case 16:
+                tthree2 += +items[15];
+              case 15:
+                tthree1 += +items[14];
+              case 14:
+                tthree0 += +items[13];
+              case 13:
+                ttwo1 += +items[12];
+              case 12:
+                ttwo0 += +items[11];
+              case 11:
+                tone1 += +items[10];
+              case 10:
+                tone0 += +items[9];
+              case 9:
+                tode6 += +items[8];
+              case 8:
+                tods6 += +items[7];
+              case 7:
+                tode5 += +items[6];
+              case 6:
+                tods5 += +items[5];
+              case 5:
+                treqs += +items[4];
+              case 4:
+                ttreq += +items[3];
+              case 3:
+                tad += +items[2];
+              case 2:
+                tstu += +items[1];
+              case 1:
+                ts += +items[0];
+                break;
+            };
+
+          }
+          i["s"].push(ts);
+          i["stu"].push(tstu);
+          i["ad"].push(tad);
+          i["treq"].push(ttreq);
+          i["reqs"].push(treqs);
+          i["ods5"].push(tods5);
+          i["ode5"].push(tode5);
+          i["ods6"].push(tods6);
+          i["ode6"].push(tode6);
+          i["one0"].push(tone0);
+          i["one1"].push(tone1);
+          i["two0"].push(ttwo0);
+          i["two1"].push(ttwo1);
+          i["three0"].push(tthree0);
+          i["three1"].push(tthree1);
+          i["three2"].push(tthree2);
+          i["three3"].push(tthree3);
+          i["four0"].push(tfour0);
+          i["four2"].push(tfour2);
+          i["four3"].push(tfour3);
+          i["four5"].push(tfour5);
+          i["five0"].push(tfive0);
+          i["five4"].push(tfive4);
+          i["six0"].push(tsix0);
+          i["six5"].push(tsix5);
+
+        });
+        datasets[2].forEach(function(d) {
+          l.push(d["Length"]);
+          tpl18 = 0, tpl19 = 0, tpl20 = 0;
+          current = d;
+          delete current["Length"];
+          if (i["name"] = "Oregon") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 3:
+                tpl20 += +items[2];
+              case 2:
+                tpl19 += +items[1];
+              case 1:
+                tpl18 += +items[0];
+                break;
+            };
+
+          }
+          i["pL18"].push(tpl18);
+          i["pL19"].push(tpl19);
+          i["pL20"].push(tpl20);
+        });
+        datasets[9].forEach(function(d) {
+          l.push(d["houseID"]);
+          tad20 = 0;
+          current = d;
+          delete current["houseID"];
+          if (i["name"] = "Oregon") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tad20 += +items[0];
+                break;
+            };
+
+          }
+          i["ad20"].push(tad20);
+        });
+
+
+        totalStudents = oregon.stu[1] + oregon.stu[2] + oregon.stu[3];
+        totalFunded = oregon.treq[1] + oregon.treq[2] + oregon.treq[3];
+
+        $(".totStu-count").text(totalStudents).digits();
+        $(".totFund-count").text("$" + (totalFunded).toFixed(2)).digits();
+
+        $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2));
+
+        if (schoolYear == 3) {
+          $(".avgDays-count").text((oregon.ad20[1].toFixed(2)) + " Days");
+          $(".avgDaysState-count").text((oregon.ad20[1].toFixed(2)) + " Days");
+        } else {
+          $(".avgDays-count").text((oregon.ad[schoolYear].toFixed(2)) + " Days");
+          $(".avgDaysState-count").text((oregon.ad[schoolYear].toFixed(2)) + " Days");
+        }
+
+
+
+        $(".stuState-count").text(oregon.stu[schoolYear]).digits();
+        $(".school-count").text(oregon.s[schoolYear]-3).digits();
+        $(".sd-count").text("72").digits();
+        $(".days-count").text(daysAttended1920).digits();
+        $(".fpsState-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2)).digits();
+        $(".awardedState-count").text("$" + (oregon.treq[schoolYear]).toFixed(2)).digits();
+
+
+
+
+        // $(".stu-count").text(oregon.stu[2]).digits();
+        // $(".fps-count").text("$" + (oregon.reqs[2]).toFixed(2)).digits();
+        // $(".awarded-count").text("$" + (oregon.treq[2]).toFixed(2)).digits();
+        // $(".avgDays-count").text((oregon.ad[2]).toFixed(2) + " Days");
+        // $("#deck-1 > div:nth-child(1) > p > span.cases-count").digits();
+
+
+
+        if (i["name"] == "Oregon") {
+          $("#placename").text(i["name"] + " State");
+
+        } else {
+
+          $("#placename").text(i["name"]);
+
+        }
+
+
+
+
+      }
+
+      function countyCounts(i) {
+        ts = 0, tstu = 0, tad = 0, ttreq = 0, treqs = 0,
+          tods5 = 0, tode5 = 0, tods6 = 0, tode6 = 0, tone0 = 0,
+          tone1 = 0, ttwo0 = 0, ttwo1 = 0, tthree0 = 0, tthree1 = 0,
+          tthree2 = 0, tthree3 = 0, tfour0 = 0, tfour2 = 0, tfour3 = 0,
+          tfour5 = 0, tfive0 = 0, tfive4 = 0, tsix0 = 0, tsix5 = 0,
+          tpl18 = 0, tpl19 = 0, tpl20 = 0, tad20 = 0;
+
+
+        switch (geoLayer) {
+          case 1:
+            geoset = datasets[0];
+            progSet = datasets[2];
+            break;
+          case 2:
+            geoset = datasets[5];
+            progSet = datasets[7];
+            break;
+          default:
+        }
+
+        geoset.forEach(function(d) {
+          t.push(d["Year"]);
+          ts = 0, tstu = 0, tad = 0, ttreq = 0, treqs = 0,
+            tods5 = 0, tode5 = 0, tods6 = 0, tode6 = 0, tone0 = 0,
+            tone1 = 0, ttwo0 = 0, ttwo1 = 0, tthree0 = 0, tthree1 = 0,
+            tthree2 = 0, tthree3 = 0, tfour0 = 0, tfour2 = 0, tfour3 = 0,
+            tfour5 = 0, tfive0 = 0, tfive4 = 0, tsix0 = 0, tsix5 = 0;
+          current = d;
+          delete current["Year"];
+          if (i["name"] != "Oregon") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 25:
+                tsix5 += +items[24];
+              case 24:
+                tsix0 += +items[23];
+              case 23:
+                tfive4 += +items[22];
+              case 22:
+                tfive0 += +items[21];
+              case 21:
+                tfour5 += +items[20];
+              case 20:
+                tfour3 += +items[19];
+              case 19:
+                tfour2 += +items[18];
+              case 18:
+                tfour0 += +items[17];
+              case 17:
+                tthree3 += +items[16];
+              case 16:
+                tthree2 += +items[15];
+              case 15:
+                tthree1 += +items[14];
+              case 14:
+                tthree0 += +items[13];
+              case 13:
+                ttwo1 += +items[12];
+              case 12:
+                ttwo0 += +items[11];
+              case 11:
+                tone1 += +items[10];
+              case 10:
+                tone0 += +items[9];
+              case 9:
+                tode6 += +items[8];
+              case 8:
+                tods6 += +items[7];
+              case 7:
+                tode5 += +items[6];
+              case 6:
+                tods5 += +items[5];
+              case 5:
+                treqs += +items[4];
+              case 4:
+                ttreq += +items[3];
+              case 3:
+                tad += +items[2];
+              case 2:
+                tstu += +items[1];
+              case 1:
+                ts += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 25:
+                  tsix5 += +items[24];
+                case 24:
+                  tsix0 += +items[23];
+                case 23:
+                  tfive4 += +items[22];
+                case 22:
+                  tfive0 += +items[21];
+                case 21:
+                  tfour5 += +items[20];
+                case 20:
+                  tfour3 += +items[19];
+                case 19:
+                  tfour2 += +items[18];
+                case 18:
+                  tfour0 += +items[17];
+                case 17:
+                  tthree3 += +items[16];
+                case 16:
+                  tthree2 += +items[15];
+                case 15:
+                  tthree1 += +items[14];
+                case 14:
+                  tthree0 += +items[13];
+                case 13:
+                  ttwo1 += +items[12];
+                case 12:
+                  ttwo0 += +items[11];
+                case 11:
+                  tone1 += +items[10];
+                case 10:
+                  tone0 += +items[9];
+                case 9:
+                  tode6 += +items[8];
+                case 8:
+                  tods6 += +items[7];
+                case 7:
+                  tode5 += +items[6];
+                case 6:
+                  tods5 += +items[5];
+                case 5:
+                  treqs += +items[4];
+                case 4:
+                  ttreq += +items[3];
+                case 3:
+                  tad += +items[2];
+                case 2:
+                  tstu += +items[1];
+                case 1:
+                  ts += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["s"].push(ts);
+          i["stu"].push(tstu);
+          i["ad"].push(tad);
+          i["treq"].push(ttreq);
+          i["reqs"].push(treqs);
+          i["ods5"].push(tods5);
+          i["ode5"].push(tode5);
+          i["ods6"].push(tods6);
+          i["ode6"].push(tode6);
+          i["one0"].push(tone0);
+          i["one1"].push(tone1);
+          i["two0"].push(ttwo0);
+          i["two1"].push(ttwo1);
+          i["three0"].push(tthree0);
+          i["three1"].push(tthree1);
+          i["three2"].push(tthree2);
+          i["three3"].push(tthree3);
+          i["four0"].push(tfour0);
+          i["four2"].push(tfour2);
+          i["four3"].push(tfour3);
+          i["four5"].push(tfour5);
+          i["five0"].push(tfive0);
+          i["five4"].push(tfive4);
+          i["six0"].push(tsix0);
+          i["six5"].push(tsix5);
+        });
+
+
+        progSet.forEach(function(d) {
+          l.push(d["Length"]);
+          tpl18 = 0, tpl19 = 0, tpl20 = 0;
+          current = d;
+          delete current["Length"];
+          if (i["name"] != "Oregon") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 3:
+                tpl20 += +items[2];
+              case 2:
+                tpl19 += +items[1];
+              case 1:
+                tpl18 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 3:
+                  tpl20 += +items[2];
+                case 2:
+                  tpl19 += +items[1];
+                case 1:
+                  tpl18 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["pL18"].push(tpl18);
+          i["pL19"].push(tpl19);
+          i["pL20"].push(tpl20);
+        });
+
+        datasets[9].forEach(function(d) {
+          l.push(d["houseID"]);
+          tad20 = 0;
+          current = d;
+          delete current["houseID"];
+          if (i["name"] != "Oregon") {
+            d = current[i["name"]];
+            if (d == undefined) {
+              d = "0"
+            };
+            items = d.split("-");
+            switch (items.length) {
+              case 1:
+                tad20 += +items[0];
+                break;
+            };
+
+          } else {
+
+            Object.values(current).forEach(function(d) {
+              if (d == undefined) {
+                d = "0"
+              };
+              items = d.split("-");
+              switch (items.length) {
+                case 1:
+                  tad20 += +items[0];
+                  break;
+              };
+
+            });
+            //
+          }
+          i["ad20"].push(tad20);
+        });
+
+
+        if (i["name"] == "Oregon") {
+          $("#placename").text(i["name"] + " State");
+
+        } else {
+
+          $("#placename").text(i["name"]);
+
+        }
+
+
+      }
+
+
+
+      function setColor(lepHH) {
+        var id = 0;
+        if (lepHH > .75) {
+          id = 2;
+        } else if (lepHH > .5 && lepHH <= .75) {
+          id = 1;
+        } else {
+          id = 0;
+        }
+        return color2[id];
+      }
+
+      function styleHouse1920(feature) {
+        return {
+          fillColor: setColor(feature.properties.p1920),
+          fillOpacity: 0.4,
+          weight: 2,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '4'
+        };
+      }
+
+      function styleHouse1819(feature) {
+        return {
+          fillColor: setColor(feature.properties.per_per2_1),
+          fillOpacity: 0.4,
+          weight: 2,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '4'
+        };
+      }
+
+      function styleHouse1718(feature) {
+        return {
+          fillColor: setColor(feature.properties.per_per201),
+          fillOpacity: 0.4,
+          weight: 2,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '4'
+        };
+      }
+
+      function styleSenate1920(feature) {
+        return {
+          fillColor: setColor(feature.properties.perPar1920),
+          fillOpacity: 0.4,
+          weight: 2,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '4'
+        };
+      }
+
+      function styleSenate1819(feature) {
+        return {
+          fillColor: setColor(feature.properties.p1819),
+          fillOpacity: 0.4,
+          weight: 2,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '4'
+        };
+      }
+
+      function styleSenate1718(feature) {
+        return {
+          fillColor: setColor(feature.properties.p1718),
+          fillOpacity: 0.4,
+          weight: 2,
+          opacity: 1,
+          color: '#b4b4b4',
+          dashArray: '4'
+        };
+      }
+
+      function highlightFeature(e) {
+        // e indicates the current event
+        var layer = e.target; //the target capture the object which the event associates with
+        layer.setStyle({
+          weight: 4,
+          opacity: 0.8,
+          color: '#e3e3e3',
+          fillColor: '#00ffd9',
+          fillOpacity: 0.1
+        });
+        // bring the layer to the front.
+        layer.bringToFront();
+      }
+
+      // 3.2.2 zoom to the highlighted feature when the mouse is clicking onto it.
+      function zoomToFeature(e) {
+        // mymap.fitBounds(e.target.getBounds());
+        L.DomEvent.stopPropagation(e);
+        $("#hint").text("Click here for State trend.");
+
+        var t = ["Year"]
+        var l = ["Program Length"]
+        var house = ["House District"];
+        var schoolsPar = ["Number of Schools"];
+        var stuPar = ["Number of Students Participating in ODS"]
+        var avgDays = ["Average Length of Program"]
+        var totReq = ["$ Awarded"]
+        var reqStu = ["$ Awarded per Student"]
+        var ods5th = ["Number of 5th Graders Participating"]
+        var ode5th = ["Number of 5th Graders During Fall Enrollment"]
+        var ods6th = ["Number of 6th Graders Participating"]
+        var ode6th = ["Number of 6th Graders During Fall Enrollment"]
+        var oneNil = ["1 Day 0 Nights"]
+        var oneOne = ["1 Day 1 Night"]
+        var twoNil = ["2 Days 0 Nights"]
+        var twoOne = ["2 Days 1 Night"]
+        var threeNil = ["3 Days 0 Nights"]
+        var threeOne = ["3 Days 1 Night"]
+        var threeTwo = ["3 Days 2 Nights"]
+        var threeThree = ["3 Days 3 Nights"]
+        var fourNil = ["4 Days 0 Nights"]
+        var fourTwo = ["4 Days 2 Nights"]
+        var fourThree = ["4 Days 3 Nights"]
+        var fourFive = ["4 Days 5 Nights"]
+        var fiveNil = ["5 Days 0 Nights"]
+        var fiveFour = ["5 Days 4 Nights"]
+        var sixNil = ["6 Days 0 Nights"]
+        var sixFive = ["6 Days 5 Nights"]
+        var pL2018 = ["2017-18"]
+        var pL2019 = ["2018-19"]
+        var pL2020 = ["2019-20"]
+        var avgDays1920 = ["Avg. Number of Days for 2019-20"]
+
+        var place = {
+          name: e.target.feature.properties.geo,
+          s: schoolsPar,
+          stu: stuPar,
+          ad: avgDays,
+          treq: totReq,
+          reqs: reqStu,
+          ods5: ods5th,
+          ode5: ode5th,
+          ods6: ods6th,
+          ode6: ode6th,
+          one0: oneNil,
+          one1: oneOne,
+          two0: twoNil,
+          two1: twoOne,
+          three0: threeNil,
+          three1: threeOne,
+          three2: threeTwo,
+          three3: threeThree,
+          four0: fourNil,
+          four2: fourTwo,
+          four3: fourThree,
+          four5: fourFive,
+          five0: fiveNil,
+          five4: fiveFour,
+          six0: sixNil,
+          six5: sixFive,
+          pL18: pL2018,
+          pL19: pL2019,
+          pL20: pL2020,
+          ad20: avgDays1920,
+        }
+
+        countyCounts(place);
+
+
+        // $(".stu-count").text(place.stu[schoolYear]);
+        $(".awarded-count").text("$" + (place.treq[schoolYear]).toFixed(2)).digits();
+
+        // $(".fps-count").text((e.target.feature.properties.reqStu2018)).toFixed(2);
+        $(".fps-count").text("$" + (place.reqs[schoolYear]).toFixed(2));
+        if (schoolYear == 3) {
+          $(".avgDays-count").text((place.ad20[1].toFixed(2)) + " Days");
+        } else {
+          $(".avgDays-count").text((place.ad[schoolYear].toFixed(2)) + " Days");
+        }
+        $("#placename").text(e.target.feature.properties.NAMELSAD);
+
+        stuChart.load({
+          unload: true,
+          columns: [place.stu],
+        });
+
+        awardChart.load({
+          unload: true,
+          columns: [place.treq],
+        });
+
+        chart.load({
+          unload: true,
+          columns: [
+            place.pL18, place.pL19, place.pL20
+          ],
+        });
+
+
+      }
+
+      // 3.2.3 reset the hightlighted feature when the mouse is out of its region.
+      function resetHighlight(e) {
+        switch (geoLayer) {
+          case 1:
+            switch (schoolYear) {
+              case 1:
+                house1718.resetStyle(e.target);
+                break;
+              case 2:
+                house1819.resetStyle(e.target);
+                break;
+              case 3:
+                house1920.resetStyle(e.target);
+                break;
+              default:
+            }
+            break;
+          case 2:
+            switch (schoolYear) {
+              case 1:
+                senate1718.resetStyle(e.target);
+                break;
+              case 2:
+                senate1819.resetStyle(e.target);
+                break;
+              case 3:
+                senate1920.resetStyle(e.target);
+                break;
+              default:
+            }
+            break;
+          default:
+        }
+      }
+
+      // 3.3 add these event the layer obejct.
+      function onEachFeature(feature, layer) {
+        layer.on({
+          mouseover: highlightFeature,
+          click: zoomToFeature,
+          mouseout: resetHighlight
+        });
+        layer.bindTooltip(feature.properties.NAMELSAD, {
+          className: 'feature-label',
+          permanent: false,
+          sticky: true,
+          direction: 'auto'
+        });
+
+      }
+
+      var house1920 = new L.GeoJSON(datasets[1], {
+        style: styleHouse1920,
+        onEachFeature: onEachFeature
+      }).addTo(mymap);
+
+      var house1819 = new L.GeoJSON(datasets[1], {
+        style: styleHouse1819,
+        onEachFeature: onEachFeature
+      });
+
+      var house1718 = new L.GeoJSON(datasets[1], {
+        style: styleHouse1718,
+        onEachFeature: onEachFeature
+      });
+
+      var senate1920 = new L.GeoJSON(datasets[6], {
+        style: styleSenate1920,
+        onEachFeature: onEachFeature
+      });
+
+      var senate1819 = new L.GeoJSON(datasets[6], {
+        style: styleSenate1819,
+        onEachFeature: onEachFeature
+      });
+
+      var senate1718 = new L.GeoJSON(datasets[6], {
+        style: styleSenate1718,
+        onEachFeature: onEachFeature
+      });
+
+
+
+      new L.control.layers(baseLayers, {
+        // "Infection Level": areas,
+        // "Infection Case(s) &nbsp;&nbsp; <i class='fas fa-users community'></i>": cases,
+        // "Infected Community &nbsp;&nbsp; <i class='fas fa-procedures community'></i>": communities
+      }, {
+        collapsed: true
+      }).addTo(mymap);
+
+
+
+      $("#hint").on("click", function() {
+        // stateCounts(oregon);
+        $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2)).digits();
+        if (schoolYear == 3) {
+          $(".avgDays-count").text((oregon.ad20[1].toFixed(2)) + " Days");
+        } else {
+          $(".avgDays-count").text((oregon.ad[schoolYear].toFixed(2)) + " Days");
+        }
+
+
+        $("#placename").text("Oregon State");
+
+        stuChart.load({
+          unload: true,
+          columns: [oregon.stu],
+        });
+
+        awardChart.load({
+          unload: true,
+          columns: [oregon.treq],
+        });
+
+        chart.load({
+          unload: true,
+          columns: [
+            oregon.pL18, oregon.pL19, oregon.pL20
+          ],
+        });
+        $("#hint").text("Click on map to review district trend.");
+
+      });
+
+
+      function onMapClick(e) {
+        $("#hint").click();
+      }
+
+      mymap.on('click', onMapClick);
+
+      stateCounts(oregon);
+
+      // windowHeight = $(window).height()
+      //
+      // chartHeight = windowHeight/6
+      stuChart = c3.generate({
+        size: {
+          // height: chartHeight,
+          // width: 100,
+        },
+        data: {
+          columns: [oregon.stu],
+          type: 'bar',
+        },
+        // color: {
+        //   pattern: ['#D3832B']
+        // },
+
+        bar: {
+          width: {
+            ratio: 0.25 // this makes bar width 50% of length between ticks
+          }
+          // or
+          //width: 100 // this makes bar width 100px
+        },
+        padding: {
+          // bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ["2017-18", "2018-19", "2019-20"],
+          },
+          y: {
+            label: {
+              text: '# of Students',
+              position: 'outer-left'
+              // inner-right : default
+              // inner-center
+              // inner-left
+              // outer-right
+              // outer-center
+              // outer-left
+            },
+            tick: {
+              format: d3.format(".1s"),
+
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        tooltip: {
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format(',');
+              return format(value);
+            }
+          },
+          show: true,
+          grouped: false,
+        },
+        legend: {
+          show: false
+        },
+        bindto: "#stuChart"
+      });
+
+      awardChart = c3.generate({
+        size: {
+          // height: chartHeight,
+          // width: 480
+        },
+        data: {
+          columns: [oregon.treq],
+          type: 'bar',
+        },
+        color: {
+          pattern: ['#D73F09']
+        },
+        bar: {
+          width: {
+            ratio: 0.25 // this makes bar width 50% of length between ticks
+          },
+        },
+        padding: {
+          // bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ["2017-18", "2018-19", "2019-20"],
+          },
+          y: {
+            label: {
+              text: '$ Awarded',
+              position: 'outer-left'
+              // inner-right : default
+              // inner-center
+              // inner-left
+              // outer-right
+              // outer-center
+              // outer-left
+            },
+            tick: {
+              format: d3.format("$,.1s"),
+              count: 5,
+              // values: [0,5000,10000,15000]
+            }
+          }
+        },
+        tooltip: {
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format('$,') : d3.format('$,');
+              return format(value);
+            }
+          },
+          show: true,
+          grouped: false,
+        },
+        legend: {
+          show: false
+        },
+        bindto: "#awardChart"
+      });
+      var day = '\u2600';
+      var night = '\u263E';
+      chart = c3.generate({
+
+        data: {
+          columns: [
+            oregon.pL18, oregon.pL19, oregon.pL20
+          ],
+          type: 'bar',
+        },
+        bar: {
+          space: 0.25
+        },
+        color: {
+          pattern: [colors[1], colors[2], colors[3]]
+        },
+        // legend: {
+        //   position: 'inset',
+        //   inset: {
+        //     anchor: "top-right",
+        //     y: 0,
+        //     step: 0
+        //   },
+        // },
+        padding: {
+          bottom: 10,
+          top: 10
+        },
+        axis: {
+          x: {
+
+            type: "category",
+            categories: ["3,0", "4,0", "3,2", "4,3", "5,4", "6,5"],
+          },
+          y: {
+            label: {
+              text: '# of Students',
+              position: 'outer-left'
+              // inner-right : default
+              // inner-center
+              // inner-left
+              // outer-right
+              // outer-center
+              // outer-left
+            },
+            tick: {
+              format: d3.format(".1s"),
+              count: 5,
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear'
+          }
+        },
+        tooltip: {
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format(',');
+              return format(value);
+            }
+          },
+          show: true,
+          grouped: false,
+        },
+        //         zoom: {
+        //     enabled: true
+        // },
+        bindto: "#chart"
+      });
+
+
+      /* When the user clicks on the button,
+      toggle between hiding and showing the dropdown content */
+      $("#y201920").on("click", function() {
+        schoolYear = 3;
+        $("#yearDropdown").text("2019-20");
+        $(".yearTitle").text("2019-20");
+        mymap.removeLayer(house1718);
+        mymap.removeLayer(house1819);
+        mymap.removeLayer(house1920);
+        mymap.removeLayer(senate1718);
+        mymap.removeLayer(senate1819);
+        mymap.removeLayer(senate1920);
+        mymap.removeLayer(schools1718);
+        mymap.removeLayer(schools1819);
+        mymap.addLayer(schools1920);
+
+        switch (geoLayer) {
+          case 1:
+            mymap.addLayer(house1920);
+            break;
+          case 2:
+            mymap.addLayer(senate1920);
+            break;
+          default:
+        }
+        $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2));
+        if (schoolYear == 3) {
+          $(".avgDays-count").text((oregon.ad20[1].toFixed(2)) + " Days");
+          $(".avgDaysState-count").text((oregon.ad20[1].toFixed(2)) + " Days");
+        } else {
+          $(".avgDays-count").text((oregon.ad[schoolYear].toFixed(2)) + " Days");
+          $(".avgDaysState-count").text((oregon.ad[schoolYear].toFixed(2)) + " Days");
+        }
+
+        $(".stuState-count").text(oregon.stu[schoolYear]).digits();
+        $(".school-count").text(oregon.s[schoolYear]-3).digits();
+        $(".sd-count").text("72").digits();
+        $(".days-count").text(daysAttended1920).digits();
+        $(".fpsState-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2)).digits();
+        $(".awardedState-count").text("$" + (oregon.treq[schoolYear]).toFixed(2)).digits();
+        $("#placename").text("Oregon State");
+      });
+
+
+      $("#y201819").on("click", function() {
+        schoolYear = 2;
+        $("#yearDropdown").text("2018-19");
+        $(".yearTitle").text("2018-19");
+        mymap.removeLayer(house1718);
+        mymap.removeLayer(house1819);
+        mymap.removeLayer(house1920);
+        mymap.removeLayer(senate1718);
+        mymap.removeLayer(senate1819);
+        mymap.removeLayer(senate1920);
+        mymap.removeLayer(schools1718);
+        mymap.removeLayer(schools1920);
+        mymap.addLayer(schools1819);
+
+        switch (geoLayer) {
+          case 1:
+            mymap.addLayer(house1819);
+            break;
+          case 2:
+            mymap.addLayer(senate1819);
+            break;
+          default:
+        }
+        $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2));
+        $(".avgDays-count").text((oregon.ad[schoolYear]).toFixed(2) + " Days");
+        $(".stuState-count").text(oregon.stu[schoolYear]).digits();
+        $(".school-count").text(oregon.s[schoolYear]).digits();
+        $(".sd-count").text("202").digits();
+        $(".days-count").text(daysAttended1819).digits();
+        $(".fpsState-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2)).digits();
+        $(".awardedState-count").text("$" + (oregon.treq[schoolYear]).toFixed(2)).digits();
+        $(".avgDaysState-count").text((oregon.ad[schoolYear]).toFixed(2) + " Days");
+        $("#placename").text("Oregon State");
+      });
+
+      $("#y201718").on("click", function() {
+        schoolYear = 1;
+        $("#yearDropdown").text("2017-18");
+        $(".yearTitle").text("2017-18");
+        // Remove Map Layers
+        mymap.removeLayer(house1718);
+        mymap.removeLayer(house1819);
+        mymap.removeLayer(house1920);
+        mymap.removeLayer(senate1718);
+        mymap.removeLayer(senate1819);
+        mymap.removeLayer(senate1920);
+        mymap.removeLayer(schools1819);
+        mymap.removeLayer(schools1920);
+
+        // Add selected geo layer for selected year
+        mymap.addLayer(schools1718);
+        switch (geoLayer) {
+          case 1:
+            mymap.addLayer(house1718);
+            break;
+          case 2:
+            mymap.addLayer(senate1718);
+            break;
+          default:
+        }
+        $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2));
+        $(".avgDays-count").text((oregon.ad[schoolYear]).toFixed(2) + " Days");
+        $(".stuState-count").text(oregon.stu[schoolYear]).digits();
+        $(".school-count").text(oregon.s[schoolYear]-5).digits();
+        $(".sd-count").text("203").digits();
+        $(".days-count").text(daysAttended1718).digits();
+        $(".fpsState-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2)).digits();
+        $(".awardedState-count").text("$" + (oregon.treq[schoolYear]).toFixed(2)).digits();
+        $(".avgDaysState-count").text((oregon.ad[schoolYear]).toFixed(2) + " Days");
+        $("#placename").text("Oregon State");
+
+      });
+
+      $("#house").on("click", function() {
+        geoLayer = 1;
+        $("#geoDropdown").text("House Districts");
+        mymap.removeLayer(house1718);
+        mymap.removeLayer(house1819);
+        mymap.removeLayer(house1920);
+        mymap.removeLayer(senate1718);
+        mymap.removeLayer(senate1819);
+        mymap.removeLayer(senate1920);
+
+        switch (schoolYear) {
+          case 1:
+            mymap.addLayer(house1718);
+            break;
+          case 2:
+            mymap.addLayer(house1819);
+            break;
+          case 3:
+            mymap.addLayer(house1920);
+            break;
+          default:
+        }
+        $("#hint").click();
+        // $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2));
+        // $(".avgDays-count").text((oregon.ad[schoolYear]).toFixed(2) + " Days");
+        // $("#placename").text("Oregon State");
+
+      });
+
+      $("#senate").on("click", function() {
+        geoLayer = 2;
+        $("#geoDropdown").text("Senate Districts");
+        mymap.removeLayer(house1718);
+        mymap.removeLayer(house1819);
+        mymap.removeLayer(house1920);
+        mymap.removeLayer(senate1718);
+        mymap.removeLayer(senate1819);
+        mymap.removeLayer(senate1920);
+
+        switch (schoolYear) {
+          case 1:
+            mymap.addLayer(senate1718);
+            break;
+          case 2:
+            mymap.addLayer(senate1819);
+            break;
+          case 3:
+            mymap.addLayer(senate1920);
+            break;
+          default:
+        }
+        $("#hint").click();
+        // $(".fps-count").text("$" + (oregon.reqs[schoolYear]).toFixed(2));
+        // $(".avgDays-count").text((oregon.ad[schoolYear]).toFixed(2) + " Days");
+        // $("#placename").text("Oregon State");
+
+      });
+
+    });
+
+
+
+
+    /////////////////////////
+    // $(".leaflet-control-attribution")
+    //   .css("background-color", "transparent")
+    //   .html("This map waas created using leaflet");
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CQ9R7P9JF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CQ9R7P9JF');
+  </script>
+</body>
+
+</html>
