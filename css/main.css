@@ -53,7 +53,7 @@ div#footer>div {
 #map {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   top: 0;
   bottom: 0;
   /* z-index: 1000 !important; */
@@ -64,7 +64,9 @@ div#footer>div {
   font-family: 'Titillium Web', sans-serif;
   overflow: hidden
 }
-
+.map-area {
+    height: 100vh;
+}
 .leaflet-control-layers {
   color: white !important;
   background-color: none;
@@ -97,7 +99,7 @@ div#footer>div {
 /* Responsive css */
 #info {
   position: absolute;
-  width: 40%;
+  width: 100%;
   top: 1%;
   bottom: 1%;
   left: .5%;
@@ -269,7 +271,7 @@ text {
 }
 
 #gage-chart {
-  top: -30px;
+  top: -50px;
 }
 /* #gage-subChart {
   top: 10px;
@@ -531,4 +533,27 @@ label {
 .c3-legend-item
 {
 pointer-events: none;
+}
+.c3-legend-background {
+  z-index: 1000;
+}
+
+.fa-plus-circle:HOVER {
+opacity: 30%;
+}
+
+.fa-minus-circle:HOVER {
+opacity: 30%;
+}
+
+#gageSubChartDeck {
+  margin-bottom: -50px;
+}
+
+/* #gageYearSelect {
+  font-size: .85rem;
+} */
+
+.darkBackground {
+  background-color: #343a40;
 }
