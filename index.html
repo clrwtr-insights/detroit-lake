@@ -47,502 +47,478 @@
 </head>
 
 <body>
-  <main>
-    <div class="loader"></div>
-    <div class="row">
-      <div class="card col-lg-5 darkBackground">
-        <div id="info" data-simplebar data-simplebar-auto-hide="false">
-          <!-- Header -->
-          <div id="title" style="font-size:23px">
-            <div id="deck-1" class="card-deck counts ml-2">
-              <div class="card col-sm-2">
-                <span><img src="img\clearLogo.png" height="75"></span>
-              </div>
-              <div class="card col-sm-10">
-                <span>
-                  <div>CLRWTR Insights<sup>tm</sup></div>
-                </span>
-                <span>
-                  <div>Harmful Algal Blooms</div>
-                </span>
-              </div>
+  <!-- Page Wrapper -->
 
-              <!-- <span><a href="https://facebook.com/sharer.php?u=https://clrwtr-insights.github.io/detroit-lake/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
-              <span><a href="https://github.com/clrwtr-insights/detroit-lake" target="_blank"><i class="fab fa-github-square"></i></a></span> -->
-              <span><a data-toggle="modal" data-target="#resourcewindow"><i class="far fa-question-circle"></i></a></span>
-              <span><a data-toggle="modal" data-target="#infowindow"><i class="nav fas fa-info-circle"></i></a></span>
-            </div>
+    <!-- Content Wrapper -->
 
-          </div>
+      <div id="content" data-simplebar data-simplebar-auto-hide="false">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand topbar mb-1 mt-2 static-top shadow">
+
+            <span><img src="img\clearLogo.png" height="75"></span>
+
+            <!-- <h1 id="odsTitle" class="h3 mb-0 text-gray-800">Outdoor School Explorer</h1> -->
+            <span class="text-gray-600">
+              <div>CLRWTR Insights<sup>tm</sup></div>
+              <!-- </span>
+            <span> -->
+              <div>Harmful Algal Blooms</div>
+            </span>
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav">
+
+              <!-- Nav Item - Data Selection -->
+              <p><span id="placename" class="text-gray-600">Detroit Lake, Oregon</span> </p>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - Geography Selection -->
+              <span id="date" class="text-gray-600"></span>
+              <div class="topbar-divider d-none d-sm-block"></div>
+              <!-- Nav Item - Year Selection -->
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <span><a data-toggle="modal" data-target="#resourcewindow"><i class="navbarIcon far fa-question-circle"></i></a></span>
+              <span><a data-toggle="modal" data-target="#infowindow"><i class="navbarIcon fas fa-info-circle"></i></a></span>
+            </ul>
+          </nav>
 
 
-          <!-- Location Title -->
-          <p><span id="placename">Detroit Lake, Oregon</span> </p>
-          <div> <span id="date"></span></div>
+          <div class="loader"></div>
 
+          <div class="row">
+            <div class="col-lg-6 darkBackground">
+              <div id="info">
+                <!-- Tab Data Selection -->
+                <div id="deck-1" class="card-deck counts">
 
-
-          <!-- Tab Data Selection -->
-          <div id="deck-1" class="card-deck counts">
-
-            <div class="card">
-              <!-- tab list -->
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="false">
-                    Weather <i class="fas fa-cloud-sun-rain"></i>
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="stream-tab" data-bs-toggle="tab" href="#stream" data-bs-target="#stream" type="button" role="tab" aria-controls="stream" aria-selected="false">
-                    Stream gage <i class="fas fa-tachometer-alt"></i>
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="sample-tab" data-bs-toggle="tab" href="#sample" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="true">
-                    Water sample <i class="fas fa-vials"></i>
-                  </button>
-                </li>
-              </ul>
-              <!-- tab content -->
-              <div class="tab-content" id="myTabContent">
-                <!-- weather tab -->
-                <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card col-lg-8">
-                      <div class="dropdown no-arrow">
-                        <div class="nav-link ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card col-lg-3">
-                      <div class="dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
-                          <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
-                        </a>
-
-                        <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <center>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2019</label>
+                  <div class="card">
+                    <!-- tab list -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="false">
+                          Weather <i class="fas fa-cloud-sun-rain"></i>
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="stream-tab" data-bs-toggle="tab" href="#stream" data-bs-target="#stream" type="button" role="tab" aria-controls="stream" aria-selected="false">
+                          Stream gage <i class="fas fa-tachometer-alt"></i>
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="sample-tab" data-bs-toggle="tab" href="#sample" data-bs-target="#sample" type="button" role="tab" aria-controls="sample" aria-selected="true">
+                          Water sample <i class="fas fa-vials"></i>
+                        </button>
+                      </li>
+                    </ul>
+                    <!-- tab content -->
+                    <div class="tab-content" id="myTabContent">
+                      <!-- weather tab -->
+                      <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card col-lg-8">
+                            <div class="dropdown no-arrow">
+                              <div class="nav-link ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
+                              </div>
                             </div>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2018</label>
+                          </div>
+                          <div class="card col-lg-3">
+                            <div class="dropdown no-arrow">
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+                              </a>
+
+                              <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <center>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2019</label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2018</label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2017</label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2016</label>
+                                  </div>
+                                  <center />
+                              </div>
                             </div>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2017</label>
+                          </div>
+                          <div class="card col-lg-1 tabInfo">
+                            <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                          </div>
+                        </div>
+                        <!-- Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="precip-chart"></div>
+                          </div>
+                        </div>
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="airTemp-chart"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Stream tab -->
+                      <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
+                        <!-- Stream gage location dropdown -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card col-lg-11">
+                            <div class="dropdown no-arrow">
+
+                              <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                                <span id="gageDropdown" class="dropdownTitle"></span>
+                              </a>
+
+                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <center>
+                                  <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
+                                  <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
+                                  <a class="dropdown-item" id="14180300" value="3">BLOWOUT CREEK NEAR DETROIT, OR</a>
+                                  <a class="dropdown-item" id="14181500" value="4">NORTH SANTIAM RIVER AT NIAGARA, OR</a>
+                                </center>
+                              </div>
                             </div>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2016</label>
+                          </div>
+                          <div class="card col-lg-1 tabInfo">
+                            <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                          </div>
+                        </div>
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="col-lg-10">
+                            <!-- SubChart -->
+                            <div id="gageSubChartDeck" class="card-deck counts">
+                              <div class="card">
+                                <center>
+                                  <p></p>
+                                </center>
+                                <div id="gage-chart"></div>
+                              </div>
                             </div>
-                            <center />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card col-lg-1 tabInfo">
-                      <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
-                    </div>
-                  </div>
-
-                  <!-- <div class="dropdown no-arrow">
-                    <div class="nav-link">
-                      <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
-                      <span><a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a></span>
-                    </div>
-                  </div> -->
-                  <!-- Chart -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="precip-chart"></div>
-                    </div>
-                  </div>
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="airTemp-chart"></div>
-                    </div>
-                  </div>
-
-                  <!-- Variable Selection -->
-                  <!-- <div id="deck-4" class="card-deck counts">
-                    <div class="card">
-                      <center>
-                        <div class="form-check form-check-inline">
-                          <label class="form-check-label">Variable: </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW1" value="optionW1" checked>
-                          <label class="form-check-label" for="inlineRadioW1">Ait temp.</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW2" value="optionW2">
-                          <label class="form-check-label" for="inlineRadioW2">Precip.</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptionsW" id="inlineRadioW3" value="optionW3">
-                          <label class="form-check-label" for="inlineRadioW3">Wind speed</label>
-                        </div>
-                      </center>
-                    </div>
-                  </div> -->
-
-                </div>
-                <!-- Stream tab -->
-                <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
-                  <!-- Stream gage location dropdown -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card col-lg-11">
-                      <div class="dropdown no-arrow">
-
-                        <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
-                          <span id="gageDropdown" class="dropdownTitle"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <center>
-                            <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
-                            <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
-                            <a class="dropdown-item" id="14180300" value="3">BLOWOUT CREEK NEAR DETROIT, OR</a>
-                            <a class="dropdown-item" id="14181500" value="4">NORTH SANTIAM RIVER AT NIAGARA, OR</a>
-                          </center>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card col-lg-1 tabInfo">
-                      <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
-                    </div>
-                  </div>
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="col-lg-10">
-                      <!-- SubChart -->
-                      <div id="gageSubChartDeck" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <div id="gage-chart"></div>
-                        </div>
-                      </div>
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <!-- <div id="gage-subChart"></div> -->
-                          <div id="gage-chart2"></div>
-                        </div>
-                      </div>
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <!-- <div id="gage-subChart"></div> -->
-                          <div id="dchMean-chart"></div>
-                        </div>
-                      </div>
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <!-- <div id="gage-subChart"></div> -->
-                          <div id="h20Sum-chart"></div>
-                        </div>
-                      </div>
-                      <!-- Chart -->
-                      <div id="deck-2" class="card-deck counts">
-                        <div class="card">
-                          <center>
-                            <p></p>
-                          </center>
-                          <!-- <div id="gage-subChart"></div> -->
-                          <div id="dchSum-chart"></div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div id = "gageYearSelect" class="col-lg-2">
-                      <center>
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
-
-                        <div class="checkbox">
-                          <i id="gage2021Add" class="fas fa-plus-circle mr-1"></i><label>2021</label><i id="gage2021Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2020Add" class="fas fa-plus-circle mr-1"></i><label>2020</label><i id="gage2020Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2019Add" class="fas fa-plus-circle mr-1"></i><label>2019</label><i id="gage2019Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2018Add" class="fas fa-plus-circle mr-1"></i><label>2018</label><i id="gage2018Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2017Add" class="fas fa-plus-circle mr-1"></i><label>2017</label><i id="gage2017Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2016Add" class="fas fa-plus-circle mr-1"></i><label>2016</label><i id="gage2016Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2015Add" class="fas fa-plus-circle mr-1"></i><label>2015</label><i id="gage2015Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2014Add" class="fas fa-plus-circle mr-1"></i><label>2014</label><i id="gage2014Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2013Add" class="fas fa-plus-circle mr-1"></i><label>2013</label><i id="gage2013Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2012Add" class="fas fa-plus-circle mr-1"></i><label>2012</label><i id="gage2012Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2011Add" class="fas fa-plus-circle mr-1"></i><label>2011</label><i id="gage2011Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <div class="checkbox">
-                          <i id="gage2010Add" class="fas fa-plus-circle mr-1"></i><label>2010</label><i id="gage2010Remove" class="fas fa-minus-circle ml-1"></i>
-                        </div>
-                        <center/>
-
-                    </div>
-                  </div>
-                </div>
-                <!-- Sample tab -->
-                <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
-                  <!-- Sample location dropdown -->
-                  <div id="deck-2" class="card-deck">
-                    <div class="card col-lg-8">
-                      <div class="dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
-                          <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <center>
-                            <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
-                            <a class="dropdown-item" id="Heater" value="2">Heater</a>
-                            <a class="dropdown-item" id="Blowout" value="3">Blowout</a>
-                          </center>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card col-lg-3">
-                      <div class="dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
-                          <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
-                        </a>
-
-                        <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <center>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2019</label>
+                            <!-- Chart -->
+                            <div id="deck-2" class="card-deck counts">
+                              <div class="card">
+                                <center>
+                                  <p></p>
+                                </center>
+                                <!-- <div id="gage-subChart"></div> -->
+                                <div id="gage-chart2"></div>
+                              </div>
                             </div>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2018</label>
+                            <!-- Chart -->
+                            <div id="deck-2" class="card-deck counts">
+                              <div class="card">
+                                <center>
+                                  <p></p>
+                                </center>
+                                <!-- <div id="gage-subChart"></div> -->
+                                <div id="dchMean-chart"></div>
+                              </div>
                             </div>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2017</label>
+                            <!-- Chart -->
+                            <div id="deck-2" class="card-deck counts">
+                              <div class="card">
+                                <center>
+                                  <p></p>
+                                </center>
+                                <!-- <div id="gage-subChart"></div> -->
+                                <div id="h20Sum-chart"></div>
+                              </div>
                             </div>
-                            <div class="checkbox">
-                              <label><input id="" type="checkbox" value="">2016</label>
+                            <!-- Chart -->
+                            <div id="deck-2" class="card-deck counts">
+                              <div class="card">
+                                <center>
+                                  <p></p>
+                                </center>
+                                <!-- <div id="gage-subChart"></div> -->
+                                <div id="dchSum-chart"></div>
+                              </div>
                             </div>
-                            <center />
+
+                          </div>
+                          <div id="gageYearSelect" class="col-lg-2">
+                            <center>
+                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+
+                              <div class="checkbox">
+                                <i id="gage2021Add" class="fas fa-plus-circle mr-1"></i><label>2021</label><i id="gage2021Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2020Add" class="fas fa-plus-circle mr-1"></i><label>2020</label><i id="gage2020Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2019Add" class="fas fa-plus-circle mr-1"></i><label>2019</label><i id="gage2019Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2018Add" class="fas fa-plus-circle mr-1"></i><label>2018</label><i id="gage2018Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2017Add" class="fas fa-plus-circle mr-1"></i><label>2017</label><i id="gage2017Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2016Add" class="fas fa-plus-circle mr-1"></i><label>2016</label><i id="gage2016Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2015Add" class="fas fa-plus-circle mr-1"></i><label>2015</label><i id="gage2015Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2014Add" class="fas fa-plus-circle mr-1"></i><label>2014</label><i id="gage2014Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2013Add" class="fas fa-plus-circle mr-1"></i><label>2013</label><i id="gage2013Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2012Add" class="fas fa-plus-circle mr-1"></i><label>2012</label><i id="gage2012Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2011Add" class="fas fa-plus-circle mr-1"></i><label>2011</label><i id="gage2011Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <div class="checkbox">
+                                <i id="gage2010Add" class="fas fa-plus-circle mr-1"></i><label>2010</label><i id="gage2010Remove" class="fas fa-minus-circle ml-1"></i>
+                              </div>
+                              <center />
+
+                          </div>
                         </div>
                       </div>
-                    </div>
+                      <!-- Sample tab -->
+                      <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
+                        <!-- Sample location dropdown -->
+                        <div id="deck-2" class="card-deck">
+                          <div class="card col-lg-8">
+                            <div class="dropdown no-arrow">
+                              <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                                <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
+                              </a>
 
-                    <div class="card col-lg-1 tabInfo">
-                      <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
-                    </div>
-                  </div>
-                  <!-- Chart -->
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <div id="sub-chart"></div>
-                      <center>
-                        <p></p>
-                      </center>
-                      <div id="sample-chart"></div>
-                    </div>
-                  </div>
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <center>
-                        <p></p>
-                      </center>
-                      <div id="toxin-chart"></div>
-                    </div>
-                  </div>
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card">
-                      <center>
-                        <p></p>
-                      </center>
-                      <div id="nitrate-chart"></div>
+                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <center>
+                                  <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
+                                  <a class="dropdown-item" id="Heater" value="2">Heater</a>
+                                  <a class="dropdown-item" id="Blowout" value="3">Blowout</a>
+                                </center>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card col-lg-3">
+                            <div class="dropdown no-arrow">
+                              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+                                <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
+                              </a>
+
+                              <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <center>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2019</label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2018</label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2017</label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label><input id="" type="checkbox" value="">2016</label>
+                                  </div>
+                                  <center />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card col-lg-1 tabInfo">
+                            <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                          </div>
+                        </div>
+                        <!-- Chart -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <div id="sub-chart"></div>
+                            <center>
+                              <p></p>
+                            </center>
+                            <div id="sample-chart"></div>
+                          </div>
+                        </div>
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <center>
+                              <p></p>
+                            </center>
+                            <div id="toxin-chart"></div>
+                          </div>
+                        </div>
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card">
+                            <center>
+                              <p></p>
+                            </center>
+                            <div id="nitrate-chart"></div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+            <div class="col-lg-6 darkBackground">
+              <div id="info2">
+                <!-- Tab Data Selection -->
+                <div id="deck-1" class="card-deck counts">
 
+                  <div class="card darkBackground">
+                    <!-- tab list -->
+                    <ul class="nav nav-tabs" id="myMapTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active ml-3" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
+                          Satellite data <i class="fas fa-satellite"></i>
+                        </button>
+                      </li>
+                    </ul>
+                    <!-- tab content -->
+                    <div class="tab-content" id="myMapTabContent">
+                      <!-- Stream tab -->
+                      <div class="tab-pane fade show active" id="sat" role="tabpanel" aria-labelledby="sat-tab">
+                        <!-- Stream gage location dropdown -->
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="col-lg-6 darkBackground tabInfo">
+                            <div class="card">
+                              <div class="dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <span class="mr-2 text-gray-600 small">Satellite:</span>
+                                  <span id="satDropdown" class="dropdownTitle">Sentinel 2a</span>
+                                </a>
 
-          <!-- Twitter Feed -->
-          <!-- <div id="deck-5" class="card-deck counts">
-            <div class="card">
-              <a class="twitter-timeline" href="https://twitter.com/OHAOregon?ref_src=twsrc%5Etfw">Tweets by OHAOregon</a>
-              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-          </div> -->
-        </div>
-      </div>
-      <div class="card col-lg-7 darkBackground">
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                  <center>
+                                    <a class="dropdown-item" id="s2a" value="1">Sentinel 2a</a>
+                                    <a class="dropdown-item" id="ls8" value="2">Landsat 8</a>
+                                  </center>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-5 darkBackground tabInfo">
+                            <div class="card darkBackground">
+                          <div class="dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="mr-2 text-gray-600 small">Hexbin Variable:</span>
+                              <span id="hexDropdown" class="dropdownTitle">Chlorophyl a</span>
+                            </a>
 
-        <!-- Map Element -->
-        <div class="card shadow">
-          <!-- <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><i><span id="hint">Click on map to review district data</span></i>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                              <center>
+                                <a class="dropdown-item" id="chlA" value="1">Chlorophyl a</a>
+                              </center>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                          <div class="card col-lg-1 tabInfo">
+                            <a data-toggle="modal" data-target="#satInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                          </div>
+                        </div>
 
-            </h6>
-          </div> -->
-          <div class="card-body">
-            <div class="map-area">
-              <div id="map">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card darkBackground">
+                            <center>
+                            <div class="slidecontainer">
+                              <div class="timeTitle mb-1 mt-1">Slide to select date for hexbin layer</div>
+                              <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
+                              <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
+                            </div>
+                          </center>
+                          </div>
+                        </div>
 
+                        <div id="deck-2" class="card-deck counts">
+                          <div class="card darkBackground">
+                            <div class="map-area">
+                              <div id="map"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-deck legend">
+                        <div class="card">
+                          <div class="card-body legend-color-6">
+                            <h5 class="card-title" style="color:white">
+                              <1
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="card">
+                         <div class="card-body legend-color-5">
+                            <h5 class="card-title" style="color:#343a40"></h5>
+                          </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body  legend-color-4">
+                              <h5 class="card-title" style="color:#343a40"></h5>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body  legend-color-3">
+                              <h5 class="card-title" style="color:#343a40"></h5>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body legend-color-2">
+                              <h5 class="card-title" style="color:#343a40"></h5>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body legend-color-1">
+                              <h5 class="card-title" style="color:white">>1.2</h5>
+                            </div>
+                          </div>
+                        </div>
 
-    <!-- Map Legend -->
-
-
-    <!-- Sat data Panel -->
-    <div id="sat-data-panel">
-
-
-      <div class="card-deck legend m">
-        <div class="card">
-          <div>
-            <div class="datePickerTitle">Satellite data <a data-toggle="modal" data-target="#satInfoWindow"><i class="nav fas fa-info-circle"></i></a></div>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label" for="inlineRadio1">Satellite: </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio1" value="option1" checked>
-              <label class="form-check-label" for="inlineRadio1">Sentinel 2a</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio2" value="option2">
-              <label class="form-check-label" for="inlineRadio2">Landsat 8</label>
-            </div>
-          </div>
-
-          <div>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label" for="inlineRadio1">Variable: </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions5" id="inlineRadio1" value="option1" checked>
-              <label class="form-check-label" for="inlineRadio1">Chlorophyl a</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-deck legend">
-
-        <div class="card">
-          <div class="card-body legend-color-6">
-            <h5 class="card-title" style="color:black">
-              <1</h5> </div> </div> <div class="card">
-                <div class="card-body  legend-color-5">
-                  <h5 class="card-title" style="color:black"></h5>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-          </div>
-          <div class="card">
-            <div class="card-body  legend-color-4">
-              <h5 class="card-title" style="color:black"></h5>
+              </div>
+              </div>
+
             </div>
+
           </div>
-          <div class="card">
-            <div class="card-body  legend-color-3">
-              <h5 class="card-title" style="color:black"></h5>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body legend-color-2">
-              <h5 class="card-title" style="color:black"></h5>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body legend-color-1">
-              <h5 class="card-title" style="color:black">>1.2</h5>
-            </div>
-          </div>
-        </div>
-        <div class="card-deck legend">
-          <div class="card">
-            <div class="slidecontainer">
-              <div class="timeTitle mb-1 mt-1">Date Picker</div>
-              <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
-              <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
-            </div>
-          </div>
+
+          <!-- Sat data Panel -->
         </div>
       </div>
-  </main>
+
 
   <!-- Modals -->
   <div id="infowindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
         <div class="modal-header">
-          <strong class="modal-title" id="exampleModalLongTitle">Data Source & Attributions</strong>
+          <strong class="modal-title" id="exampleModalLongTitle">Info</strong>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <!-- <p>
-              This online interactive map enables users to track both Oregon State and
-              County trends of Novel Coronavirus infection since Feb 28th, 2020. The supporting
-              dataset is collected daily and then plotted onto this web application.
-            </p>
-            <h5>Data Sources</h5>
-            <p>
-              Since March 18th, 2020 the Oregon COVID-19 Data is collected from
-              <a href="https://govstatus.egov.com/OR-OHA-COVID-19" target="_blank">The Oregon Health Authority</a>(OHA)
-              and then is plotted onto this web application.
-            </p>
-            <p>Data previous to March 18th was collected from the UW HGIS Lab <a href="https://hgis.uw.edu/virus/" target="_blank">Global COVID 19 Map</a> which has been collecting county and state level data from OHA and news sources since Feb 28th,
-              2020.</p>
-            <p>You can view the data (in CSV format) at <a href="http://benjiantolin.github.io/virusOregon/assets/timeseries/virusOregon.csv" target="_blank">here</a>.</p>
-            <p>In the data table, each entry indicates Cases, Deaths, and Negative Test Results in the format of "#-#-#".</p>
 
+            Welcome to our harmful algal bloom forecasting dashboard.
+            Here we use and show data collected from USGS streamgages,
+            NOAA weather stations, satellite imagery, and on-the-ground
+            water samples. These data are used by custom machine learning
+            algorithms to forecast when and where harmful algal blooms will occur.
 
-            <p>County Polygon Data: <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html" target="_blank">U.S. Census Bureau Tiger/Line Shapefiles</a>
-            </p>
-
-
-            <h5>Update Procedure</h5>
-            The Oregon state and county level COVID-19 data is currently being released daily from <a href="https://govstatus.egov.com/OR-OHA-COVID-19" target="_blank">OHA</a>. As data is released this application will continue to be updated.
-            <h5>Acknowledgment</h5>
-            <p>
-              <li>Insipired by: Bo Zhao and UW HGIS Lab <a href="https://hgis.uw.edu/virus/" target="_blank">Global COVID 19 Map</a></li>
-            </p>
-            <div>
-              * If you have any questions or concerns, please contact <a href="mailto:benjiantolin@gmail.com">Benji Antolin</a>.
-            </div> -->
           </div>
         </div>
       </div>
@@ -559,7 +535,11 @@
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p>About Information</p>
+            <p>ClearWater Analytica is a public benefit company whose mission is to improve the
+              resilience of communities to climate change driven water shocks. We synthesize data
+              from a multitude of sources, and use custom machine learning algorithms to forecast
+              changes in the quality of the water that we drink. More information about ClearWater
+              Analytica can be found <a href="https://www.clrwater.io/" target="_blank">here.</a></p>
           </div>
         </div>
       </div>
@@ -576,7 +556,7 @@
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p>PRISM Data Info.</p>
+            <p>Weather data is obtained from the <a href="https://prism.oregonstate.edu/" target="_blank">PRISM</a> group at Oregon State University. </p>
           </div>
         </div>
       </div>
@@ -593,7 +573,7 @@
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p>Stream gage data info</p>
+            <p>Stream gage data is obtained from the <a href="https://waterdata.usgs.gov/nwis/rt" target="_blank">US Geological Survey.</a></p>
           </div>
         </div>
       </div>
@@ -610,7 +590,8 @@
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p>Water sample data info</p>
+            <p>Water sample data (e.g., the concentration of algae, toxins, nutrients...etc)
+              is obtained from the municipalities and water utilities that we work with.</p>
           </div>
         </div>
       </div>
@@ -627,7 +608,9 @@
         </div>
         <div class="modal-body">
           <div id="demo" class="carousel " data-ride="carousel">
-            <p>Satellite data info</p>
+            <p>Red colored values highlight areas of high chlorophyll-a, relative to the blue colored areas.
+              Values are computed as the ratio of the Near Infrared and Red bands from the Sentinel 2a satellite
+              (see this <a href="https://en.wikipedia.org/wiki/Sentinel-2" target="_blank">link</a>)</p>
           </div>
         </div>
       </div>
@@ -638,29 +621,24 @@
   <script>
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
-
     });
-
-
-
 
     $("#date").text("Last updated: 4/1/2020");
 
-
     // bounds of lake
     var lakeBounds = L.latLngBounds(
-      L.latLng(44.660791635453606, -122.31671972316941), //Southwest
-      L.latLng(44.76450767559715, -122.09298366225951), //Northeast
+      L.latLng(44.6518457695288, -122.30459300466374), //Southwest
+      L.latLng(44.76672930999038, -122.09269384395935), //Northeast
     );
 
     var mymap = L.map('map', {
-      center: [44.70580544041939, -122.24899460193791],
+      // center: [44.70580544041939, -122.24899460193791],
       zoomControl: false,
       zoom: 14,
       maxZoom: 15,
       minZoom: 11,
       maxBounds: lakeBounds,
-      maxBoundsViscosity: 1,
+      maxBoundsViscosity: .8,
     });
     mymap.fitBounds(lakeBounds);
     var voyager =
@@ -673,18 +651,13 @@
     }).addTo(mymap);
 
 
-
     var baseLayers = {
       'CartoDB Voyager': voyager,
       'ESRI Satellite': satellite,
       'USGS_USImagery': USGS_USImagery,
     }
 
-    new L.control.layers(baseLayers, {
-      // "Infection Level": areas,
-      // "Infection Case(s) &nbsp;&nbsp; <i class='fas fa-users community'></i>": cases,
-      // "Infected Community &nbsp;&nbsp; <i class='fas fa-procedures community'></i>": communities
-    }, {
+    new L.control.layers(baseLayers, {}, {
       collapsed: true
     }).addTo(mymap);
 
@@ -824,6 +797,7 @@
       mapMonth = m;
       mapDay = d;
       mapDateString = mapYear + '_' + mapMonth + '_' + mapDay;
+      titleDateString = mapMonth + '/' + mapDay + '/' + mapYear;
       Promise.all([
         d3.csv('assets/satellite_map/detroit_lake_chlorophyll_' + mapDateString + '.csv'), //datasets[0]
       ]).then(function(datasets) {
@@ -837,6 +811,7 @@
         })
         hexLayer.data(hexdata);
       });
+      $("#sat-title").text(titleDateString);
     }
 
 
@@ -916,6 +891,7 @@
       d3.csv('assets/weather_tab/prism2020.csv'), //datasets[23]
       d3.csv('assets/weather_tab/prism2021.csv'), //datasets[24]
       d3.csv('assets/stream_gauge_tab/detroit_lake_usgstreamgage_2012_01_01_2021_09_29.csv'), //datasets[25]
+      d3.csv('assets/satellite_map/dates.csv'), //datasets[26]
     ]).then(function(datasets) {
 
       hexdata = [];
@@ -927,8 +903,6 @@
         ]);
       })
       hexLayer.data(hexdata);
-
-
 
       // Weather Data
       var wt = ["Date"];
@@ -2771,6 +2745,19 @@
         });
         $("#gage-chart > svg > g:nth-child(2)").hide();
         $("#gageDropdown").text(e.target.feature.properties.site_name);
+
+        // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(5) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(6) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(7) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(8) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(9) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(10) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(11) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(12) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(13) > label").css('color', 'white');
+        $("#deck-2 > div.col-lg-2 > center > div:nth-child(14) > label").css('color', 'white');
+
       }
 
 
@@ -7756,7 +7743,7 @@
       .html("Supported by <a href='https://www.clrwater.io/' target='_blank' style='color:white;''> ClearWater Analytica </a>");
   </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140689399-6"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DNMN1RTMV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -7765,8 +7752,8 @@
     }
     gtag('js', new Date());
 
-    gtag('config', 'UA-140689399-6');
-  </script> -->
+    gtag('config', 'G-2DNMN1RTMV');
+  </script>
 
 
 </body>
