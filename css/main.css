@@ -621,3 +621,12 @@ cursor: pointer;
 #info > div.simplebar-wrapper > div.simplebar-mask > div > div > div {
   padding: 0px 0px 0px;
 }
+
+.container-fluid {
+  padding-left: 0rem;
+}
+
+label:HOVER {
+  cursor: pointer;
+  opacity: 30%;
+}
