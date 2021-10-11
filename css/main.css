@@ -282,12 +282,12 @@ text {
 }
 
 #gage-chart {
-  top: -35px;
+  /* top: 100px; */
 }
-/* #gage-subChart {
+#gage-subChart {
   top: 10px;
-  left: -20px;
-} */
+  /* left: -20px; */
+}
 
 #agegroup-chart {
   position: relative;
@@ -523,6 +523,10 @@ text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 
 .tabInfo {
   background-color: grey !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #deck-2 > div.card.col-lg-11 {
   background-color: grey !important;
@@ -560,7 +564,7 @@ cursor: pointer;
 }
 
 #gageSubChartDeck {
-  margin-bottom: -50px;
+  /* margin-bottom: 0px; */
 }
 
 /* #gageYearSelect {
@@ -629,4 +633,8 @@ cursor: pointer;
 label:HOVER {
   cursor: pointer;
   opacity: 30%;
+}
+
+#myMapTab {
+  right: 20px;
 }

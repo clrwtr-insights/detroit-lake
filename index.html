@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="authors" content="Benji Antolin">
-  <title>CLRWTR Insights</title>
+  <title>Harmful Algal Bloom Forecasting System</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <!-- Custom fonts for this template-->
   <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
@@ -67,10 +67,11 @@
 
               <!-- <h1 id="odsTitle" class="h3 mb-0 text-gray-800">Outdoor School Explorer</h1> -->
               <span id="dashTitle" class="text-gray-600">
-                <div>CLRWTR Insights<sup>tm</sup></div>
+                <!-- <div>CLRWTR Insights<sup>tm</sup></div> -->
                 <!-- </span>
                   <span> -->
-                <div>Harmful Algal Blooms</div>
+                <div>Harmful Algal Bloom</div>
+                Forecasting System
               </span>
               <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -171,7 +172,7 @@
                   <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
                     <!-- Stream gage location dropdown -->
                     <div id="deck-2" class="card-deck counts">
-                      <div class="card col-lg-11">
+                      <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between">
                         <div class="dropdown no-arrow">
 
                           <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -179,7 +180,7 @@
                             <span id="gageDropdown" class="dropdownTitle"></span>
                           </a>
 
-                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
                             <center>
                               <a class="dropdown-item" id="14178000" value="1">NO SANTIAM R BLW BOULDER CRK, NR DETROIT, OR</a>
                               <a class="dropdown-item" id="14179000" value="2">BREITENBUSH R ABV FRENCH CR NR DETROIT, OR.</a>
@@ -188,19 +189,68 @@
                             </center>
                           </div>
                         </div>
+                        <div class="dropdown no-arrow">
+                          <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
+                            <span id="gageYearDropdown" class="dropdownTitle"></span>
+                          </a>
+
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                            <center>
+                              <div id="gage2021" class="checkbox">
+                                <label>2021</label>
+                              </div>
+                              <div id="gage2020" class="checkbox">
+                                <label>2020</label>
+                              </div>
+                              <div id="gage2019" class="checkbox">
+                                <label>2019</label>
+                              </div>
+                              <div id="gage2018" class="checkbox">
+                                <label>2018</label>
+                              </div>
+                              <div id="gage2017" class="checkbox">
+                                <label>2017</label>
+                              </div>
+                              <div id="gage2016" class="checkbox">
+                                <label>2016</label>
+                              </div>
+                              <div id="gage2015" class="checkbox">
+                                <label>2015</label>
+                              </div>
+                              <div id="gage2014" class="checkbox">
+                                <label>2014</label>
+                              </div>
+                              <div id="gage2013" class="checkbox">
+                                <label>2013</label>
+                              </div>
+                              <div id="gage2012" class="checkbox">
+                                <label>2012</label>
+                              </div>
+                              <div id="gage2011" class="checkbox">
+                                <label>2011</label>
+                              </div>
+                              <div id="gage2010" class="checkbox">
+                                <label>2010</label>
+                              </div>
+                            </center>
+                          </div>
+                        </div>
                       </div>
+
                       <div class="card col-lg-1 tabInfo">
+
                         <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+
+
                       </div>
                     </div>
                     <div id="deck-2" class="card-deck counts">
-                      <div class="col-lg-10">
+                      <div class="col-lg-12">
                         <!-- SubChart -->
                         <div id="gageSubChartDeck" class="card-deck counts">
+                          <br><br>
                           <div class="card">
-                            <center>
-                              <p></p>
-                            </center>
                             <div id="gage-chart"></div>
                           </div>
                         </div>
@@ -246,7 +296,7 @@
                         </div>
 
                       </div>
-                      <div id="gageYearSelect" class="col-lg-2">
+                      <!-- <div id="gageYearSelect" class="col-lg-2">
                         <center>
                           <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
 
@@ -288,7 +338,7 @@
                           </div>
                           <center/>
 
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <!-- Sample tab -->
@@ -375,9 +425,9 @@
         </div>
         <div id="sat-data-panel">
 
-          <ul class="nav nav-tabs" id="myMapTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active ml-3" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
+          <ul class="nav nav-tabs " id="myMapTab" role="tablist">
+            <li class="nav-item ml-auto" role="presentation">
+              <button class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
                 Satellite data <i class="fas fa-satellite"></i>
               </button>
             </li>
@@ -426,61 +476,64 @@
               <div class="card">
                 <div class="card-body legend-color-6">
                   <h5 class="card-title" style="color:white">
-                    <1 </h5> </div> </div> <div class="card">
-                      <div class="card-body legend-color-5">
-                        <h5 class="card-title" style="color:#343a40"></h5>
-                      </div>
-                </div>
-                <div class="card">
-                  <div class="card-body  legend-color-4">
-                    <h5 class="card-title" style="color:#343a40"></h5>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body  legend-color-3">
-                    <h5 class="card-title" style="color:#343a40"></h5>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body legend-color-2">
-                    <h5 class="card-title" style="color:#343a40"></h5>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body legend-color-1">
-                    <h5 class="card-title" style="color:white">>1.2</h5>
-                  </div>
+                    low
+                  </h5>
                 </div>
               </div>
-              <div id="deck-2" class="card-deck counts">
-                <div class="card darkBackground">
-                  <center>
-                    <div class="slidecontainer">
-                      <div class="timeTitle mb-1 mt-1">Slide to select date for hexbin layer</div>
-                      <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
-                      <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
-                    </div>
-                  </center>
+              <div class="card">
+                <div class="card-body legend-color-5">
+                  <h5 class="card-title" style="color:#343a40"></h5>
                 </div>
               </div>
-
+              <div class="card">
+                <div class="card-body  legend-color-4">
+                  <h5 class="card-title" style="color:#343a40"></h5>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body  legend-color-3">
+                  <h5 class="card-title" style="color:#343a40"></h5>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body legend-color-2">
+                  <h5 class="card-title" style="color:#343a40"></h5>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body legend-color-1">
+                  <h5 class="card-title" style="color:white">high</h5>
+                </div>
+              </div>
+            </div>
+            <div id="deck-2" class="card-deck counts">
+              <div class="card darkBackground">
+                <center>
+                  <div class="slidecontainer">
+                    <div class="timeTitle mb-1 mt-1">Slide to select date for hexbin layer</div>
+                    <input type="range" min="0" max="99" value="0" class="slider" id="myRange">
+                    <input id="d0" class="timeTitle ml-1 mb-1 mt-1 " type="date" min="2020-01-04" max="2021-08-26" value="2020-01-04">
+                  </div>
+                </center>
+              </div>
             </div>
 
           </div>
-          <div class="col-lg-6 darkBackground">
-            <div id="info2">
-              <!-- Tab Data Selection -->
-              <div id="deck-1" class="card-deck counts">
 
-                <div class="card darkBackground">
-                  <!-- tab content -->
-                  <div class="tab-content" id="myMapTabContent">
-                    <!-- Stream tab -->
-                    <div id="deck-2" class="card-deck counts">
-                      <div class="card darkBackground">
-                        <div class="map-area">
-                          <div id="map"></div>
-                        </div>
+        </div>
+        <div class="col-lg-6 darkBackground">
+          <div id="info2">
+            <!-- Tab Data Selection -->
+            <div id="deck-1" class="card-deck counts">
+
+              <div class="card darkBackground">
+                <!-- tab content -->
+                <div class="tab-content" id="myMapTabContent">
+                  <!-- Stream tab -->
+                  <div id="deck-2" class="card-deck counts">
+                    <div class="card darkBackground">
+                      <div class="map-area">
+                        <div id="map"></div>
                       </div>
                     </div>
                   </div>
@@ -489,12 +542,13 @@
             </div>
           </div>
         </div>
-
       </div>
 
     </div>
 
-    <!-- Sat data Panel -->
+  </div>
+
+  <!-- Sat data Panel -->
   </div>
   </div>
 
@@ -2746,16 +2800,16 @@
         $("#gageDropdown").text(e.target.feature.properties.site_name);
 
         // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(5) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(6) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(7) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(8) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(9) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(10) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(11) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(12) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(13) > label").css('color', 'white');
-        $("#deck-2 > div.col-lg-2 > center > div:nth-child(14) > label").css('color', 'white');
+        $("#gage2019").css('color', 'white');
+        $("#gage2018").css('color', 'white');
+        $("#gage2017").css('color', 'white');
+        $("#gage2016").css('color', 'white');
+        $("#gage2015").css('color', 'white');
+        $("#gage2014").css('color', 'white');
+        $("#gage2013").css('color', 'white');
+        $("#gage2012").css('color', 'white');
+        $("#gage2011").css('color', 'white');
+        $("#gage2010").css('color', 'white');
 
       }
 
@@ -2966,7 +3020,6 @@
 
       mymap.on('click', onMapClick);
       gage1Counts(gage1);
-
       sample1Counts(sampleLoc1);
       varsCounts(weatherVars);
       chartColor = 'white'
@@ -3001,7 +3054,7 @@
       // }
 
       var padTop = 10;
-      var padRight = 0;
+      var padRight = 30;
       // var padSide = 30;
       // gage chart
 
@@ -3016,7 +3069,7 @@
         data: {
           x: "Date",
           columns: [
-            t, gage1.wtM2020, gage1.wtM2021
+            t, gage1.wtM2021, gage1.wtM2020
           ],
           // onmouseover: annualUpdate,
           type: 'spline',
@@ -3043,7 +3096,6 @@
         },
         padding: {
           // bottom: 10,
-          top: 0,
           right: padRight,
           // left: padSide,
         },
@@ -3070,21 +3122,17 @@
           }
         },
         legend: {
-          show: false,
-          position: 'right',
-          inset: {
-            // anchor: "bottom-right",
-            x: -1,
-          },
+          show: true,
+          position: 'bottom',
           enabled: false,
         },
         bindto: "#gage-chart"
       });
       $("#gage-chart > svg > g:nth-child(2)").hide();
       var stroke2021 = chart.color('2021');
-      $("#deck-2 > div.col-lg-2 > center > div:nth-child(3) > label").css('color', stroke2021);
+      $("#gage2021").css('color', stroke2021);
       var stroke2020 = chart.color('2020');
-      $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', stroke2020);
+      $("#gage2020").css('color', stroke2020);
 
       chart2 = c3.generate({
         size: {
@@ -3092,7 +3140,7 @@
         },
         data: {
           x: "Date",
-          columns: [t, gage1.wtM2020, gage1.wtM2021],
+          columns: [t, gage1.wtM2021, gage1.wtM2020],
           // onmouseover: annualUpdate,
           type: 'spline',
         },
@@ -3164,6 +3212,13 @@
         },
         legend: {
           show: false,
+          position: 'inset',
+          inset: {
+            anchor: 'top-right',
+            x: 20,
+            y: 10,
+            step: 11
+          }
         },
         bindto: "#gage-chart2"
       });
@@ -3173,7 +3228,7 @@
         },
         data: {
           x: "Date",
-          columns: [t, gage1.wtS2020, gage1.wtS2021],
+          columns: [t, gage1.wtS2021, gage1.wtS2020],
           type: 'spline',
         },
         // color: {
@@ -3239,7 +3294,7 @@
         },
         data: {
           x: "Date",
-          columns: [t, gage1.dchM2020, gage1.dchM2021],
+          columns: [t, gage1.dchM2021, gage1.dchM2020],
           type: 'spline',
         },
         // color: {
@@ -3305,7 +3360,7 @@
         },
         data: {
           x: "Date",
-          columns: [wt2020, gage1.dchS2020, gage1.dchS2021],
+          columns: [wt2020, gage1.dchS2021, gage1.dchS2020],
           type: 'spline',
         },
         // color: {
@@ -3837,7 +3892,7 @@
       });
 
       $("#gage2021").on("click", function() {
-        color2021 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(3) > label").css('color');
+        color2021 = $("#gage2021").css('color');
         if (color2021 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -3980,7 +4035,7 @@
             columns: [siteSelect.dchS2021],
           });
           var stroke = chart.color('2021');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(3) > label").css('color', stroke);
+          $("#gage2021").css('color', stroke);
 
         } else {
           chart.unload({
@@ -3998,15 +4053,13 @@
           dchSumChart.unload({
             ids: ["2021"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(3) > label").css('color', 'white');
+          $("#gage2021").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2020").on("click", function() {
-        color2020 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color');
+        color2020 = $("#gage2020").css('color');
         if (color2020 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -4149,7 +4202,7 @@
             columns: [siteSelect.dchS2020],
           });
           var stroke = chart.color('2020');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', stroke);
+          $("#gage2020").css('color', stroke);
 
         } else {
           chart.unload({
@@ -4167,15 +4220,13 @@
           dchSumChart.unload({
             ids: ["2020"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
+          $("#gage2020").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2019").on("click", function() {
-        color2019 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(5) > label").css('color');
+        color2019 = $("#gage2019").css('color');
         if (color2019 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -4318,7 +4369,7 @@
             columns: [siteSelect.dchS2019],
           });
           var stroke = chart.color('2019');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(5) > label").css('color', stroke);
+          $("#gage2019").css('color', stroke);
 
         } else {
           chart.unload({
@@ -4336,15 +4387,13 @@
           dchSumChart.unload({
             ids: ["2019"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(5) > label").css('color', 'white');
+          $("#gage2019").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2018").on("click", function() {
-        color2018 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(6) > label").css('color');
+        color2018 = $("#gage2018").css('color');
         if (color2018 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -4487,7 +4536,7 @@
             columns: [siteSelect.dchS2018],
           });
           var stroke = chart.color('2018');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(6) > label").css('color', stroke);
+          $("#gage2018").css('color', stroke);
 
         } else {
           chart.unload({
@@ -4505,15 +4554,13 @@
           dchSumChart.unload({
             ids: ["2018"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(6) > label").css('color', 'white');
+          $("#gage2018").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2017").on("click", function() {
-        color2017 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(7) > label").css('color');
+        color2017 = $("#gage2017").css('color');
         if (color2017 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -4656,7 +4703,7 @@
             columns: [siteSelect.dchS2017],
           });
           var stroke = chart.color('2017');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(7) > label").css('color', stroke);
+          $("#gage2017").css('color', stroke);
 
         } else {
           chart.unload({
@@ -4674,15 +4721,13 @@
           dchSumChart.unload({
             ids: ["2017"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(7) > label").css('color', 'white');
+          $("#gage2017").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2016").on("click", function() {
-        color2016 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(8) > label").css('color');
+        color2016 = $("#gage2016").css('color');
         if (color2016 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -4825,7 +4870,7 @@
             columns: [siteSelect.dchS2016],
           });
           var stroke = chart.color('2016');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(8) > label").css('color', stroke);
+          $("#gage2016").css('color', stroke);
 
         } else {
           chart.unload({
@@ -4843,15 +4888,13 @@
           dchSumChart.unload({
             ids: ["2016"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(8) > label").css('color', 'white');
+          $("#gage2016").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2015").on("click", function() {
-        color2015 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(9) > label").css('color');
+        color2015 = $("#gage2015").css('color');
         if (color2015 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -4994,7 +5037,7 @@
             columns: [siteSelect.dchS2015],
           });
           var stroke = chart.color('2015');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(9) > label").css('color', stroke);
+          $("#gage2015").css('color', stroke);
 
         } else {
           chart.unload({
@@ -5012,14 +5055,13 @@
           dchSumChart.unload({
             ids: ["2015"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(9) > label").css('color', 'white');
+          $("#gage2015").css('color', 'white');
 
         }
 
       });
-
       $("#gage2014").on("click", function() {
-        color2014 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(10) > label").css('color');
+        color2014 = $("#gage2014").css('color');
         if (color2014 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -5162,7 +5204,7 @@
             columns: [siteSelect.dchS2014],
           });
           var stroke = chart.color('2014');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(10) > label").css('color', stroke);
+          $("#gage2014").css('color', stroke);
 
         } else {
           chart.unload({
@@ -5180,15 +5222,13 @@
           dchSumChart.unload({
             ids: ["2014"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(10) > label").css('color', 'white');
+          $("#gage2014").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2013").on("click", function() {
-        color2013 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(11) > label").css('color');
+        color2013 = $("#gage2013").css('color');
         if (color2013 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -5331,7 +5371,7 @@
             columns: [siteSelect.dchS2013],
           });
           var stroke = chart.color('2013');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(11) > label").css('color', stroke);
+          $("#gage2013").css('color', stroke);
 
         } else {
           chart.unload({
@@ -5349,14 +5389,12 @@
           dchSumChart.unload({
             ids: ["2013"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(11) > label").css('color', 'white');
+          $("#gage2013").css('color', 'white');
         }
 
       });
-
-
       $("#gage2012").on("click", function() {
-        color2012 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(12) > label").css('color');
+        color2012 = $("#gage2012").css('color');
         if (color2012 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -5499,7 +5537,7 @@
             columns: [siteSelect.dchS2012],
           });
           var stroke = chart.color('2012');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(12) > label").css('color', stroke);
+          $("#gage2012").css('color', stroke);
 
         } else {
           chart.unload({
@@ -5517,14 +5555,13 @@
           dchSumChart.unload({
             ids: ["2012"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(12) > label").css('color', 'white');
+          $("#gage2012").css('color', 'white');
 
         }
 
       });
-
       $("#gage2011").on("click", function() {
-        color2011 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(13) > label").css('color');
+        color2011 = $("#gage2011").css('color');
         if (color2011 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -5667,7 +5704,7 @@
             columns: [siteSelect.dchS2011],
           });
           var stroke = chart.color('2011');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(13) > label").css('color', stroke);
+          $("#gage2011").css('color', stroke);
 
         } else {
           chart.unload({
@@ -5685,15 +5722,13 @@
           dchSumChart.unload({
             ids: ["2011"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(13) > label").css('color', 'white');
+          $("#gage2011").css('color', 'white');
 
         }
 
       });
-
-
       $("#gage2010").on("click", function() {
-        color2010 = $("#deck-2 > div.col-lg-2 > center > div:nth-child(14) > label").css('color');
+        color2010 = $("#gage2010").css('color');
         if (color2010 == 'rgb(255, 255, 255)') {
           var t = ["Date"];
           var t2020 = ["Date"];
@@ -5836,7 +5871,7 @@
             columns: [siteSelect.dchS2010],
           });
           var stroke = chart.color('2010');
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(14) > label").css('color', stroke);
+          $("#gage2010").css('color', stroke);
 
         } else {
           chart.unload({
@@ -5854,7 +5889,7 @@
           dchSumChart.unload({
             ids: ["2010"],
           });
-          $("#deck-2 > div.col-lg-2 > center > div:nth-child(14) > label").css('color', 'white');
+          $("#gage2010").css('color', 'white');
 
         }
 
@@ -6234,18 +6269,6 @@
       })
     })
 
-    testingText = 'hello!';
-
-    $('#streamDateForm :checkbox').change(function() {
-      // this will contain a reference to the checkbox
-      if (this.checked) {
-        // the checkbox is now checked
-        testingText = 'hi!';
-      } else {
-        // the checkbox is now no longer checked
-        testingText = 'goodbye!';
-      }
-    });
 
     var today = new Date();
 
