@@ -3008,7 +3008,7 @@
           unload: true,
           columns: [t, gage1.wt],
         });
-        $("#gage-chart > svg > g:nth-child(2)").hide();
+      $("#gage-chart > svg > g:nth-child(2)").hide();
         $("#hint").text("Click on map to review county trend.");
 
       });
@@ -3128,7 +3128,7 @@
         },
         bindto: "#gage-chart"
       });
-      $("#gage-chart > svg > g:nth-child(2)").remove();
+      $("#gage-chart > svg > g:nth-child(2)").hide();
       var stroke2021 = chart.color('2021');
       $("#gage2021").css('color', stroke2021);
       var stroke2020 = chart.color('2020');
