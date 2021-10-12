@@ -282,13 +282,16 @@ text {
 }
 
 #gage-chart {
-  /* top: 100px; */
+  margin-top: -170px;
+  z-index: 0;
 }
 #gage-subChart {
   top: 10px;
   /* left: -20px; */
 }
-
+.frontSub{
+  z-index: 1000;
+}
 #agegroup-chart {
   position: relative;
   /* top: 30px;

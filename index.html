@@ -61,7 +61,7 @@
       <div class="row">
         <div class="col-lg-6 darkBackground">
           <div id="info" data-simplebar data-simplebar-auto-hide="false">
-            <nav class="navbar navbar-expand topbar mb-2 mt-2 static-top shadow">
+            <nav class="navbar navbar-expand topbar mb-2 mt-2 static-top shadow frontSub">
 
               <span id="imgLogo" class="mr-3"><img src="img\clearLogo.png" height="75"></span>
 
@@ -99,7 +99,7 @@
               <div class="card">
 
                 <!-- tab list -->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs frontSub" id="myTab" role="tablist">
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" id="weather-tab" data-bs-toggle="tab" href="#weather" data-bs-target="#weather" type="button" role="tab" aria-controls="weather" aria-selected="false">
                       Weather <i class="fas fa-cloud-sun-rain"></i>
@@ -117,7 +117,7 @@
                   </li>
                 </ul>
                 <!-- tab content -->
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content " id="myTabContent">
                   <!-- weather tab -->
                   <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
                     <div id="deck-2" class="card-deck counts">
@@ -171,8 +171,8 @@
                   <!-- Stream tab -->
                   <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
                     <!-- Stream gage location dropdown -->
-                    <div id="deck-2" class="card-deck counts">
-                      <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between">
+                    <div id="deck-2" class="card-deck counts frontSub">
+                      <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between frontSub">
                         <div class="dropdown no-arrow">
 
                           <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -238,7 +238,7 @@
                         </div>
                       </div>
 
-                      <div class="card col-lg-1 tabInfo">
+                      <div class="card col-lg-1 tabInfo frontSub">
 
                         <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
 
@@ -3064,7 +3064,7 @@
 
       chart = c3.generate({
         size: {
-          height: 100,
+          height: 250,
         },
         data: {
           x: "Date",
@@ -3128,7 +3128,7 @@
         },
         bindto: "#gage-chart"
       });
-      $("#gage-chart > svg > g:nth-child(2)").hide();
+      $("#gage-chart > svg > g:nth-child(2)").remove();
       var stroke2021 = chart.color('2021');
       $("#gage2021").css('color', stroke2021);
       var stroke2020 = chart.color('2020');
