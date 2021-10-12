@@ -285,6 +285,10 @@ text {
   margin-top: -170px;
   z-index: 0;
 }
+#precipSub-chart {
+  margin-top: -170px;
+  z-index: 0;
+}
 #gage-subChart {
   top: 10px;
   /* left: -20px; */
