@@ -118,8 +118,8 @@
                   <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
                     <div id="deck-2" class="card-deck counts">
                       <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between frontSub">
-                        <div class="dropdown no-arrow">
-                          <div class="nav-link ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="">
+                          <div class="nav-link ml-2">
                             <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
                           </div>
                         </div>
@@ -170,7 +170,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="card col-lg-1 tabInfo">
+                      <div class="card col-lg-1 tabInfo frontSub">
                         <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
                       </div>
                     </div>
@@ -278,7 +278,6 @@
                       <div class="col-lg-12">
                         <!-- SubChart -->
                         <div id="gageSubChartDeck" class="card-deck counts">
-                          <br><br>
                           <div class="card">
                             <div id="gage-chart"></div>
                           </div>
@@ -330,14 +329,14 @@
                   <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
                     <!-- Sample location dropdown -->
                     <div id="deck-2" class="card-deck">
-                      <div class="card col-lg-8">
+                      <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between frontSub">
                         <div class="dropdown no-arrow">
                           <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
                             <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
                           </a>
 
-                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
                             <center>
                               <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
                               <a class="dropdown-item" id="Heater" value="2">Heater</a>
@@ -345,41 +344,70 @@
                             </center>
                           </div>
                         </div>
-                      </div>
-                      <div class="card col-lg-3">
                         <div class="dropdown no-arrow">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
-                            <!-- <span id="sampleDropdown" class="dropdownTitle">2016-2019</span> -->
+                          <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
+                            <span id="gageYearDropdown" class="dropdownTitle"></span>
                           </a>
-
-                          <div class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
                             <center>
-                              <div class="checkbox">
-                                <label><input id="" type="checkbox" value="">2019</label>
+                              <!-- <div id="sample2021" class="checkbox">
+                                <label>2021</label>
                               </div>
-                              <div class="checkbox">
-                                <label><input id="" type="checkbox" value="">2018</label>
+                              <div id="sample2020" class="checkbox">
+                                <label>2020</label>
+                              </div> -->
+                              <div id="sample2019" class="checkbox">
+                                <label>2019</label>
                               </div>
-                              <div class="checkbox">
-                                <label><input id="" type="checkbox" value="">2017</label>
+                              <div id="sample2018" class="checkbox">
+                                <label>2018</label>
                               </div>
-                              <div class="checkbox">
-                                <label><input id="" type="checkbox" value="">2016</label>
+                              <div id="sample2017" class="checkbox">
+                                <label>2017</label>
                               </div>
-                              <center />
+                              <div id="sample2016" class="checkbox">
+                                <label>2016</label>
+                              </div>
+                              <!-- <div id="sample2015" class="checkbox">
+                                <label>2015</label>
+                              </div>
+                              <div id="sample2014" class="checkbox">
+                                <label>2014</label>
+                              </div>
+                              <div id="sample2013" class="checkbox">
+                                <label>2013</label>
+                              </div> -->
+                              <!-- <div id="sample2012" class="checkbox">
+                                <label>2012</label>
+                              </div>
+                              <div id="sample2011" class="checkbox">
+                                <label>2011</label>
+                              </div>
+                              <div id="sample2010" class="checkbox">
+                                <label>2010</label>
+                              </div> -->
+                            </center>
                           </div>
                         </div>
                       </div>
 
-                      <div class="card col-lg-1 tabInfo">
+                      <div class="card col-lg-1 tabInfo frontSub">
                         <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                      </div>
+                    </div>
+                    <!-- sample subchart -->
+                    <div id="deck-2" class="card-deck counts">
+                      <div class="card">
+                        <center>
+                          <p></p>
+                        </center>
+                        <div id="sampleSub-chart"></div>
                       </div>
                     </div>
                     <!-- Chart -->
                     <div id="deck-2" class="card-deck counts">
                       <div class="card">
-                        <div id="sub-chart"></div>
                         <center>
                           <p></p>
                         </center>
@@ -931,6 +959,8 @@
       d3.csv('assets/stream_gauge_tab/detroit_lake_usgstreamgage_2012_01_01_2021_09_29.csv'), //datasets[25]
       d3.csv('assets/satellite_map/dates.csv'), //datasets[26]
       d3.csv('assets/weather_tab/detroit_lake_prism_2012_01_01_2021_09_27.csv'), //datasets[27]
+      d3.csv('assets/water_sample_tab/detroit_lake_algae_2016_05_03_2019_10_30.csv'), //datasets[28]
+
     ]).then(function(datasets) {
 
       hexdata = [];
@@ -1171,81 +1201,81 @@
 
         let weatherData = datasets[27];
         for (let i = 0; i < weatherData.length; i++) {
-            switch (weatherData[i].year) {
-              case "2021":
-                weatherData2021pcMean.push(weatherData[i].Precip_mean);
-                weatherData2021pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2021atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2021atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2020":
-                weatherData2020pcMean.push(weatherData[i].Precip_mean);
-                weatherData2020pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2020atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2019":
-                weatherData2019pcMean.push(weatherData[i].Precip_mean);
-                weatherData2019pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2019atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2018":
-                weatherData2018pcMean.push(weatherData[i].Precip_mean);
-                weatherData2018pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2018atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2017":
-                weatherData2017pcMean.push(weatherData[i].Precip_mean);
-                weatherData2017pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2017atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2016":
-                weatherData2016pcMean.push(weatherData[i].Precip_mean);
-                weatherData2016pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2016atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2015":
-                weatherData2015pcMean.push(weatherData[i].Precip_mean);
-                weatherData2015pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2015atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2014":
-                weatherData2014pcMean.push(weatherData[i].Precip_mean);
-                weatherData2014pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2014atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2013":
-                weatherData2013pcMean.push(weatherData[i].Precip_mean);
-                weatherData2013pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2013atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2012":
-                weatherData2012pcMean.push(weatherData[i].Precip_mean);
-                weatherData2012pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2012atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2012atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2011":
-                weatherData2011pcMean.push(weatherData[i].Precip_mean);
-                weatherData2011pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2011atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2011atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              case "2010":
-                weatherData2010pcMean.push(weatherData[i].Precip_mean);
-                weatherData2010pcSum.push(weatherData[i].Precip_cumsum);
-                weatherData2010atempMean.push(weatherData[i].Air_Temp_mean);
-                weatherData2010atempSum.push(weatherData[i].Air_Temp_cumsum);
-                break;
-              default:
-            }
+          switch (weatherData[i].year) {
+            case "2021":
+              weatherData2021pcMean.push(weatherData[i].Precip_mean);
+              weatherData2021pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2021atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2021atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2020":
+              weatherData2020pcMean.push(weatherData[i].Precip_mean);
+              weatherData2020pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2020atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2020atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2019":
+              weatherData2019pcMean.push(weatherData[i].Precip_mean);
+              weatherData2019pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2019atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2019atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2018":
+              weatherData2018pcMean.push(weatherData[i].Precip_mean);
+              weatherData2018pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2018atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2018atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2017":
+              weatherData2017pcMean.push(weatherData[i].Precip_mean);
+              weatherData2017pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2017atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2017atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2016":
+              weatherData2016pcMean.push(weatherData[i].Precip_mean);
+              weatherData2016pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2016atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2016atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2015":
+              weatherData2015pcMean.push(weatherData[i].Precip_mean);
+              weatherData2015pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2015atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2015atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2014":
+              weatherData2014pcMean.push(weatherData[i].Precip_mean);
+              weatherData2014pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2014atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2014atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2013":
+              weatherData2013pcMean.push(weatherData[i].Precip_mean);
+              weatherData2013pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2013atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2013atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2012":
+              weatherData2012pcMean.push(weatherData[i].Precip_mean);
+              weatherData2012pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2012atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2012atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2011":
+              weatherData2011pcMean.push(weatherData[i].Precip_mean);
+              weatherData2011pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2011atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2011atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            case "2010":
+              weatherData2010pcMean.push(weatherData[i].Precip_mean);
+              weatherData2010pcSum.push(weatherData[i].Precip_cumsum);
+              weatherData2010atempMean.push(weatherData[i].Air_Temp_mean);
+              weatherData2010atempSum.push(weatherData[i].Air_Temp_cumsum);
+              break;
+            default:
+          }
 
 
         }
@@ -1772,6 +1802,7 @@
       }
 
       // Water sample Data
+      var wstnew = ["Date"];
       var wst = ["Date"];
       var wst2016 = ["Date"];
       var wst2017 = ["Date"];
@@ -1793,6 +1824,9 @@
       var algae2018 = ["2018"];
       var algae2019 = ["2019"];
       var toxin = ["Toxins"];
+      var toxin2013 = ["2013"];
+      var toxin2014 = ["2014"];
+      var toxin2015 = ["2015"];
       var toxin2016 = ["2016"];
       var toxin2017 = ["2017"];
       var toxin2018 = ["2018"];
@@ -1811,6 +1845,9 @@
         a2018: algae2018,
         a2019: algae2019,
         t: toxin,
+        t2013: toxin2013,
+        t2014: toxin2014,
+        t2015: toxin2015,
         t2016: toxin2016,
         t2017: toxin2017,
         t2018: toxin2018,
@@ -1820,10 +1857,34 @@
         n2017: nitrate2017,
         n2018: nitrate2018,
         n2019: nitrate2019,
-
       }
 
       function sample1Counts(i) {
+        // algae datas
+        // let algaeData = datasets[28];
+        // for (let i = 0; i < algaeData.length; i++) {
+        //   var  sampleDate = new Date(algaeData[i].date);
+        //   year = sampleDate.getFullYear();
+        //   if (i["name"] = "Log Boom") {
+        //     switch (year) {
+        //       case "2019":
+        //         algae2019.push(algaeData[i].Toxin);
+        //         break;
+        //       case "2018":
+        //         algae201.push(weatherData[i].Toxin);
+        //         break;
+        //       case "2017":
+        //         algae2017.push(weatherData[i].Toxin);
+        //         break;
+        //       case "2016":
+        //         algae2016.push(weatherData[i].Toxin);
+        //         break;
+        //       default:
+        //     }
+        //   }
+        // }
+
+
         // algae data
         ta = 0;
         datasets[2].forEach(function(d) {
@@ -3032,18 +3093,24 @@
         sampleSiteCounts(sampleLoc);
 
 
+        sampleSubChart.load({
+          unload: true,
+          columns: [sampleLoc.a2019, sampleLoc.a2018],
+        });
         sampleChart.load({
           unload: true,
-          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+          columns: [sampleLoc.a2019, sampleLoc.a2018],
         });
         toxinChart.load({
           unload: true,
-          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+          columns: [sampleLoc.t2019, sampleLoc.t2018],
         });
         nitrateChart.load({
           unload: true,
-          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
+          columns: [sampleLoc.n2019, sampleLoc.n2018],
         });
+        $("#sample2017").css('color', 'white');
+        $("#sample2016").css('color', 'white');
 
         $("#sampleDropdown").text(e.target.feature.properties.site);
       }
@@ -3165,7 +3232,7 @@
           unload: true,
           columns: [t, gage1.wt],
         });
-      $("#gage-chart > svg > g:nth-child(2)").hide();
+        $("#gage-chart > svg > g:nth-child(2)").hide();
         $("#hint").text("Click on map to review county trend.");
 
       });
@@ -3217,8 +3284,8 @@
 
 
 
-// Stream gage charts
-// stream gage subchart
+      // Stream gage charts
+      // stream gage subchart
       chart = c3.generate({
         size: {
           height: 250,
@@ -3290,7 +3357,7 @@
       $("#gage2021").css('color', stroke2021);
       var stroke2020 = chart.color('2020');
       $("#gage2020").css('color', stroke2020);
-// mean water temp
+      // mean water temp
       chart2 = c3.generate({
         size: {
           height: 220,
@@ -3579,16 +3646,15 @@
       });
 
 
-
       // sample algae chart
-      sampleChart = c3.generate({
+      sampleSubChart = c3.generate({
         size: {
-          height: 280,
+          height: 250,
 
         },
         data: {
           x: "Date",
-          columns: [wst2016, sampleLoc1.a2016, sampleLoc1.a2017, sampleLoc1.a2018, sampleLoc1.a2019],
+          columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018],
           type: 'scatter',
         },
         color: {
@@ -3605,8 +3671,9 @@
             height: 15
           },
           onbrush: function(d) {
-            toxinChart.zoom(sampleChart.zoom());
-            nitrateChart.zoom(sampleChart.zoom());
+            sampleChart.zoom(sampleSubChart.zoom());
+            toxinChart.zoom(sampleSubChart.zoom());
+            nitrateChart.zoom(sampleSubChart.zoom());
           }
         },
         padding: {
@@ -3654,8 +3721,9 @@
           enabled: true,
           type: "scroll",
           onzoom: function(d) {
-            toxinChart.zoom(sampleChart.zoom());
-            nitrateChart.zoom(sampleChart.zoom());
+            sampleChart.zoom(sampleSubChart.zoom());
+            toxinChart.zoom(sampleSubChart.zoom());
+            nitrateChart.zoom(sampleSubChart.zoom());
           }
         },
         tooltip: {
@@ -3663,6 +3731,97 @@
         },
         legend: {
           enabled: false,
+        },
+        bindto: "#sampleSub-chart"
+      });
+      $("#sampleSub-chart > svg > g:nth-child(2)").hide();
+      var stroke2019 = sampleSubChart.color('2019');
+      $("#sample2019").css('color', stroke2019);
+      var stroke2018 = sampleSubChart.color('2018');
+      $("#sample2018").css('color', stroke2018);
+      // sample algae chart
+      sampleChart = c3.generate({
+        size: {
+          height: 220,
+
+        },
+        data: {
+          x: "Date",
+          columns: [wst2016, sampleLoc1.a2019, sampleLoc1.a2018],
+          type: 'scatter',
+        },
+        color: {
+          // pattern: [chartColor]
+        },
+        // subchart: {
+        //   show: true,
+        //   axis: {
+        //     x: {
+        //       show: false
+        //     }
+        //   },
+        //   size: {
+        //     height: 15
+        //   },
+        //   onbrush: function(d) {
+        //     toxinChart.zoom(sampleChart.zoom());
+        //     nitrateChart.zoom(sampleChart.zoom());
+        //   }
+        // },
+        padding: {
+          // bottom: 10,
+          top: padTop,
+          right: padRight,
+          // left: padSide,
+        },
+        axis: {
+          x: {
+            type: "timeseries",
+            tick: {
+              format: "%b %d",
+              centered: true,
+              fit: true,
+              count: 20
+            }
+          },
+          y: {
+            label: {
+              text: 'Biovolume (um3\mL)',
+              position: 'outer-middle'
+            },
+            min: 0,
+            padding: {
+              bottom: 0
+            },
+            type: 'linear',
+            tick: {
+              format: d3.format(".2s"),
+              count: 5,
+            }
+          }
+        },
+        point: {
+          r: 7,
+          focus: {
+            expand: {
+              enabled: true
+            }
+          }
+        },
+        // zoom: {
+        //   // rescale: true,+
+        //   enabled: true,
+        //   type: "scroll",
+        //   onzoom: function(d) {
+        //     toxinChart.zoom(sampleChart.zoom());
+        //     nitrateChart.zoom(sampleChart.zoom());
+        //   }
+        // },
+        tooltip: {
+          linked: true,
+        },
+        legend: {
+          show: false,
         },
         bindto: "#sample-chart"
       });
@@ -3674,7 +3833,7 @@
         },
         data: {
           x: "Date",
-          columns: [wst2016, sampleLoc1.t2016, sampleLoc1.t2017, sampleLoc1.t2018, sampleLoc1.t2019],
+          columns: [wst2016, sampleLoc1.t2019, sampleLoc1.t2018],
           type: 'scatter',
         },
         // color: {
@@ -3712,23 +3871,22 @@
           }
         },
         point: {
-          r: 3,
+          r: 7,
           focus: {
             expand: {
-              r: 10
+              enabled: true
             }
           }
         },
-        zoom: {
-          // rescale: true,+
-          enabled: true,
-          type: "scroll",
-        },
+        // zoom: {
+        //   enabled: true,
+        //   type: "scroll",
+        // },
         tooltip: {
           linked: true,
         },
         legend: {
-          enabled: false,
+          show: false,
         },
         bindto: "#toxin-chart"
       });
@@ -3739,7 +3897,7 @@
         },
         data: {
           x: "Date",
-          columns: [wst2016, sampleLoc1.n2016, sampleLoc1.n2017, sampleLoc1.n2018, sampleLoc1.n2019],
+          columns: [wst2016, sampleLoc1.n2019, sampleLoc1.n2018],
           type: 'scatter',
         },
         // color: {
@@ -3777,27 +3935,25 @@
           }
         },
         point: {
-          r: 3,
+          r: 7,
           focus: {
             expand: {
-              r: 10
+              enabled: true
             }
           }
         },
-        zoom: {
-          // rescale: true,+
-          enabled: true,
-          type: "scroll",
-        },
+        // zoom: {
+        //   enabled: true,
+        //   type: "scroll",
+        // },
         tooltip: {
           linked: true,
         },
         legend: {
-          enabled: false,
+          show: false,
         },
         bindto: "#nitrate-chart"
       });
-
       // weather chart
       precipSubChart = c3.generate({
         size: {
@@ -4098,7 +4254,6 @@
         },
         bindto: "#precipSum-chart"
       });
-
       aitTempSumChart = c3.generate({
         size: {
           height: 220,
@@ -4167,7 +4322,7 @@
       });
 
 
-// Tab Interactions
+      // Tab Interactions
       $("#weather-tab").on("click", function() {
         // Remove Map Layers
         mymap.removeLayer(sites);
@@ -4196,7 +4351,7 @@
         mymap.fitBounds(lakeBounds)
       });
 
-// Stream Gage Year Selection
+      // Stream Gage Year Selection
       $("#gage2021").on("click", function() {
         color2021 = $("#gage2021").css('color');
         if (color2021 == 'rgb(255, 255, 255)') {
@@ -7763,7 +7918,637 @@
 
       });
 
+      // Sample Year Selection
+      $("#sample2019").on("click", function() {
+        color2019 = $("#sample2019").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2019 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
 
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2019],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2019],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2019],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2019],
+          });
+          var stroke = sampleSubChart.color('2019');
+          $("#sample2019").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2019"],
+          });
+          sampleChart.unload({
+            ids: ["2019"],
+          });
+          toxinChart.unload({
+            ids: ["2019"],
+          });
+          nitrateChart.unload({
+            ids: ["2019"],
+          });
+
+          $("#sample2019").css('color', 'white');
+        }
+
+      });
+      $("#sample2018").on("click", function() {
+        color2018 = $("#sample2018").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2018 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
+
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2018],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2018],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2018],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2018],
+          });
+          var stroke = sampleSubChart.color('2018');
+          $("#sample2018").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2018"],
+          });
+          sampleChart.unload({
+            ids: ["2018"],
+          });
+          toxinChart.unload({
+            ids: ["2018"],
+          });
+          nitrateChart.unload({
+            ids: ["2018"],
+          });
+
+          $("#sample2018").css('color', 'white');
+        }
+
+      });
+      $("#sample2017").on("click", function() {
+        color2017 = $("#sample2017").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2017 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
+
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2017],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2017],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2017],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2017],
+          });
+          var stroke = sampleSubChart.color('2017');
+          $("#sample2017").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2017"],
+          });
+          sampleChart.unload({
+            ids: ["2017"],
+          });
+          toxinChart.unload({
+            ids: ["2017"],
+          });
+          nitrateChart.unload({
+            ids: ["2017"],
+          });
+
+          $("#sample2017").css('color', 'white');
+        }
+
+      });
+      $("#sample2016").on("click", function() {
+        color2016 = $("#sample2016").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2016 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
+
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2016],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2016],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2016],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2016],
+          });
+          var stroke = sampleSubChart.color('2016');
+          $("#sample2016").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2016"],
+          });
+          sampleChart.unload({
+            ids: ["2016"],
+          });
+          toxinChart.unload({
+            ids: ["2016"],
+          });
+          nitrateChart.unload({
+            ids: ["2016"],
+          });
+
+          $("#sample2016").css('color', 'white');
+        }
+
+      });
+      $("#sample2015").on("click", function() {
+        color2015 = $("#sample2015").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2015 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
+
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2015],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2015],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2015],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2015],
+          });
+          var stroke = sampleSubChart.color('2015');
+          $("#sample2015").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2015"],
+          });
+          sampleChart.unload({
+            ids: ["2015"],
+          });
+          toxinChart.unload({
+            ids: ["2015"],
+          });
+          nitrateChart.unload({
+            ids: ["2015"],
+          });
+
+          $("#sample2015").css('color', 'white');
+        }
+
+      });
+      $("#sample2014").on("click", function() {
+        color2014 = $("#sample2014").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2014 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
+
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2014],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2014],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2014],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2014],
+          });
+          var stroke = sampleSubChart.color('2014');
+          $("#sample2014").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2014"],
+          });
+          sampleChart.unload({
+            ids: ["2014"],
+          });
+          toxinChart.unload({
+            ids: ["2014"],
+          });
+          nitrateChart.unload({
+            ids: ["2014"],
+          });
+
+          $("#sample2014").css('color', 'white');
+        }
+
+      });
+      $("#sample2013").on("click", function() {
+        color2013 = $("#sample2013").css('color');
+        sampleSite = $("#sampleDropdown").text();
+        if (color2013 == 'rgb(255, 255, 255)') {
+          // Weather Data
+          var wst = ["Date"];
+          var wst2016 = ["Date"];
+          var wst2017 = ["Date"];
+          var wst2018 = ["Date"];
+          var wst2019 = ["Date"];
+          var wstt = ["Date"];
+          var wstt2016 = ["Date"];
+          var wstt2017 = ["Date"];
+          var wstt2018 = ["Date"];
+          var wstt2019 = ["Date"];
+          var wsnt = ["Date"];
+          var wsnt2016 = ["Date"];
+          var wsnt2017 = ["Date"];
+          var wsnt2018 = ["Date"];
+          var wsnt2019 = ["Date"];
+          var algae = ["Algae"];
+          var algae2016 = ["2016"];
+          var algae2017 = ["2017"];
+          var algae2018 = ["2018"];
+          var algae2019 = ["2019"];
+          var toxin = ["Toxins"];
+          var toxin2016 = ["2016"];
+          var toxin2017 = ["2017"];
+          var toxin2018 = ["2018"];
+          var toxin2019 = ["2019"];
+          var nitrate = ["Total Nitrate"];
+          var nitrate2016 = ["2016"];
+          var nitrate2017 = ["2017"];
+          var nitrate2018 = ["2018"];
+          var nitrate2019 = ["2019"];
+          // var negTests = ["Negative Tests"];
+          var sampleSiteSelect = {
+            name: sampleSite,
+            a: algae,
+            a2016: algae2016,
+            a2017: algae2017,
+            a2018: algae2018,
+            a2019: algae2019,
+            t: toxin,
+            t2016: toxin2016,
+            t2017: toxin2017,
+            t2018: toxin2018,
+            t2019: toxin2019,
+            n: nitrate,
+            n2016: nitrate2016,
+            n2017: nitrate2017,
+            n2018: nitrate2018,
+            n2019: nitrate2019,
+          }
+
+          sampleSiteCounts(sampleSiteSelect);
+
+          sampleSubChart.load({
+            columns: [sampleSiteSelect.a2013],
+          });
+          sampleChart.load({
+            columns: [sampleSiteSelect.a2013],
+          });
+          toxinChart.load({
+            columns: [sampleSiteSelect.t2013],
+          });
+          nitrateChart.load({
+            columns: [sampleSiteSelect.n2013],
+          });
+          var stroke = sampleSubChart.color('2013');
+          $("#sample2013").css('color', stroke);
+
+        } else {
+          sampleSubChart.unload({
+            ids: ["2013"],
+          });
+          sampleChart.unload({
+            ids: ["2013"],
+          });
+          toxinChart.unload({
+            ids: ["2013"],
+          });
+          nitrateChart.unload({
+            ids: ["2013"],
+          });
+
+          $("#sample2013").css('color', 'white');
+        }
+
+      });
 
       $("#14179000").on("click", function() {
         $("#gageDropdown").text("BREITENBUSH R ABV FRENCH CR NR DETROIT, OR");
@@ -7916,7 +8701,6 @@
         });
         $("#gage-chart > svg > g:nth-child(2)").hide();
 
-        // $("#deck-2 > div.col-lg-2 > center > div:nth-child(4) > label").css('color', 'white');
         $("#gage2019").css('color', 'white');
         $("#gage2018").css('color', 'white');
         $("#gage2017").css('color', 'white');
@@ -8093,8 +8877,7 @@
         $("#gage2011").css('color', 'white');
         $("#gage2010").css('color', 'white');
         $("#gage-chart > svg > g:nth-child(2)").hide();
-            });
-
+      });
 
       $("#14180300").on("click", function() {
         $("#gageDropdown").text("BLOWOUT CREEK NEAR DETROIT, OR");
@@ -8481,19 +9264,24 @@
 
         sampleSiteCounts(sampleSiteSelect);
 
-
+        sampleSubChart.load({
+          unload: true,
+          columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+        });
         sampleChart.load({
           unload: true,
-          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+          columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
         });
         toxinChart.load({
           unload: true,
-          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+          columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018],
         });
         nitrateChart.load({
           unload: true,
-          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
+          columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018],
         });
+        $("#sample2017").css('color', 'white');
+        $("#sample2016").css('color', 'white');
       });
 
       $("#Heater").on("click", function() {
@@ -8552,18 +9340,24 @@
         sampleSiteCounts(sampleSiteSelect);
 
 
+        sampleSubChart.load({
+          unload: true,
+          columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+        });
         sampleChart.load({
           unload: true,
-          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+          columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
         });
         toxinChart.load({
           unload: true,
-          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+          columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018],
         });
         nitrateChart.load({
           unload: true,
-          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
+          columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018],
         });
+        $("#sample2017").css('color', 'white');
+        $("#sample2016").css('color', 'white');
       });
 
       $("#Blowout").on("click", function() {
@@ -8622,18 +9416,24 @@
         sampleSiteCounts(sampleSiteSelect);
 
 
+        sampleSubChart.load({
+          unload: true,
+          columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
+        });
         sampleChart.load({
           unload: true,
-          columns: [sampleLoc.a2016, sampleLoc.a2017, sampleLoc.a2018, sampleLoc.a2019],
+          columns: [sampleSiteSelect.a2019, sampleSiteSelect.a2018],
         });
         toxinChart.load({
           unload: true,
-          columns: [sampleLoc.t2016, sampleLoc.t2017, sampleLoc.t2018, sampleLoc.t2019],
+          columns: [sampleSiteSelect.t2019, sampleSiteSelect.t2018],
         });
         nitrateChart.load({
           unload: true,
-          columns: [sampleLoc.n2016, sampleLoc.n2017, sampleLoc.n2018, sampleLoc.n2019],
+          columns: [sampleSiteSelect.n2019, sampleSiteSelect.n2018],
         });
+        $("#sample2017").css('color', 'white');
+        $("#sample2016").css('color', 'white');
       });
 
 

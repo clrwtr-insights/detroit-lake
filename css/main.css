@@ -289,6 +289,10 @@ text {
   margin-top: -170px;
   z-index: 0;
 }
+#sampleSub-chart {
+  margin-top: -170px;
+  z-index: 0;
+}
 #gage-subChart {
   top: 10px;
   /* left: -20px; */
@@ -300,6 +304,9 @@ text {
   position: relative;
   /* top: 30px;
   left: -20px; */
+}
+.c3-axis-y-label {
+font-size: .75rem;
 }
 
 /* #agegroup-chart>div>table>tbody>tr>td>span {
@@ -612,6 +619,7 @@ cursor: pointer;
 
 .fa-info-circle:hover {
   opacity:30%;
+  cursor: pointer;
 }
 .navbarIcon {
   color: white;
