@@ -224,14 +224,14 @@ span {
 
 #date {
   font-size: calc(.5vw + .5vh + .25vmin);
-  position: relative;
-  text-align: center;
-  /* top: 20px; */
-  /* font-family: 'Oswald', sans-serif; */
+  /* position: relative; */
+  text-align: right;
+  display: flex;
+  justify-content: right;
 }
 
 #placename {
-  font-size: calc(.5vw + .5vh + .25vmin);
+  font-size: calc(1vw + 1vh + .5vmin);
   position: relative;
   text-align: center;
   /* top: 1px; */
@@ -652,4 +652,8 @@ label:HOVER {
 
 #myMapTab {
   right: 20px;
+}
+
+#imgLogo img{
+height: 65px;
 }
