@@ -297,6 +297,7 @@ text {
   top: 10px;
   /* left: -20px; */
 }
+
 .frontSub{
   z-index: 1000;
 }
@@ -658,15 +659,10 @@ label:HOVER {
 height: 65px;
 }
 
-circle.ping {
-    stroke: #000;
-    stroke-width: 1px;
+.c3 path{
+  stroke: grey;
 }
 
-circle.red {
-   fill: red;
-}
-
-circle.blue {
-   fill: steelblue;
+hr {
+  background: grey;
 }
