@@ -37,7 +37,7 @@
   <script src="js/simplebar.min.js"></script>
   <script src="js/leaflet.markercluster.js"></script>
   <script src="js/leaflet.heat.js"></script>
-
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/hosuaby/Leaflet.SmoothMarkerBouncing@v2.0.0/dist/bundle.js" crossorigin="anonymous"></script>
   <script src="js/leaflet.zoomhome.min.js"></script>
   <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
   <script src="https://unpkg.com/@asymmetrik/leaflet-d3@4/dist/leaflet-d3.js" charset="utf-8"></script>
@@ -75,8 +75,8 @@
               <ul class="navbar-nav">
 
                 <!-- Nav Item - Data Selection -->
-            <span id="placename" class="">Detroit Lake, Oregon</span>
-            <div class="topbar-divider d-none d-sm-block"></div>
+                <span id="placename" class="">Detroit Lake, Oregon</span>
+                <div class="topbar-divider d-none d-sm-block"></div>
                 <!-- Nav Item - Year Selection -->
               </ul>
               <ul class="navbar-nav ml-auto">
@@ -703,6 +703,8 @@
       // maxBounds: lakeBounds,
       // maxBoundsViscosity: .8,
     });
+
+
     mymap.fitBounds(lakeBounds);
     var voyager =
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png');
@@ -712,7 +714,6 @@
       maxZoom: 20,
       attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
     }).addTo(mymap);
-
 
     var baseLayers = {
       'CartoDB Voyager': voyager,
@@ -828,6 +829,7 @@
     function setClicked(d) {
       d3.select('#clicked .count').text((null != d) ? d.length : '');
     }
+
 
 
     dateSelect = $('#d0').val();
@@ -3181,6 +3183,12 @@
               className: 'map fas fa-tachometer-alt blinking',
             })
           });
+          // .setBouncingOptions({
+          //   bounceHeight: 20, // height of the bouncing
+          //   bounceSpeed: 54, // bouncing speed coefficient
+          //   exclusive: true, // if this marker is bouncing all others must stop
+          //   elastic: false,
+          // }).bounce();
         },
       }).addTo(mymap);
 
@@ -3347,6 +3355,9 @@
           position: 'bottom',
           enabled: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#gage-chart"
       });
       $("#gage-chart > svg > g:nth-child(2)").hide();
@@ -3441,6 +3452,9 @@
             step: 11
           }
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#gage-chart2"
       });
       var h20SumChart = c3.generate({
@@ -3506,6 +3520,9 @@
         },
         legend: {
           show: false,
+        },
+        line: {
+          connectNull: true
         },
         bindto: "#h20Sum-chart"
       });
@@ -3573,6 +3590,9 @@
         legend: {
           show: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#dchMean-chart"
       });
       var dchSumChart = c3.generate({
@@ -3638,6 +3658,9 @@
         },
         legend: {
           show: false,
+        },
+        line: {
+          connectNull: true
         },
         bindto: "#dchSum-chart"
       });
@@ -3728,6 +3751,9 @@
         },
         legend: {
           enabled: false,
+        },
+        line: {
+          connectNull: true
         },
         bindto: "#sampleSub-chart"
       });
@@ -3820,6 +3846,9 @@
         legend: {
           show: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#sample-chart"
       });
       // toxin chart
@@ -3885,6 +3914,9 @@
         legend: {
           show: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#toxin-chart"
       });
       // toxin chart
@@ -3948,6 +3980,9 @@
         },
         legend: {
           show: false,
+        },
+        line: {
+          connectNull: true
         },
         bindto: "#nitrate-chart"
       });
@@ -4041,6 +4076,9 @@
         legend: {
           enabled: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#precipSub-chart"
       });
       $("#precipSub-chart > svg > g:nth-child(2)").hide();
@@ -4116,6 +4154,9 @@
         legend: {
           show: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#precip-chart"
       });
       // Air Temp Chart
@@ -4183,6 +4224,9 @@
         legend: {
           show: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#airTemp-chart"
       });
       precipSumChart = c3.generate({
@@ -4249,6 +4293,9 @@
         legend: {
           show: false,
         },
+        line: {
+          connectNull: true
+        },
         bindto: "#precipSum-chart"
       });
       aitTempSumChart = c3.generate({
@@ -4314,6 +4361,9 @@
         },
         legend: {
           show: false,
+        },
+        line: {
+          connectNull: true
         },
         bindto: "#airTempSum-chart"
       });
