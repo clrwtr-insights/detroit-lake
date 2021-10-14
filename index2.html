@@ -54,8 +54,8 @@
 
       <div class="loader"></div>
 
-
-        <div id="infoContainer" class="darkBackground">
+      <div class="row">
+        <div id="infoContainer" class="col-lg-6 darkBackground">
           <div id="info" data-simplebar data-simplebar-auto-hide="false">
             <nav class="navbar navbar-expand topbar mb-2 mt-2 static-top shadow frontSub">
 
@@ -82,11 +82,7 @@
               <ul class="navbar-nav ml-auto">
                 <span><a data-toggle="modal" data-target="#resourcewindow"><i class="navbarIcon far fa-question-circle"></i></a></span>
                 <span><a data-toggle="modal" data-target="#infowindow"><i class="navbarIcon fas fa-info-circle"></i></a></span>
-                <span><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="navbarIcon tooltip fas fa-chevron-circle-left">
-                  <!-- <span class="tooltiptext">
-                    Click to close sidebar
-                  </span> -->
-                </i></a></span>
+                <span><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="navbarIcon fas fa-chevron-circle-left"></i></a></span>
               </ul>
             </nav>
 
@@ -444,41 +440,8 @@
             </div>
           </div>
         </div>
-        <div id="openBar">
-          <nav class="navbar navbar-expand topbar mb-2 mt-2 static-top shadow frontSub">
-
-            <span id="imgLogo" class="mr-3"><img src="img\clearLogo.png"></span>
-
-            <!-- <h1 id="odsTitle" class="h3 mb-0 text-gray-800">Outdoor School Explorer</h1> -->
-            <span id="dashTitle" class="text-gray-600">
-              <!-- <div>CLRWTR Insights<sup>tm</sup></div> -->
-              <!-- </span>
-                <span> -->
-              <div>Harmful Algal Bloom</div>
-              Forecasting System
-            </span>
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav">
-
-              <!-- Nav Item - Data Selection -->
-              <span id="placenameClosed" class="">Detroit Lake, Oregon</span>
-              <div class="topbar-divider d-none d-sm-block"></div>
-              <!-- Nav Item - Year Selection -->
-            </ul>
-            <ul class="navbar-nav ml-auto">
-              <span><a data-toggle="modal" data-target="#resourcewindow"><i class="navbarIcon far fa-question-circle"></i></a></span>
-              <span><a data-toggle="modal" data-target="#infowindow"><i class="navbarIcon fas fa-info-circle"></i></a></span>
-              <span><a href="javascript:void(0)" class="openbtn" onclick="openNav()"><i  class="navbarIcon fas fa-chevron-circle-right"></i></a></span>
-                <!-- <span class="tooltiptext">
-                  Click to close sidebar
-                </span> -->
-              </i></a></span>
-            </ul>
-          </nav>
-        </div>
         <div id="sat-data-panel">
+
           <ul class="nav nav-tabs " id="myMapTab" role="tablist">
             <li class="nav-item ml-auto" role="presentation">
               <button class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
@@ -488,7 +451,7 @@
           </ul>
           <div class="tab-content" id="myMapTabContent">
             <div id="deck-2" class="card-deck counts">
-              <div class="darkBackground tabInfo">
+              <div class="col-lg-5 darkBackground tabInfo">
                 <div class="card">
                   <div class="dropdown no-arrow">
 
@@ -497,7 +460,7 @@
                       <div><span id="satDropdown" class="dropdownTitle">Sentinel 2a</span></div>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <center>
                         <a class="dropdown-item" id="s2a" value="1">Sentinel 2a</a>
                         <a class="dropdown-item" id="ls8" value="2">Landsat 8</a>
@@ -505,6 +468,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="col-lg-6 darkBackground tabInfo">
                 <div class="card darkBackground">
                   <div class="dropdown no-arrow">
                     <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -512,16 +477,15 @@
                       <div><span id="hexDropdown" class="dropdownTitle">Chlorophyl a</span></div>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <center>
                         <a class="dropdown-item" id="chlA" value="1">Chlorophyl a</a>
                       </center>
                     </div>
                   </div>
                 </div>
-
               </div>
-              <div class="card tabInfo">
+              <div class="card col-lg-1 tabInfo">
                 <a data-toggle="modal" data-target="#satInfoWindow"><i class="nav fas fa-info-circle"></i></a>
               </div>
             </div>
@@ -574,8 +538,8 @@
           </div>
 
         </div>
-        <div id="infoMap" class="darkBackground">
-
+        <div id="info3" class="col-lg-6 darkBackground">
+          <div id="info2">
             <!-- Tab Data Selection -->
             <div id="deck-1" class="card-deck counts">
 
@@ -586,17 +550,16 @@
                   <div id="deck-2" class="card-deck counts">
                     <div class="card darkBackground">
                       <div class="map-area">
-                        <div id="map">
-                        </div>
+                        <div id="map"></div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+          </div>
         </div>
-
+      </div>
 
     </div>
 
@@ -734,11 +697,6 @@
 
     // bounds of lake
     var lakeBounds = L.latLngBounds(
-      L.latLng(44.607486241841485, -122.65328825946432), //Southwest
-      L.latLng(44.79646203583117, -122.09510671380221), //Northeast
-    );
-
-    var lakeBoundsClosed = L.latLngBounds(
       L.latLng(44.6518457695288, -122.30459300466374), //Southwest
       L.latLng(44.76672930999038, -122.09269384395935), //Northeast
     );
@@ -3232,6 +3190,12 @@
               className: 'map fas fa-tachometer-alt blinking',
             })
           });
+          // .setBouncingOptions({
+          //   bounceHeight: 20, // height of the bouncing
+          //   bounceSpeed: 54, // bouncing speed coefficient
+          //   exclusive: true, // if this marker is bouncing all others must stop
+          //   elastic: false,
+          // }).bounce();
         },
       }).addTo(mymap);
 
@@ -4609,8 +4573,6 @@
         }
 
       });
-
-
       $("#gage2020").on("click", function() {
         color2020 = $("#gage2020").css('color');
         if (color2020 == 'rgb(255, 255, 255)') {
@@ -9575,13 +9537,13 @@
     $("#date").text("Last update: " + date);
 
     function openNav() {
-      $("#info").css("left","0%");
+      $("#infoContainer").style.width = "250px";
       // document.getElementById("main").style.marginLeft = "250px";
     }
 
     function closeNav() {
-    $("#info").css("left","-50%");
-
+    $("#info").style.width = "0px";
+      // document.getElementById("main").style.marginLeft= "0";
     }
 
     // function closeNav() {

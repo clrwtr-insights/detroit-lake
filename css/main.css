@@ -5,7 +5,8 @@ html, body, main {
   margin: 0;
   background: #343a40;
   font-family: 'Titillium Web', sans-serif;
-  overflow: hidden
+  overflow: hidden;
+  font-size: 1.125rem;
 }
 
 .leaflet-tooltip.feature-label {
@@ -98,7 +99,7 @@ div#footer>div {
 #info {
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: 50%;
   /* top: 1%;
   bottom: 1%;
   left: .5%; */
@@ -107,21 +108,30 @@ div#footer>div {
   color: white;
   opacity: 1;
   padding: 0px 15px 0px 15px;
+   overflow-x: hidden;
 }
-#info2 {
-  /* position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 1%;
-  bottom: 1%;
-  left: .5%; */
-  /* z-index: 1000; */
-  /* background: #343a40;
-  color: white;
-  opacity: 1;
-  padding: 40px 15px 20px 15px; */
+#openBar {
+  position: absolute;
+  width: 50%;
+  /* top: 1%;
+  left: 1%; */
+  /* font-size: 3rem; */
+  z-index: 999;
+  opacity: .9;
 }
 
+#infoMap {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 998;
+  background: #343a40;
+  color: white;
+  opacity: 1;
+  padding-right: 1%;
+   overflow-x: hidden;
+   overflow-y: hidden;
+}
 
 .card-deck .card {
   background: #343a40;
@@ -161,14 +171,31 @@ div#footer>div {
 
 #sat-data-panel {
   position: absolute;
-  bottom: 210px;
+  bottom: 240px;
   right: 20px;
-  width: 300px;
+  width: 400px;
   height: 20px;
   z-index: 1000;
   opacity: .8;
   color: white;
-  border-radius: 25px;
+}
+
+
+
+#openBar a {
+color: white;
+}
+#fa-chevron-circle-right:hover {
+opacity: .6;
+cursor: pointer;
+}
+
+
+.fas fa-satellite{
+  color: white;
+}
+.counts {
+    margin-top: 0px;
 }
 
 .legend .card {
@@ -219,7 +246,7 @@ span {
 }
 
 #dashTitle{
-    font-size: calc(.5vw + .5vh + .25vmin);
+    font-size: calc(.75vw + .75vh + .25vmin);
 }
 
 #date {
@@ -524,7 +551,9 @@ text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 
 }
 .dropdownTitle {
-  font-size: 13px;
+  font-size: calc(.5vw + .5vh + .25vmin);
+  position: relative;
+  text-align: center;
 }
 
 .nav-link {
@@ -542,6 +571,7 @@ text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 3%;
 }
 #deck-2 > div.card.col-lg-11 {
   background-color: grey !important;
@@ -663,6 +693,30 @@ height: 65px;
   stroke: grey;
 }
 
-hr {
-  background: grey;
+.tooltip {
+    opacity: 1;
+}
+
+.tooltiptext {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1.2rem;
+    top: 100%;
+    right: 50%;
+    visibility: hidden;
+    line-height: 150%;
+    width: 200px;
+    margin-left: -170px;
+    margin-bottom: 5px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    position: absolute;
+}
+
+#placenameClosed {
+  color: white;
+  font-size: calc(1vw + 1vh + .5vmin);
+  position: relative;
+  text-align: center;
 }
