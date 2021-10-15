@@ -202,7 +202,7 @@ div#footer>div {
   right: 25px;
   /* width: 400px; */
   /* height: 20px; */
-  z-index: 1000;
+  z-index: 998;
   opacity: .8;
   color: white;
 }
