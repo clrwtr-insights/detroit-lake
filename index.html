@@ -67,18 +67,15 @@
               <!-- </span>
                   <span> -->
               <div>Harmful Algal Bloom</div>
-              Forecasting System
+              <div>Forecasting System</div>
+
             </span>
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Topbar Navbar -->
-            <ul class="navbar-nav">
-
-              <!-- Nav Item - Data Selection -->
-              <span id="placename" class="">Detroit Lake, Oregon</span>
+            <!-- <ul class="navbar-nav">
               <div class="topbar-divider d-none d-sm-block"></div>
-              <!-- Nav Item - Year Selection -->
-            </ul>
+            </ul> -->
             <ul class="navbar-nav ml-auto">
               <span><a data-toggle="modal" data-target="#resourcewindow"><i class="navbarIcon far fa-question-circle"></i></a></span>
               <span><a data-toggle="modal" data-target="#infowindow"><i class="navbarIcon fas fa-info-circle"></i></a></span>
@@ -89,7 +86,7 @@
                   </i></a></span>
             </ul>
           </nav>
-
+          <span id="placename" class="m-3">Detroit Lake, Oregon</span>
           <span id="date" class=""></span>
           <!-- Tab Data Selection -->
           <div id="deck-1" class="card-deck counts">
@@ -118,19 +115,18 @@
               <div class="tab-content " id="myTabContent">
                 <!-- weather tab -->
                 <div class="tab-pane fade show" id="weather" role="tabpanel" aria-labelledby="weather-tab">
-                  <div id="deck-2" class="card-deck counts">
-                    <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between frontSub">
-                      <div class="">
-                        <div class="nav-link ml-2">
-                          <span id="weatherText" class="dropdownTitle">Data taken from PRISM </span>
-                        </div>
-                      </div>
+                  <div id="deck-2" class="counts frontSub">
+                    <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
+                      <div class="dropdown no-arrow frontSub locationTab">
+                          <span class="ml-3 d-lg-inline text-gray-600 small">Data taken from PRISM</span>
 
-                      <div class="dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Year:</span><i class="far fa-calendar-alt"></i>
+                      </div>
+                      <div class="dropdown no-arrow frontSub yearTab">
+                        <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="mr-2 d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
+                          <span id="gageYearDropdown" class="dropdownTitle"></span>
                         </a>
-                        <div class="dropdown-menu shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
                           <center>
                             <div id="weather2021" class="checkbox">
                               <label>2021</label>
@@ -171,17 +167,19 @@
                           </center>
                         </div>
                       </div>
-                    </div>
-                    <div class="card col-lg-1 tabInfo frontSub">
+                      <div class="frontSub infoTab infoTab">
                       <a data-toggle="modal" data-target="#prismInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                      </div>
+
                     </div>
+
                   </div>
                   <!-- SubChart -->
                   <div id="precipSubChartDeck" class="card-deck counts">
                     <br><br>
                     <div class="card mt-1">
                       <center>
-                        Select Date Range
+                        Select date range
                       </center>
                       <div id="precipSub-chart"></div>
                     </div>
@@ -212,11 +210,11 @@
                 <!-- Stream tab -->
                 <div class="tab-pane fade show active" id="stream" role="tabpanel" aria-labelledby="stream-tab">
                   <!-- Stream gage location dropdown -->
-                  <div id="deck-2" class="card-deck counts frontSub">
-                    <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between frontSub">
-                      <div class="dropdown no-arrow">
+                  <div id="deck-2" class="counts frontSub">
+                    <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
+                      <div class="dropdown no-arrow frontSub locationTab">
                         <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                          <span class="mr-2 d-lg-inline text-gray-600 small">Select Location:</span>
                           <span id="gageDropdown" class="dropdownTitle"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
@@ -228,9 +226,9 @@
                           </center>
                         </div>
                       </div>
-                      <div class="dropdown no-arrow">
+                      <div class="dropdown no-arrow frontSub yearTab">
                         <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
+                          <span class="mr-2 d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
                           <span id="gageYearDropdown" class="dropdownTitle"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
@@ -274,18 +272,21 @@
                           </center>
                         </div>
                       </div>
-                    </div>
-                    <div class="card col-lg-1 tabInfo frontSub">
+                      <div class="frontSub infoTab">
                       <a data-toggle="modal" data-target="#streamInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                      </div>
+
                     </div>
+
                   </div>
+
                   <div id="deck-2" class="card-deck counts">
                     <div class="col-lg-12">
                       <!-- SubChart -->
                       <div id="gageSubChartDeck" class="card-deck counts">
                         <div class="card mt-1">
                           <center>
-                            Select Date Range
+                            Select date range
                           </center>
                           <div id="gage-chart"></div>
                         </div>
@@ -336,14 +337,13 @@
                 <!-- Sample tab -->
                 <div class="tab-pane fade show" id="sample" role="tabpanel" aria-labelledby="sample-tab">
                   <!-- Sample location dropdown -->
-                  <div id="deck-2" class="card-deck">
-                    <div class="card col-lg-11 d-flex flex-row align-items-center justify-content-between frontSub">
-                      <div class="dropdown no-arrow">
+                  <div id="deck-2" class="counts frontSub">
+                    <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
+                      <div class="dropdown no-arrow frontSub locationTab">
                         <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select Location:</span>
+                          <span class="mr-2 d-lg-inline text-gray-600 small">Select Location:</span>
                           <span id="sampleDropdown" class="dropdownTitle">Log Boom</span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
                           <center>
                             <a class="dropdown-item" id="Log_Boom" value="1">Log Boom</a>
@@ -352,9 +352,9 @@
                           </center>
                         </div>
                       </div>
-                      <div class="dropdown no-arrow">
+                      <div class="dropdown no-arrow frontSub yearTab">
                         <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
+                          <span class="mr-2 d-lg-inline text-gray-600 small">Select year: <i class="far fa-calendar-alt"></i></span>
                           <span id="gageYearDropdown" class="dropdownTitle"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
@@ -398,12 +398,14 @@
                           </center>
                         </div>
                       </div>
+                      <div class="frontSub infoTab infoTab">
+                        <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+                      </div>
+
                     </div>
 
-                    <div class="card col-lg-1 tabInfo frontSub">
-                      <a data-toggle="modal" data-target="#sampleInfoWindow"><i class="nav fas fa-info-circle"></i></a>
-                    </div>
                   </div>
+
                   <!-- sample subchart -->
                   <div id="deck-2" class="card-deck counts">
                     <div class="card mt-1">
@@ -455,18 +457,12 @@
             <!-- </span>
                 <span> -->
             <div>Harmful Algal Bloom</div>
-            Forecasting System
+            <div>Forecasting System</div>
+
           </span>
           <div class="topbar-divider d-none d-sm-block"></div>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav">
-
-            <!-- Nav Item - Data Selection -->
-            <span id="placenameClosed" class="">Detroit Lake, Oregon</span>
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <!-- Nav Item - Year Selection -->
-          </ul>
           <ul class="navbar-nav ml-auto">
             <span><a data-toggle="modal" data-target="#resourcewindow"><i class="navbarIcon far fa-question-circle"></i></a></span>
             <span><a data-toggle="modal" data-target="#infowindow"><i class="navbarIcon fas fa-info-circle"></i></a></span>
@@ -477,9 +473,10 @@
             </i></a></span>
           </ul>
         </nav>
+        <span id="placenameClosed" class="m-3">Detroit Lake, Oregon</span>
       </div>
 
-      <div id="sat-data-panel">
+      <div id="infoMapLegend">
         <ul class="nav nav-tabs " id="myMapTab" role="tablist">
           <li class="nav-item ml-auto" role="presentation">
             <button class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
@@ -488,74 +485,71 @@
           </li>
         </ul>
         <div class="tab-content" id="myMapTabContent">
-          <div id="deck-2" class="card-deck counts">
-            <div class="darkBackground tabInfo">
-              <div class="card">
-                <div class="dropdown no-arrow">
 
-                  <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div><span class="mr-2 text-gray-600 small">Select satellite:</span></div>
-                    <div><span id="satDropdown" class="dropdownTitle">Sentinel 2a</span></div>
-                  </a>
+          <div id="deck-2" class="frontSub">
 
-                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
-                    <center>
-                      <a class="dropdown-item" id="s2a" value="1">Sentinel 2a</a>
-                      <a class="dropdown-item" id="ls8" value="2">Landsat 8</a>
-                    </center>
-                  </div>
+            <div class="tabInfo align-items-center  justify-content-between">
+              <div class="dropdown no-arrow frontSub locationTab">
+                <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div><span class="mr-2 text-gray-600 small">Select satellite:</span></div>
+                  <div><span id="satDropdown" class="dropdownTitle">Sentinel 2a</span></div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                  <center>
+                    <a class="dropdown-item" id="s2a" value="1">Sentinel 2a</a>
+                    <a class="dropdown-item" id="ls8" value="2">Landsat 8</a>
+                  </center>
                 </div>
               </div>
-              <div class="card darkBackground">
-                <div class="dropdown no-arrow">
-                  <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div><span class="mr-2 text-gray-600 small">Hexbin variable:</span></div>
-                    <div><span id="hexDropdown" class="dropdownTitle">Chlorophyl a</span></div>
-                  </a>
-
-                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
-                    <center>
-                      <a class="dropdown-item" id="chlA" value="1">Chlorophyl a</a>
-                    </center>
-                  </div>
+              <div class="dropdown no-arrow frontSub yearTab">
+                <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div><span class="mr-2 text-gray-600 small">Hexbin variable:</span></div>
+                  <div><span id="hexDropdown" class="dropdownTitle">Chlorophyl a</span></div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in darkBackground" aria-labelledby="dropdownMenuLink">
+                  <center>
+              <a class="dropdown-item" id="chlA" value="1">Chlorophyl a</a>
+                  </center>
                 </div>
               </div>
-
-            </div>
-            <div class="card tabInfo">
+              <div class="frontSub infoTab">
               <a data-toggle="modal" data-target="#satInfoWindow"><i class="nav fas fa-info-circle"></i></a>
+              </div>
+
             </div>
+
           </div>
+
           <div class="card-deck legend">
             <div class="card">
-              <div class="card-body legend-color-6">
+              <div class="card-body legend-options legend-color-6">
                 <h5 class="card-title" style="color:white">
                   low
                 </h5>
               </div>
             </div>
             <div class="card">
-              <div class="card-body legend-color-5">
-                <h5 class="card-title" style="color:white">.</h5>
+              <div class="card-body legend-options legend-color-5">
+                <h5 class="" style="color:white"></h5>
               </div>
             </div>
             <div class="card">
-              <div class="card-body  legend-color-4">
-                <h5 class="card-title" style="color:white">.</h5>
+              <div class="card-body legend-options  legend-color-4">
+                <h5 class="" style="color:white"></h5>
               </div>
             </div>
             <div class="card">
-              <div class="card-body  legend-color-3">
-                <h5 class="card-title" style="color:white">.</h5>
+              <div class="card-body legend-options  legend-color-3">
+                <h5 class="" style="color:white"></h5>
               </div>
             </div>
             <div class="card">
-              <div class="card-body legend-color-2">
-                <h5 class="card-title" style="color:white">.</h5>
+              <div class="card-body legend-options legend-color-2">
+                <h5 class="" style="color:white"></h5>
               </div>
             </div>
             <div class="card">
-              <div class="card-body legend-color-1">
+              <div class="card-body legend-options legend-color-1">
                 <h5 class="card-title" style="color:white">high</h5>
               </div>
             </div>
@@ -595,6 +589,10 @@
 
       </div>
 
+      <div id="sat-data-panel">
+
+      </div>
+
 
       <!-- Tab Data Selection -->
 
@@ -611,9 +609,9 @@
         </div>
         <ul class="nav nav-tabs " id="myMapTabButton" role="tablist">
 
-            <button class="nav-link active" id="sat-button" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
-              Satellite data <i class="fas fa-satellite"></i>
-            </button>
+          <button class="nav-link active" id="sat-button" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
+            Satellite data <i class="fas fa-satellite"></i>
+          </button>
 
         </ul>
 
@@ -771,8 +769,8 @@
     );
 
     var lakeBoundsClosedMini = L.latLngBounds(
-      L.latLng(44.46225, -123.12241), //Southwest
-      L.latLng(44.80519, -122.02927), //Northeast
+      L.latLng(44.6518457695288, -122.43459300466374), //Southwest
+      L.latLng(44.76672930999038, -122.09269384395935), //Northeast
     );
 
     var mymap = L.map('map', {
@@ -9629,7 +9627,7 @@
       $("#info").show();
       $("#openBar").hide();
       // center = L.latLng(44.70744, -126.18925);
-        mymap.fitBounds(lakeBoundsClosedMini);
+      mymap.fitBounds(lakeBoundsClosedMini);
       // document.getElementById("main").style.marginLeft = "250px";
     }
 
@@ -9641,14 +9639,14 @@
       mymap.fitBounds(lakeBoundsClosed);
     }
     $("#sat-tab").on("click", function() {
-      $("#sat-data-panel").hide();
+      $("#infoMapLegend").hide();
       $("#sat-button").show();
     });
     $("#sat-button").on("click", function() {
-      $("#sat-data-panel").show();
+      $("#infoMapLegend").show();
       $("#sat-button").hide();
     });
-$("#sat-button").hide();
+    $("#sat-button").hide();
     // function closeNav() {
     //   $("#infoContainer").hide();
     // }
