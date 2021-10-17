@@ -156,7 +156,7 @@ div#footer>div {
   z-index: 1000;
   background: transparent;
   color: white;
-  opacity: 1;
+  opacity: .8;
   padding: 0px 15px 0px 15px;
   overflow-x: hidden;
 }
@@ -966,7 +966,7 @@ label:HOVER {
     z-index: 998;
     background: transparent;
     color: white;
-    opacity: 1;
+    opacity: .8;
     padding: 0px 15px 0px 15px;
     overflow-x: hidden;
   }
