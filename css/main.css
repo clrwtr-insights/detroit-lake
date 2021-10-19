@@ -150,7 +150,7 @@ div#footer>div {
 #infoMapLegend {
   position: absolute;
   /* height: 100%; */
-  width: 20%;
+  width: 400px;
   bottom: 2%;
   right: .5%;
   z-index: 1000;
@@ -189,6 +189,9 @@ div#footer>div {
   font-weight: bold;
 }
 
+.greyBackground{
+  background-color: grey;
+}
 /* #legend-panel {
   position: fixed;
   bottom: 180px;
@@ -470,6 +473,8 @@ text {
 } */
 .slidecontainer {
   width: 90%;
+  margin-right: -.75rem;
+  margin-left: -.75rem;
 }
 
 .slider {
@@ -786,9 +791,12 @@ label:HOVER {
 }
 
 .labelSize {
-  width: 12.5%
+  width: 12.5%;
 }
 
+.labelSize p {
+    font-size: 14px;
+}
 .sliderSize {
   width: 75%
 }
@@ -961,13 +969,29 @@ label:HOVER {
     position: absolute;
     /* height: 100%; */
     width: 100%;
-    bottom: 2%;
-    right: .5%;
-    z-index: 998;
+    /* bottom: 2%;
+    right: .5%; */
+    z-index: 999;
     background: transparent;
     color: white;
     opacity: .8;
     padding: 0px 15px 0px 15px;
     overflow-x: hidden;
   }
+  .dropdownTitle {
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+}
+}
+@media only screen and (max-width: 570px) {
+  /* For mobile phones: */
+  .card-deck .card {
+      margin-bottom: .0rem;
+  }
+  .dropdownTitle {
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+}
 }

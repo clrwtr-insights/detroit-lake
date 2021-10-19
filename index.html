@@ -480,15 +480,14 @@
         <ul class="nav nav-tabs " id="myMapTab" role="tablist">
           <li class="nav-item ml-auto" role="presentation">
             <button class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
-              Satellite data <i class="fas fa-satellite"></i>
+              Satellite data <i class="fas fa-satellite"></i><a data-toggle="modal" data-target="#satInfoWindow"> <i class="nav fas fa-info-circle"></i></a>
             </button>
           </li>
         </ul>
         <div class="tab-content" id="myMapTabContent">
 
-          <div id="deck-2" class="frontSub">
-
-            <div class="tabInfo align-items-center  justify-content-between">
+          <div id="deck-2" class="counts frontSub">
+            <div class="tabInfo d-flex flex-row align-items-center  justify-content-between">
               <div class="dropdown no-arrow frontSub locationTab">
                 <a class="nav-link dropdown-toggle ml-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <div><span class="mr-2 text-gray-600 small">Select satellite:</span></div>
@@ -511,9 +510,6 @@
               <a class="dropdown-item" id="chlA" value="1">Chlorophyl a</a>
                   </center>
                 </div>
-              </div>
-              <div class="frontSub infoTab">
-              <a data-toggle="modal" data-target="#satInfoWindow"><i class="nav fas fa-info-circle"></i></a>
               </div>
 
             </div>
@@ -610,7 +606,7 @@
         <ul class="nav nav-tabs " id="myMapTabButton" role="tablist">
 
           <button class="nav-link active" id="sat-button" data-bs-toggle="tab" href="#sat" data-bs-target="#sat" type="button" role="tab" aria-controls="sat" aria-selected="false">
-            Satellite data <i class="fas fa-satellite"></i>
+            Satellite data <i class="fas fa-satellite"></i><a data-toggle="modal" data-target="#satInfoWindow"> <i class="nav fas fa-info-circle"></i></a>
           </button>
 
         </ul>
@@ -755,8 +751,6 @@
       $('.loader').fadeOut("slow");
     });
 
-    $("#date").text("Last updated: 4/1/2020");
-
     // bounds of lake
     var lakeBounds = L.latLngBounds(
       L.latLng(44.607486241841485, -122.65328825946432), //Southwest
@@ -785,6 +779,7 @@
 
 
     mymap.fitBounds(lakeBoundsClosedMini);
+
     var voyager =
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png');
     var satellite =
@@ -799,7 +794,60 @@
       'ESRI Satellite': satellite,
       'USGS_USImagery': USGS_USImagery,
     }
+    L.Control.MousePosition = L.Control.extend({
+      options: {
+        position: 'bottomleft',
+        separator: ' : ',
+        emptyString: 'Unavailable',
+        lngFirst: false,
+        numDigits: 5,
+        lngFormatter: undefined,
+        latFormatter: undefined,
+        prefix: ""
+      },
 
+      onAdd: function(map) {
+        this._container = L.DomUtil.create('div', 'leaflet-control-mouseposition');
+        L.DomEvent.disableClickPropagation(this._container);
+        mymap.on('mousemove', this._onMouseMove, this);
+        this._container.innerHTML = this.options.emptyString;
+        return this._container;
+      },
+
+      onRemove: function(map) {
+        map.off('mousemove', this._onMouseMove)
+      },
+
+      _onMouseMove: function(e) {
+        var lng = this.options.lngFormatter ? this.options.lngFormatter(e.latlng.lng) : L.Util.formatNum(e.latlng.lng, this.options.numDigits);
+        var lat = this.options.latFormatter ? this.options.latFormatter(e.latlng.lat) : L.Util.formatNum(e.latlng.lat, this.options.numDigits);
+        var value = this.options.lngFirst ? lng + this.options.separator + lat : lat + this.options.separator + lng;
+        var prefixAndValue = this.options.prefix + ' ' + value;
+        this._container.innerHTML = prefixAndValue;
+      }
+
+    });
+
+    L.Map.mergeOptions({
+      positionControl: false
+    });
+
+    L.Map.addInitHook(function() {
+      if (this.options.positionControl) {
+        this.positionControl = new L.Control.MousePosition();
+        this.addControl(this.positionControl);
+      }
+    });
+
+    L.control.mousePosition = function(options) {
+      return new L.Control.MousePosition(options);
+    };
+    L.control.mousePosition({
+      position: 'topright'
+    }).addTo(mymap);
+    L.control.scale({
+      position: 'topright'
+    }).addTo(mymap);
     new L.control.layers(baseLayers, {}, {
       collapsed: true
     }).addTo(mymap);
@@ -9635,7 +9683,6 @@
       // $("#info").css("left","-50%");
       $("#info").hide();
       $("#openBar").show();
-
       mymap.fitBounds(lakeBoundsClosed);
     }
     $("#sat-tab").on("click", function() {
@@ -9651,59 +9698,12 @@
     //   $("#infoContainer").hide();
     // }
     $("#openBar").hide();
-    L.Control.MousePosition = L.Control.extend({
-      options: {
-        position: 'bottomleft',
-        separator: ' : ',
-        emptyString: 'Unavailable',
-        lngFirst: false,
-        numDigits: 5,
-        lngFormatter: undefined,
-        latFormatter: undefined,
-        prefix: ""
-      },
 
-      onAdd: function(map) {
-        this._container = L.DomUtil.create('div', 'leaflet-control-mouseposition');
-        L.DomEvent.disableClickPropagation(this._container);
-        mymap.on('mousemove', this._onMouseMove, this);
-        this._container.innerHTML = this.options.emptyString;
-        return this._container;
-      },
 
-      onRemove: function(map) {
-        map.off('mousemove', this._onMouseMove)
-      },
-
-      _onMouseMove: function(e) {
-        var lng = this.options.lngFormatter ? this.options.lngFormatter(e.latlng.lng) : L.Util.formatNum(e.latlng.lng, this.options.numDigits);
-        var lat = this.options.latFormatter ? this.options.latFormatter(e.latlng.lat) : L.Util.formatNum(e.latlng.lat, this.options.numDigits);
-        var value = this.options.lngFirst ? lng + this.options.separator + lat : lat + this.options.separator + lng;
-        var prefixAndValue = this.options.prefix + ' ' + value;
-        this._container.innerHTML = prefixAndValue;
-      }
-
-    });
-
-    L.Map.mergeOptions({
-      positionControl: false
-    });
-
-    L.Map.addInitHook(function() {
-      if (this.options.positionControl) {
-        this.positionControl = new L.Control.MousePosition();
-        this.addControl(this.positionControl);
-      }
-    });
-
-    L.control.mousePosition = function(options) {
-      return new L.Control.MousePosition(options);
-    };
 
     // Leaflet controls
     // Map Scale
-    L.control.mousePosition().addTo(mymap);
-    L.control.scale().addTo(mymap);
+
 
     /////////////////////////
     $(".leaflet-control-attribution")
