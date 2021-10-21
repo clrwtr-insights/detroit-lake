@@ -96,7 +96,7 @@ div#footer>div {
 #info {
   position: absolute;
   height: 100%;
-  width: 33%;
+  width: 34%;
   /* top: 1%;
   bottom: 1%;
   left: .5%; */
@@ -825,7 +825,7 @@ label:HOVER {
   #info {
     position: absolute;
     height: 100%;
-    width: 40%;
+    width: 550px;
     /* top: 1%;
     bottom: 1%;
     left: .5%; */
@@ -839,7 +839,7 @@ label:HOVER {
 
   #openBar {
     position: absolute;
-    width: 40%;
+    width: 520px;
     padding: 0px 15px 0px 15px;
     /* top: 1%;
     left: 1%; */
@@ -848,6 +848,8 @@ label:HOVER {
     opacity: .9;
   }
 
+
+
 }
 
 @media only screen and (max-width: 1250px) {
@@ -855,7 +857,7 @@ label:HOVER {
   #info {
     position: absolute;
     height: 100%;
-    width: 50%;
+    width: 520px;
     /* top: 1%;
     bottom: 1%;
     left: .5%; */
@@ -869,7 +871,7 @@ label:HOVER {
 
   #openBar {
     position: absolute;
-    width: 50%;
+  width: 520px;
     padding: 0px 15px 0px 15px;
     /* top: 1%;
     left: 1%; */
@@ -885,7 +887,7 @@ label:HOVER {
   #info {
     position: absolute;
     height: 100%;
-    width: 60%;
+  width: 520px;
     /* top: 1%;
     bottom: 1%;
     left: .5%; */
@@ -899,7 +901,7 @@ label:HOVER {
 
   #openBar {
     position: absolute;
-    width: 60%;
+  width: 520px;
     padding: 0px 15px 0px 15px;
     /* top: 1%;
     left: 1%; */
