@@ -464,6 +464,8 @@ text {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+  opacity: 100%;
+  color: white;
 }
 
 /* .textLabelclass a {
@@ -717,6 +719,10 @@ label {
   opacity: 30%;
   cursor: pointer;
 }
+.tooltiptext:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
 
 .navbar-nav span {
   margin-left: 10px;
@@ -769,7 +775,7 @@ label:HOVER {
   width: 200px;
   margin-left: -170px;
   margin-bottom: 5px;
-  background-color: green;
+  /* background-color: green; */
   color: white;
   text-align: center;
   border-radius: 2px;
@@ -818,7 +824,10 @@ label:HOVER {
 } */
 
 
-
+.fa-chevron-circle-left {
+  color: white;
+  font-size: 26px;
+}
 
 @media only screen and (max-width: 1710px) {
   /* For smaller screens: */
